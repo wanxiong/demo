@@ -1,0 +1,12 @@
+<link rel="shortcut icon" href="favicon.ico">
+
+
+
+×ÖÌå @font-face{
+	font-family: myAparFont;
+	src: url('font/Aparajita.ttf');
+}
+
+
+
+ÇÀÆ±  http://www.fishlee.net/
