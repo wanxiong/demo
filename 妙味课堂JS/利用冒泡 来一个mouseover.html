@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0; padding: 0;}
+	#div1{width: 200px;height: 200px;background-color: red;position: absolute;left: -200px;top: 200px;}
+	#div2{position: absolute;right: -30px;width: 30px;height: 60px;top: 70px;background-color: blue;}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+	window.onload = function() {
+
+
+		var div = document.getElementById('div1');
+
+
+		div.onmouseover = function(){
+
+			this.style.left = '0px'
+		}
+		div.onmouseout = function(){
+
+			this.style.left = '-200px'
+		}
+
+
+
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">移入</div>
+	</div>
+
+</body>
+</html>

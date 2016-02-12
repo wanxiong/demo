@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+	*{margin: 0;padding: 0;border: 0;}
+	ul li{list-style: none;}
+	div{width: 400px;border: 1px solid #000;margin: 100px auto;}
+	ul{
+		width: 100%;
+		clear: both;
+		display: box;
+		display: flex;
+	}
+	li{
+		float: left;
+		flex:1;
+		box-flex: 1;
+		-webkit-box-flex: 1;
+		position: relative;
+		text-align: center;
+		line-height: 50px;
+		color: red;
+		font-size: 24px;
+		cursor: pointer;
+	}
+	p{
+		line-height: 50px;
+ 		display: none;
+		}
+    </style>
+   <body>
+   		<div>
+   			<ul id="box">
+   				<li>
+   					点我1
+   					<p style="display: block;">我就是1</p>
+   				</li>
+   				<li>
+   					点我2
+   					<p>我就是2</p>
+   				</li>
+   				<li>
+   					点我3
+   					<p>我就是3</p>
+   				</li>
+   			</ul>
+   		</div>
+   </body>
+</html>
+<script type="text/javascript">
+	//面向对象
+	  window.onload = function(){
+	  		//调用全局
+	  		var go = new global() 
+
+	  		go.oneHide()
+	  }
+
+	  function global(){
+	  	this.box = document.getElementById('box')
+	  	this.oP = this.box.getElementsByTagName('p')
+	  	this.oLi = this.box.getElementsByTagName('li')
+	  }
+
+	  //第一层消失
+	  global.prototype.oneHide = function (){
+	  	for( var  i = 0 ; i < this.oLi.length ; i++)
+	  	{
+	  		var This = this
+	  		this.oLi[i].index = i
+	  		this.oLi[i].onclick = function()
+	  		{
+	  			This.oneShow(this)
+	  		}
+	  	}
+	  }
+	  //单独显示
+	  global.prototype.oneShow = function(obj)
+	  {
+	  	for( var i = 0 ; i < this.oLi.length ; i++)
+	  	{
+	  		this.oP[i].style.display = 'none';
+	  	}
+	  	this.oP[obj.index].style.display = 'block';
+	  }
+</script>

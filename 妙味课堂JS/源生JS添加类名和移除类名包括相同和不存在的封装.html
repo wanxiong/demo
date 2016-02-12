@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	window.onload = function() {
+
+		var Odiv = document.getElementById('div')
+		var Odiv1 = document.getElementById('div1')
+
+		//给下面的div添加类名
+		go(Odiv,'box')
+		function go(obj,a){
+		if(obj.className=='') {
+			//如果div没有类名就添加
+			obj.className = a;
+		}
+		else{
+			//如果有了类名
+			//Odiv.className +=' ' + 'box1'
+			//但是这种情况下如果类名是相同的话就多存在了一个相同的类名  对此 应该在次判断
+			var arr = obj.className.split('');
+			var index = arrClassName(arr,'a')
+			if(index==-1){
+			
+				obj.className +=' '+a
+			}
+		}
+		}
+
+		//
+		function arrClassName(aaa,v){
+			for (var i = 0; i < aaa.length; i++) {
+				
+				if(aaa[i] == 'v'){
+					return i
+				}
+				return -1;
+			};
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="div" class="box">div1</div>
+	<div id="div1">div1</div>
+</body>
+</html>

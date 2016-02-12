@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;padding: 0;border: 0;
+	}
+	#box{
+		width: 200px;height: 200px;position: absolute;left: 10px;
+		top: 10px;
+	}
+	.box{
+		background-color: red;width: 100px ;height: 100px;
+	}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+	window.onload = function(){
+
+		var oDiv = document.getElementById('box');
+		//拖拽事件分三部 onmousedown onmousemove onmouseup
+		oDiv.onmousedown = function(ev){
+			
+			var ev = ev || window.event;
+			//鼠标到盒子边缘的距离
+			var diX = ev.clientX-this.offsetLeft;
+			var diY = ev.clientY-this.offsetTop;
+			if(oDiv.setCapture){//这是针对IE8的兼容
+				oDiv.setCapture();
+			}
+			//添加document是因为 如果是给盒子添加的话 在鼠标快速移动的时候存在时间间隙  就脱离事件  因此给document添加就解决次bug
+			document.onmousemove = function(ev){
+
+				//给当前的盒子添加坐标
+				oDiv.style.left = ev.clientX-diX+'px';
+				oDiv.style.top = ev.clientY-diY+'px';
+			}
+			//鼠标抬起
+			document.onmouseup = function(ev){
+				
+				document.onmousemove = null;
+				document.onmouseup = null;
+				if(oDiv.releaseCapture){//这是针对IE8的兼容
+					oDiv.releaseCapture();
+				}
+			}
+			//ev.preventDefault()
+			return false
+			//bug :1 图片存在阻止默认的拖拽行为 所以操作有冲突  就阻止默认的行为就可以了
+			//bug :2 选中文字存在bug 并且此方法在IE8和以下存在bug  因此还要在判断
+			//  setCapture() : 全局捕获  生成透明层；透明层的大小就是可视区的大小  所以小释放 releaseCapture()   ：释放层
+		}
+
+	}
+	</script>
+
+	<div id="box">
+
+		几乎是扩大是宽带网
+		<div class="box"></div>
+	</div>
+</body>
+</html>
