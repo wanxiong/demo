@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			margin: 0 auto;
+			border: 2px solid #d0d0d0;
+			background: #E3DF8E;
+			line-height:26px;
+			padding: 0 10px;
+			width: 450px;
+			letter-spacing: 1px;
+		}
+		p{
+			display: inline;
+		}
+	</style>
+</head>
+<body>
+	<div >
+		<p>军人，是对在国家军队中服役的军职人员的称呼，包括战斗人员和非战斗人员，类似古代的武士，骑士。其职责是保卫国家安全，保卫及守护国家边境，政府政权稳定，社会安定，有时亦参与非战斗性的包括救灾等工作。</p>
+		<a href="javascript:;">....>>收缩</a>
+	</div>
+	<script type="text/javascript">
+		var oDiv = document.getElementsByTagName('div')[0];
+		var op = document.getElementsByTagName('p')[0];
+		var oA = document.getElementsByTagName('a')[0];
+		var str = op.innerHTML;
+		var onoff = true
+		oA.onclick = function(){
+			if(onoff==true){
+				op.innerHTML = str.substring(0, 26);
+				oA.innerHTML = '....>>展开';
+			}else{
+				op.innerHTML = str.substring(0);
+				oA.innerHTML = '....>>收缩';
+
+			}
+			onoff = !onoff
+		}
+
+	</script>
+</body>
+</html>

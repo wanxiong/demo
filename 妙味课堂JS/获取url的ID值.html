@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	window.onload = function(){
+
+
+			var href = window.location.href;
+			var o1 = href.indexOf("orgNo=")+6;
+			var orgNo = href.substring(o1, href.length);
+			if(orgNo != null && orgNo.toString().length>1 ){
+			//判断是否为空  不为空的话走这里
+			alert(href)
+			
+			alert(o1)
+			alert(orgNo)
+			}
+	}
+
+	</script>
+</body>
+</html>

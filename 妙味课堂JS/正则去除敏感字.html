@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>正则</title>
+	<style>
+	textarea{width: 400px;
+		height: 200px;
+		border: 1px solid #000;}
+	</style>
+	<script type="text/javascript">
+	window.onload = function() {
+		var text1 = document.getElementById('text1')
+		var btn1 = document.getElementById('button')
+		var text2 = document.getElementById('text2')
+		//创建一个正则
+		
+		btn1.onclick = function() {
+			var re =/我们|你们|他们/g;
+			text2.value = text1.value.replace(re,'.....') 
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<textarea id="text1"></textarea><br/>
+	<button id="button">开始转化</button></br/>
+	<textarea id="text2"></textarea>
+</body>
+</html>

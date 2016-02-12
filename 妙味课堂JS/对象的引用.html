@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+			  
+		//var obj = {};  
+		  
+		/*var obj = new Object();  //创建了一个空的对象  
+		obj.name = '小明';  //属性  
+		obj.showName = function(){  //方法  
+		    alert(this.name);  
+		};  
+		  
+		obj.showName();  */
+		  
+		  
+		/*var obj2 = new Object();  //创建了一个空的对象  
+		obj2.name = '小强';  //属性  
+		obj2.showName = function(){  //方法  
+		    alert(this.name);  
+		};  
+		  
+		obj2.showName(); */
+		  
+		 /* =========================================================================*/
+  			
+
+		var a = [1,2,3];  
+		var b = [1,2,3];  
+		  
+		alert( a == b );  //false
+		  
+		//var a = 5;  
+		//var b = a;  
+		//b += 3;  
+		////alert(b); //8  
+		//alert(a); //5   基本类型 : 赋值的时候只是值的复制  
+		  
+		  
+		//var a = [1,2,3];  
+		//var b = a;  
+		//b.push(4);  
+		////alert(b);  //[1,2,3,4]  
+		//alert(a);  //[1,2,3,4]  
+		//			 对象类型 : 赋值不仅是值的复制，而且也是引用的传递 ,赋值型不具有多态性；而引用类型有多态性
+		  
+		//var a = [1,2,3];
+		//var b = a;  
+		//b = [1,2,3,4];  
+		////alert(b); //[1,2,3,4]  
+		//alert(a); //[1,2,3]  
+		  
+		//var a = 5;  
+		//var b = 5;  
+		//  
+		//alert(a == b);  //基本类型 : 值相同就可以  
+		  
+		  
+		//var a = [1,2,3];  
+		//var b = [1,2,3];  
+		  
+		//alert( a == b );  //false  //对象类型 : 值和引用都相同才行 值类型不具有多态性；而引用类型有多态性
+		  
+		/*var a = [1,2,3];  
+		var b = a;  
+		alert( a==b );  //true
+		*/
+
+		var c = ''
+		var d = null
+		alert(typeof c)
+		alert(typeof d)
+		//=========================   补充   ===========================
+		//
+		/*值类型变量包含其实例数据，每个变量保存了其本身的数据拷贝（副本），因此在默认情况下，
+		值类型的参数传递不会影响参数本身；而引用类型变量保存了其数据的引用地址，
+		因此以引用方式进行参数传递时会影响到参数本身，因为两个变量会引用了内存中的同一块地址。
+		 */
+	</script>
+</body>
+</html>

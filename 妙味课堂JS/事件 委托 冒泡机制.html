@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	window.onload = function(){
+
+		var oUl = document.getElementById('ul');
+		var oLi = oUl.getElementsByTagName('li');
+
+		oUl.onmouseover = function(ev){
+			var ev = ev || window.event;
+			var target = ev.target || window.srcElement;
+
+			//alert(target.nodeName)判断当前元素的标签名字
+			//
+			if(target.nodeName.toLowerCase() == 'li'){
+				target.style.background = 'red'
+			}
+		}
+		oUl.onmouseout = function(ev){
+			var ev = ev || window.event;   //ev里面记录了事件源 源生要兼容
+			var target = ev.target || window.srcElement;  //IE里面也要做兼容  后面的window.scrElemnt是兼容IE的
+
+			//alert(target.nodeName)判断当前元素的标签名字   这里判断出来的都是大学 转换成小写
+			//
+			if(target.nodeName.toLowerCase() == 'li'){
+				target.style.background = ''
+			}
+		//事件委托的意义是证明了 在大量的Li下面的时候  解决JS里面的性能问题   不需要用户for循环来进行处理了
+		}
+		//并且添加LI的新标签也存在事件，不像FOR一样，新添加的LI不存在事件
+		var btn = document.getElementById('btn');
+
+			
+			var now = 4;
+			
+			btn.onclick = function(){
+				var li = document.createElement('li');//这个必须写在里面。是因为每点击一次就添加一个事件
+				now++;
+				li.innerHTML = 1111*now;
+				oUl.appendChild(li);
+			}
+	}
+	</script>
+	<button id="btn">添加</button>
+	<ul id="ul">
+		<li>111</li>
+		<li>2223</li>
+		<li>333</li>
+		<li>444</li>
+	</ul>
+</body>
+</html>

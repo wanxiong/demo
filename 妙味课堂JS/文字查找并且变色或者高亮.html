@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		margin: 0 auto;
+		width: 450px;
+	}
+	p{
+		line-height: 26px;
+		margin-top: 10px;
+		padding: 10px;
+		border: 1px solid #202020;
+		box-shadow: 1px 1px 1px 2px #666;
+	}
+	span{
+		color: red;
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<input type="text" value="" />
+		<input type="submit" value="查找" />
+		<p>军人，是对在国家军队中服役的军职人员的称呼，包括战斗人员和非战斗人员，军人，类似古代的武士，骑士。其职责是保卫国家安全，军人，保卫及守护国家边境，政府政权稳定，社会安定，军人，有时亦参与非战斗性的包括救灾等工作。
+		</p>
+	</div>
+	<script type="text/javascript">
+	var ainput = document.getElementsByTagName('input');
+	var ap = document.getElementsByTagName('p')[0];
+
+	ainput[1].onclick = function(){
+		var str = ainput[0].value;
+		if(!str) return
+			//这里面的join()方法一定要了解  他是在断点哪里面添加这里面的内容  反而split里面是分裂  分裂之后在里面加入join的内容
+			//join()是连接符
+			alert(ap.innerHTML.split(str))
+		ap.innerHTML = ap.innerHTML.split(str).join('<span>'+str+'</span>')
+	}
+	</script> 
+</body>
+</html>

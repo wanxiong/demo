@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="textApp" ng-controller="myCtrl">
+	<div ng-init="wanxiong=1;sex=2">
+		<input type="text" ng-model="head"></br>
+		<input type="text" ng-model="footer">
+		<button ng-click="go()">sdeofehui</button>
+		<p class="text-{{color}}">测试css的样式的颜色</p>
+		<button ng-click="btn()">改色</button>
+		<p><span ng-bind="wanxiong * sex"></span></p>
+		<p ng-show="tab.show">
+			我是第一排<br/>
+			我是第二排
+		</p>
+		<button ng-click="taggle()">Toggle Menu</button>
+	</div>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+			
+		var textApp = angular.module('textApp',[]);//定义angular应用   后面不调用什么  为空
+
+		textApp.controller('myCtrl',['$scope',function($scope){//确定控制器
+			$scope.head = '12344567898';
+			$scope.footer = '9876654321';
+			$scope.tab = {show:false};
+			$scope.go = function(){
+				$scope.head = 'JKDFERFERF';
+				$scope.footer = 'DJKFRFHERFER';
+			}
+			$scope.taggle = function(){
+				$scope.tab.show = !$scope.tab.show;
+			}
+		}])
+
+
+	</script>
+</body>
+</html>

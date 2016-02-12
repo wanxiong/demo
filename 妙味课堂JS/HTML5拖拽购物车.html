@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+	li{list-style:none;width: 100px;height: 30px;background-color: red;margin-bottom: 30px;}
+	div{
+		width: 200px;
+		height: 200px;
+		margin: 200px 0  0 300px;
+		background-color: red;
+	}
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var li = document.getElementsByTagName('li');
+		var oDiv = document.getElementsByTagName('div')[0];
+		var oUl = document.getElementsByTagName('ul')[0];
+		//var i = 0
+		//托拽元素事件有三那种
+		for( var i = 0 ; i < li.length ; i++){
+
+			li[i].index = i;
+			//dragstart 是鼠标按下 并且开始托拽才可以执行的事件
+			li[i].ondragstart = function(ev){
+				//兼容火狐
+				var ev = ev || window.event;
+				ev.dataTransfer.setData('name',this.index)//里面随便设置  后面的值是不可以传对象的
+				this.style.background = 'green';
+			};
+			//dragend  是鼠标结束 就是抬起时执行的事件
+			li[i].ondragend = function(){
+				this.style.background = 'red';
+			};
+			//drag    是在鼠标开始和结束之间连续出发  也就是说 就算你不动了 他还是会触发  和mousemove还是有点区别的
+			li[i].ondrag = function(){
+				document.title = i++;
+			}
+		}
+		//  目标元素事件有  
+		
+		oDiv.ondragenter = function(){ //相当于mouseover
+			this.style.background = 'blue';
+		}
+		oDiv.ondragover = function(){//相当于ondrag   在里面是可以连续触发的
+			document.title = i++;
+			//要想执行drop的话 必须在里面阻止默认的事件
+			return false
+		}
+		oDiv.ondragleave = function(){ //相当于mouseout
+			this.style.background = 'red';
+		}
+		oDiv.ondrop = function(ev){//释放的时候执行的事件
+			//alert(1);
+			//alert(ev.dataTransfer.getData('name'))
+			//ev.dataTransfer.getData()
+			oUl.removeChild(li[ev.dataTransfer.getData('name')])
+		
+			for( var i = 0 ; i < li.length ; i++){
+
+			li[i].index = i;
+			}
+		
+		}
+		//在火狐下是不支持的  只支持图片的默认拖拽的
+	}
+	</script>
+</head>
+<body>
+	<ul>
+		<li draggable="true">a</li>
+		<li draggable="true">b</li>
+		<li draggable="true">c</li>
+	</ul>
+	<div></div>
+</body>
+</html>
