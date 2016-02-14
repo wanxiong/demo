@@ -1,0 +1,157 @@
+1：stringObject.indexOf(substring, startpos)
+
+	可选参数，从stringObject的startpos位置开始查找substring，如果没有此参数将从stringObject的开始位置查找。
+
+	1.indexOf() 方法区分大小写。里面可加参数，目的是查找当前这个下标的引值
+
+	2.如果要检索的字符串值没有出现，则该方法返回 -1。
+
+2：stringObject.split(separator,limit)
+ 
+	split()方法将字符串分割为字符串数组，并返回此数组。 split("")代表把每一个字符串都会被分割
+	
+3：stringObject.substring(starPos,stopPos)
+
+	1. 返回的内容是从 start开始(包含start位置的字符)到 stop-1 处的所有字符，其长度为 stop 减start。
+
+	2. 如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）
+	
+	3. 如果 start 比 stop 大，那么该方法在提取子串之前会先交换这两个参数。
+
+4：stringObject.substr(startPos,length)
+	
+	1.如果参数startPos是负数，从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。
+	
+	2.前一个是开始的位置，length是要从开的地方提取的个数 开始数，是几就提取几个
+
+5：Math.ceil(x)
+	
+	向上取整，小数通通去掉，并且加一
+
+6：Math.floor(x)
+	
+	向下取整，小数通通去掉，无任何效果
+
+7： Math.round(x)
+
+	四舍五入的效果
+
+8：Math.random()
+
+	随机产生0到1之间的小数，但是不会是整数
+
+9：arrayObject.concat(array1,array2,...,arrayN)
+
+	concat()连接数组，并且返回的是一个数组，不会把原来的数组给干掉
+
+10： arrayObject.join(分隔符)
+
+	1. 指定分隔符连接数组元素join()
+	
+	2.当里面不存在内容的时候，用<分隔符>置于元素与元素之间。这个方法不影响数组原本的内容。
+	
+	3.当已join('')这种状态连接的时候表示直接连接成一个字符串，不需要连接符号置于中间什么的
+
+11：arrayObject.reverse()
+	
+	1.颠倒数组元素顺序reverse()
+	
+	2.改方法会改变原来的数组，但是不会创建新的数组
+
+12：arrayObject.slice(start,end)
+	
+	1.返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。
+
+	2. 该方法并不会修改数组，而是返回一个子数组。
+
+	3. 可使用负值从数组的尾部选取元素。一帮slice(1,2)代表的是从第一个位置选择出一个元素并且返回
+
+	4.如果 end 未被规定，那么 slice() 方法会选取从 start 到数组结尾的所有元素。
+
+13：arrayObject.sort(方法函数)  数组排序sort()
+
+	1.如果不指定<方法函数>，则按unicode码顺序排列。
+	
+	2.如果指定<方法函数>，则按<方法函数>所指定的排序方法排序。
+
+	3.例子myArray.sort(sortMethod);
+	
+	4。若返回值<=-1，则表示 A 在排序后的序列中出现在 B 之前。
+
+  	5.若返回值>-1 && <1，则表示 A 和 B 具有相同的排序顺序。
+
+  	5.若返回值>=1，则表示 A 在排序后的序列中出现在 B 之后。
+	
+	6.sorMethod = function(a,b){return parseInt(a) - paserInt(b)}
+
+14: window.history.[属性|方法]History 对象
+	
+	1.从窗口被打开的那一刻开始记录，每个浏览器窗口、每个标签页乃至每个框架，都有自己的history对象与特定的window对象关联。window可以省略
+
+	2. length返回浏览器历史列表中的url数量 ，back()加载history列表中的前一个url forward()加载history列表中的下一个URL，go()加载history列表中的某个具体的页面
+
+	3.back()方法，加载 history 列表中的前一个 URL
+	
+		1.window.history.back();注意：等同于点击浏览器的倒退按钮。
+	
+		2.back()相当于go(-1),   代码如下: window.history.go(-1);
+
+	4.forward()方法，加载 history 列表中的下一个 URL。
+
+		1.window.history.forward();注意：等价点击前进按钮。
+
+		2.forward()相当于go(1)    ,代码如下:window.history.go(1);
+	
+	5. go()方法，根据当前所处的页面，加载 history 列表中的某个具体的页面
+
+		1.语法：window.history.go(number);
+
+		2.window.history.go(-2); 注意：和在浏览器中单击两次后退按钮操作一样
+
+		3.同理，返回当前页面之后浏览过的第三个历史页面，代码如下：window.history.go(3);
+
+15:  Location对象
+	
+	1.语法:location.[属性|方法]   location用于获取或设置窗体的URL，并且可以用于解析URL。
+	
+16:  screen对象用于获取用户的屏幕信息。
+
+	1 .语法：window.screen.属性
+
+	2.window.screen 对象包含有关用户屏幕的信息。
+
+		1. screen.height 返回屏幕分辨率的高
+
+		2. screen.width 返回屏幕分辨率的宽
+	
+	3. screen.availWidth 属性返回访问者屏幕的宽度，以像素计，减去界面特性，比如任务栏。
+
+
+·······面向对象（OOP）的补充········<=================================>
+
+17： 补充  保留字必须用引号包裹起来 列如 for => “for”
+		
+	1 关键字new后面跟随一个函数调用，这个函数称为构造函数（constructor）,javascript语言核心的原始类型都包含内置的构造函数。
+	  函数首字母大写的都代表构造函数，以用来区分普通函数	
+	
+	· var obj = new Object()   这个和用{}创建的是一样的 创建一个空对象
+		
+		=> 对象通常包含的都是属性 
+		=> 对象的属性也可以是一个函数，因为函数本身也是一种数据，
+		
+			=》<script type="text/javascript">  //调用对象方法
+    				var parrot = {
+        				name : "bage",
+        				hair : "brown",
+        				say : function(){
+           					 alert( 'I am ' + parrot.name);
+        					}		
+    				}
+    				parrot.say();
+			   </script>	
+
+	· var arr = new Arrty()    这个和用[]创建的是一样的 创建一个空数组
+
+		=> 数组通常都是包含元素	
+
+	=========   最主要的问题  只有对象才会有属性和方法  初学切记  =========

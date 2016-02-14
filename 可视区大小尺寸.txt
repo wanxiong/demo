@@ -1,0 +1,91 @@
+可视区尺寸
+document.documentElement.clientWidth
+document.documentElement.clientHeight
+滚动距离
+document.body.scrollTop/scrollLeft
+document.documentElement.scrollTop/scrollLeft
+内容高度
+document.body.scrollHeight
+文档高度
+document.documentElement.offsetHeight
+document.body.offsetHeight
+
+
+
+
+获取节点
+DOM节点
+nextSibling \ nextElementSibling
+获取指定元素的下一个兄弟节点
+previousSibling \ previousElementSibling
+获取指定元素的上一个兄弟节点
+
+parentNode
+获取父节点，点击链接隐藏整个li
+
+parentNode&offsetParent区别
+offsetLeft \ offsetTop 
+offsetWidth \ clientWidth
+
+
+
+
+DOM节点
+childNodes \ children
+获取第一级子元素
+有兼容性问题（空白节点）， nodeType属性
+firstChild \ firstElementChild
+获取子元素里的第一个
+lastChild \ lastElementChild
+获取子元素里的最后一个
+
+
+操作元素属性的第三种方式
+有兼容性问题，标准下不能获取两层
+获取：getAttribute(名称)
+设置：setAttribute(名称, 值)
+删除：removeAttribute(名称)
+第三种方式的好处：自定义属性、相对网址
+
+
+创建DOM元素
+createElement(标签名)		创建一个节点
+appendChild(节点)			追加一个节点
+例子：留言板插入内容
+插入元素
+insertBefore(节点, 原有节点)	在已有元素前插入
+例子：倒序留言板插入内容
+
+
+
+
+
+
+删除DOM元素
+removeChild(节点)		删除一个节点
+例子：删除留言
+替换DOM元素
+replaceChild(节点, 已有节点)	替换节点
+
+
+
+window对象常用事件
+onscroll
+onresize
+优酷弹窗的例子
+
+
+
+移动端解决的问题
+  http://wenku.baidu.com/link?url=kNy8CW8xamHR8a7XXD8h8yWtDqHN5P-PaxpmvcLACh7JpvB8-5lkElUEicNdo38gtCcG2RhbSwGxlmiZO8g0Dz7oilZXcJGWyKB3Xyd6Ega
+
+
+
+新单位
+	 vh和 vm 依据于视口的高度和宽度，相对的，
+vmin 和 vmax则关于视口高度和宽度两者的最小或者最大值。
+比如，浏览器的宽度设置为1100px，高度设置为700px， 1vmin = 1px，
+ 1vmax = 11px。如果宽度设置为800px,高度设置为1080px, 1vmin就等于8px,
+ 1vmax则未10.8px。
+那么问题来了，我们应该在什么场景下使用这两个单位呢？
+假设有一个元素，你需要让它始终在屏幕上可见。只要对其高度和宽度使用vmin单位，并赋予其低于100的值就可以做到了。再来个栗子，可以这样定义一个至少有两个边触摸到屏幕的方形：
