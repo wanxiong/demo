@@ -1,6 +1,8 @@
-链接:http://pan.baidu.com/s/1c0ucVfi 密码:24pb
-请300G项目实战教程
-
+<meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=750, maximum-scale=0.5">
+<script>
+   document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=750, maximum-scale=' + window.screen.width / 750);
+</script>
+===============================  移动端缩放  =======================================
 
 
 
