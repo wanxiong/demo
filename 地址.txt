@@ -99,3 +99,15 @@ zepto API介绍    10:02 2016/3/29
 JS中获取英文字母找内容  http://blog.csdn.net/testcs_dn/article/details/25116655
 
 angular的api     http://www.runoob.com/angularjs/angularjs-model.html
+
+
+
+sass -websrom配置  http://frontenddev.org/article/4-sass-webstorm-primer-scss-less-to-monitor-compilation.html   
+
+
+	=>  $FileName$ $FileNameWithoutExtension$.css   路径
+	=>$FileNameWithoutExtension$.css       编译路径
+
+调用图片    http://hushicai.com/2014/03/29/html5-du-qu-ben-di-wen-jian.html   翻墙
+
+微信接口    http://www.cnblogs.com/txw1958/p/weixin-js.html          //jweixin-1.0.0.js //   JS文件        
