@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <style type="text/css">
+      .box{
+        position: relative;
+      }
+      canvas{border:dashed 1px #CCC;}
+      #can1{
+        position: absolute;
+        left: 0;top: 0;
+      }
+    </style>
+    <script type="text/javascript">
+        function $$(id){
+            return document.getElementById(id);
+        }
+        function pageLoad(){
+            var can = $$('can');
+           var now = 0,
+               pre = 0,
+               next = 0;
+              
+                 var cans = can.getContext('2d');
+                 
+           // cans.arc(200,150,100,0,Math.PI,false);
+            var timer = setInterval(function(){
+               
+               now++
+               pre = (now * 4 - 1)
+               next = (now * 4)
+               if( next <= 180 ){
+
+                  if( now%5 != 0){
+                      cans.beginPath();
+                      cans.arc(200,150,100,(Math.PI/180) * pre ,(Math.PI/180)*next,false);
+                      //cans.closePath();
+                      cans.lineWidth = 2;
+                      cans.strokeStyle = 'red';
+                      cans.stroke();
+                      
+                    }else{
+                      cans.beginPath();
+                      cans.arc(200,150,104,(Math.PI/180) * pre  ,(Math.PI/180)*next,false);
+                      //cans.closePath();
+                      cans.lineWidth = 10;
+                      cans.strokeStyle = 'red';
+                      cans.stroke();
+                    }
+                  }else{
+                    clearInterval(timer)
+                  }
+              
+            }, 0)
+           
+          
+            /*顶部*/
+           
+        }
+        function color(){
+          var can = $$('can');
+           var cans = can.getContext('2d');
+               var now = 0;
+            var pre = 0,
+                next = 0;
+             var timer1 = setInterval(function(){
+            
+               now++ 
+               pre = (now * 4 - 1)
+               next = (now * 4)
+               if( next <= 180 ){
+
+                  if( now%5 != 0){
+                      cans.beginPath();
+                      cans.arc(200,150,100,(Math.PI/180) * pre ,(Math.PI/180)*next,false);
+                      //cans.closePath();
+                      cans.lineWidth = 2;
+                      cans.strokeStyle = 'green';
+                      cans.stroke();
+                      cans.beginPath();
+                    }else{
+                      cans.arc(200,150,104,(Math.PI/180) * pre  ,(Math.PI/180)*next,false);
+                      //cans.closePath();
+                      cans.lineWidth = 10;
+                      cans.strokeStyle = 'green';
+                      cans.stroke();
+                    }
+                  }else{
+                    clearInterval(timer1)
+                  }
+              
+            }, 20)
+           
+        }
+        function dingbu(){
+          var can1 = $$('can1');
+          var can1 = can1.getContext('2d');
+          var canNow =0
+          var tiemrTop = setInterval(function(){
+                     canNow += 4
+                     if( canNow >= 180){
+                        canNow = 180
+                     }
+                     can1.beginPath();
+                     can1.arc(200,150,120, Math.PI*0  ,(Math.PI/180)*canNow,false);
+                      //cans.closePath();
+                      can1.lineWidth = 10;
+                      can1.strokeStyle = 'red';
+                      can1.stroke();
+          }, 20)
+        }
+        function start(){
+          dingbu();
+          color()
+        }
+    </script>
+    <body onload="pageLoad();">
+      <div class="box">
+        <canvas id="can" width="400px" height="300px">4</canvas>
+        <canvas id="can1" width="400px" height="300px">4</canvas>
+      </div>
+      <div id="aaa" onclick="start()">开始</div>
+    </body>
