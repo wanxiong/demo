@@ -135,3 +135,6 @@ http://blog.csdn.net/u012601195/article/details/51036624  fis3博客     ||http://
 智图在线压缩  http://zhitu.isux.us/
 
 http://echarts.baidu.com/demo.html#pie-doughnut  画环
+
+
+http://ionichina.com/topic/56e9383dcd63e4247a7cfb8f   inoic ||   安装路径说明
