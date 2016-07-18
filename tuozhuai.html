@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;border:0;}
+		.box{width: 500px;height: 3px; background-color:gray;margin:50px auto 0 ;position: relative;}
+		.sun{position: absolute;left: 0;top: 0;height: 10px;width:30px;top: 50%;transform:translateY(-50%);background-color:red;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="sun"></div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	function getId(obj){
+		return document.querySelector(obj)
+	}
+	function Fun(){
+		this.sun = getId('.sun')
+		this.box = getId('.box')
+		this.disY = 0
+		this.disMove = 0
+		//
+		this.start()
+	}
+
+	Fun.prototype = {
+		start : function(){
+			var _this = this;
+			this.sun.onmousedown = function(e){
+				e = e || window.event
+				_this.disY = e.clientX - _this.box.offsetLeft - _this.sun.offsetLeft
+				
+				_this.move()
+				_this.end()
+			}
+		},
+		move : function(){
+			var _this = this;
+			document.onmousemove = function(e){
+				e = e || window.event
+				if( e.clientX - _this.disY - _this.box.offsetLeft <= 0 ){
+					_this.disMove = 0
+				}else if( e.clientX - _this.disY - _this.box.offsetLeft >= _this.box.offsetWidth - _this.sun.offsetWidth ){
+					_this.disMove = _this.box.offsetWidth - _this.sun.offsetWidth
+				}else{
+					_this.disMove =  e.clientX - _this.disY - _this.box.offsetLeft
+				}
+
+				 	_this.sun.style.left =_this.disMove + 'px'
+				
+			}
+		},
+		end : function(){
+			var _this = this;
+			document.onmouseup = function(e){
+				e = e || window.event
+				document.onmousemove = null;
+				_this.sun.onmouseup = null;
+				
+			}
+			
+		}
+	}
+	var app = new Fun()
+		app.start()
+</script>
