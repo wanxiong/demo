@@ -1,0 +1,55 @@
+ 
+
+ 一
+	先安装java的JDK环境，并且配置好环境变量
+	地址  http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html     jdk 下载对应的版本并且进行安装即可
+	
+	a-系统变量   ：JAVA_HOME		
+	b-系统变量增加：CLASSPATH	
+	c-在Path系统变量的后面增加	
+	d-命令javac正常运行即可	    cmd  > javac
+
+ 二 
+	安装安卓的SDK环境，并且配置好环境变量
+	
+	下载完毕，安装或者解压后，在相应目录下找到并打开SDK Manager.exe
+
+	SDK Manager默认勾选了一些选项，直接点击Install packages安装即可
+
+	b-新建系统变量：Android 
+	把platform-tools和tools这两个文件夹的路径添加到变量值里面，中间用分号隔开
+
+ 三
+	先安装node.js ，然后依赖其NPM来安装其他的东西
+	
+	1-安装ionic和cordova
+	cmd   npm install -g ionic cordova    是否成功看下版本即可
+
+ 四
+	安装git   百度    打包需要
+
+ 五
+	-创建项目、打包、发布
+
+	1-创建项目cmd：ionic start  appName     //后面是随意取的项目的名字
+
+	创建过程会问是否创建ionic.io账号，n即可
+
+	2-进入创建好的项目目录下，增加android平台  cmd:  ionic platform add android //
+
+	3-打包：在项目下用命令cmd ：ionic build android 打包
+
+	4-直接通过usb数据线在手机上安装
+	a-用数据线连上手机，输入adb devices命令，测试手机是否成功连接
+	
+	b-运行ionic run android直接安装打过包的apk到手机上
+	
+ 六
+
+ 七
+
+ 八
+
+ 九
+
+ 十
