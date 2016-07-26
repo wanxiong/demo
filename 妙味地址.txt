@@ -140,4 +140,12 @@ http://echarts.baidu.com/demo.html#pie-doughnut  画环
 http://ionichina.com/topic/56e9383dcd63e4247a7cfb8f   inoic ||   安装路径说明  http://blog.csdn.net/github_30038285/article/details/47010479    studio 安裝
 
 
-http://www.jayui.com/jedate/  日期插件
+http://www.jayui.com/jedate/  日期插件             http://haomou.net/2014/10/06/2014_ionic_learn/   ||  ionic小案例
+
+http://ju.outofmemory.cn/entry/216241  移动端    http://easings.net/zh-cn#easeInExpo  缓动函数
+
+http://webpack.github.io/docs/   webpack
+
+http://fakefish.github.io/react-webpack-cookbook/index.html
+
+http://zhaoda.net/webpack-handbook/
