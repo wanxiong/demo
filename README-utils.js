@@ -508,8 +508,46 @@
 		//两个数组并集
 		union : function(a, b){
 		     return a.concat(b).uniquelize();
+		},
+		sendFileMessage :function (scene, to, fileInput , callback) {
+				var that = this,
+				value = fileInput.value,
+				ext = value.substring(value.lastIndexOf('.') + 1, value.length),
+				type = /png|jpg|bmp|jpeg|gif/i.test(ext) ? 'image' : 'file';
+		    	this.nim.sendFile({
+			        scene: scene,
+			        to: to,
+					type: type,
+			        fileInput: fileInput,
+			        uploadprogress: function (data) {
+			           console && console.log(data.percentageText);
+			        },
+			        uploaderror: function () {
+			            console && console.log('上传失败');
+			        },
+			     	uploaddone: function(error, file) {
+				        console.log(error);
+				        console.log(file);
+				        console.log('上传' + (!error?'成功':'失败'));
+				    },
+			        beforesend: function (msgId) {
+			            console && console.log('正在发送消息, id=' + msgId);
+			        }
+			    });
+		},
+		/*快捷键  ctrl + enter 发送消息 enter 回车*/
+		inputMessageSend : function (e) {
+		    var ev = e || window.event
+		    if ($.trim(this.val()).length > 0) {
+		        if (ev.keyCode === 13 && ev.ctrlKey) {
+		        	//手动触发CLICK发送文言
+		  		    //editSend.click()
+		        } else if (ev.keyCode === 13 && !ev.ctrlKey) {
+		 		   this.val(this.val() + '\r\n')
+		        }
+		    }
 		}
-		
+		//
 		
 }
 	//module.exports = util;
