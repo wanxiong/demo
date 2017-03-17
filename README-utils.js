@@ -1,5 +1,7 @@
 // 常用封装
-
+	/*-------------------------------------------
+  |               M E T H O D S               |
+  ============================================*/
 	var util = {
 			
 		certiCodeReg : /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/, 
@@ -546,14 +548,42 @@
 		 		   this.val(this.val() + '\r\n')
 		        }
 		    }
-		}
+		},
 		//
-		
+
+	   /* --------------------------------------------------------- 
+	    |															|
+		|					JQ封装基本的AJAX						|
+		|															|
+	   -------------------------------------------------------------*/
+		ajaxApi : function  (param, url, callBack,faildCallBack) {
+			param = JSON.stringify(param);
+			$.ajax({
+				type:"post",
+				url:url,
+				async: true,
+				contentType:"application/json; charset=utf-8",
+				data:param,
+				dataType:"json",
+				timeout:30000,
+				error : function (XMLHttpRequest, textStatus, errorThrown) {
+					layer.alert("网络错误，请稍后重试", {icon: 5,title:"出错啦"});
+					faildCallBack && faildCallBack(XMLHttpRequest,textStatus,errorThrown);
+				},
+				success:callBack
+			});
+		}
 }
 	//module.exports = util;
 
 
+/*1. 日期库
+	1. [moment](http://momentjs.com/docs/)
+		提供了各种日期检查、操作、格式化
 
+1. 上传组件
+	1. [angular-file-upload](https://github.com/nervgh/angular-file-upload)
+	2. [阿里云OSS](https://help.aliyun.com/document_detail/44688.html?spm=5176.doc44686.6.934.XxUisA)*/
 
 
 
