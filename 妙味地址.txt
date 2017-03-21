@@ -2,147 +2,147 @@
 <script>
    document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=750, maximum-scale=' + window.screen.width / 750);
 </script>
-===============================  ÒÆ¶¯¶ËËõ·Å  =======================================
+===============================  Ã’Ã†Â¶Â¯Â¶Ã‹Ã‹ÃµÂ·Ã…  =======================================
 
 
 
-Á´½Ó:http://pan.baidu.com/s/1gdg09MF ÃÜÂë:6vcs
+ÃÂ´Â½Ã“:http://pan.baidu.com/s/1gdg09MF ÃƒÃœÃ‚Ã«:6vcs
 
 
-Ç°Ì¨ÑéÖ¤  http://blog.csdn.net/eray/article/details/1548507
-
-
-
-
-
-bootstrap¹ÙÍø£º  http://v3.bootcss.com/
-
-
-ºÚÂí http://dvd.boxuegu.com/course/88.html
+Ã‡Â°ÃŒÂ¨Ã‘Ã©Ã–Â¤  http://blog.csdn.net/eray/article/details/1548507
 
 
 
-ÉèÖÃwamp  http://jingyan.baidu.com/article/47a29f24578076c015239911.html
-
-½â¾ö80¶Ë¿Ú±»Õ¼ÓÃ  http://www.zytx.com.cn/news/computer/web/2013/524/135241130552AEHDK6DH7E3D6EAI3I0.html
 
 
-²å¼ş£ºÌØĞ§www.jq22.com
+bootstrapÂ¹Ã™ÃÃ¸Â£Âº  http://v3.bootcss.com/
+
+
+ÂºÃšÃ‚Ã­ http://dvd.boxuegu.com/course/88.html
+
+
+
+Ã‰Ã¨Ã–Ãƒwamp  http://jingyan.baidu.com/article/47a29f24578076c015239911.html
+
+Â½Ã¢Â¾Ã¶80Â¶Ã‹Â¿ÃšÂ±Â»Ã•Â¼Ã“Ãƒ  http://www.zytx.com.cn/news/computer/web/2013/524/135241130552AEHDK6DH7E3D6EAI3I0.html
+
+
+Â²Ã¥Â¼Ã¾Â£ÂºÃŒÃ˜ÃÂ§www.jq22.com
 
 http://edu.51cto.com/lesson/id-14456.html
 
 
-ÎŞÁÄÇ°¶Ë²âÊÔ  http://www.nowcoder.com/test/205/summary
+ÃÃÃÃ„Ã‡Â°Â¶Ã‹Â²Ã¢ÃŠÃ”  http://www.nowcoder.com/test/205/summary
 
 
 
-ajax°¸ÁĞ  http://jun1986.iteye.com/blog/1399242
+ajaxÂ°Â¸ÃÃ  http://jun1986.iteye.com/blog/1399242
 
 
-H5µÄÒ»Ğ©bug½éÉÜºÍ½â¾öµÈ  http://www.alixixi.com/web/a/2015031794525.shtml
-
-
-
-dprµÄ½éÉÜ  http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html
+H5ÂµÃ„Ã’Â»ÃÂ©bugÂ½Ã©Ã‰ÃœÂºÃÂ½Ã¢Â¾Ã¶ÂµÃˆ  http://www.alixixi.com/web/a/2015031794525.shtml
 
 
 
-IPÖĞµÄmeta±êÇ©µÄËµÃ÷  http://www.cnblogs.com/BigIdiot/archive/2013/01/05/2846566.html
-      meta±êÇ©µÄËµÃ÷  http://blog.sina.com.cn/s/blog_6d48e77101015kqr.html   Ö÷ÒªÊÇIPÖĞÀ´µç³¬Á´½Ó
-
-jq²å¼ş  ²»ÊÇÀÁÈËÖ®¼Ò  http://www.jq22.com/jquery-plugins%E5%9C%86%E8%BE%B9-1-jq
+dprÂµÃ„Â½Ã©Ã‰Ãœ  http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html
 
 
 
-°Ù¶ÈµØÍ¼²éÕÒµ±Ç°Î»ÖÃ http://api.map.baidu.com/lbsapi/creatmap/index.html
+IPÃ–ÃÂµÃ„metaÂ±ÃªÃ‡Â©ÂµÃ„Ã‹ÂµÃƒÃ·  http://www.cnblogs.com/BigIdiot/archive/2013/01/05/2846566.html
+      metaÂ±ÃªÃ‡Â©ÂµÃ„Ã‹ÂµÃƒÃ·  http://blog.sina.com.cn/s/blog_6d48e77101015kqr.html   Ã–Ã·Ã’ÂªÃŠÃ‡IPÃ–ÃÃ€Â´ÂµÃ§Â³Â¬ÃÂ´Â½Ã“
 
-
-qq¶·Í¼  http://www.itlun.cn
-
-
-ÑÓ³Ù¼ÓÔØ²å¼şºÍÏê½â  http://code.ciaoca.com/jquery/lazyload/    ½á||ºÏ  http://www.w3cways.com/1765.html
-
-Í¼Æ¬Ñ¹Ëõ¹¤¾ß    http://zhitu.isux.us/
-
-Ñ§Ï°ÍøÕ¾   »ãÖÇÍø
+jqÂ²Ã¥Â¼Ã¾  Â²Â»ÃŠÃ‡Ã€ÃÃˆÃ‹Ã–Â®Â¼Ã’  http://www.jq22.com/jquery-plugins%E5%9C%86%E8%BE%B9-1-jq
 
 
 
-github   windowµÄ²Ù×÷ºÍ¿Í»§¶ËÏÂÔØ     http://www.ihref.com/read-16514.html
+Â°Ã™Â¶ÃˆÂµÃ˜ÃÂ¼Â²Ã©Ã•Ã’ÂµÂ±Ã‡Â°ÃÂ»Ã–Ãƒ http://api.map.baidu.com/lbsapi/creatmap/index.html
+
+
+qqÂ¶Â·ÃÂ¼  http://www.itlun.cn
+
+
+Ã‘Ã“Â³Ã™Â¼Ã“Ã”Ã˜Â²Ã¥Â¼Ã¾ÂºÃÃÃªÂ½Ã¢  http://code.ciaoca.com/jquery/lazyload/    Â½Ã¡||ÂºÃ  http://www.w3cways.com/1765.html
+
+ÃÂ¼Ã†Â¬Ã‘Â¹Ã‹ÃµÂ¹Â¤Â¾ÃŸ    http://zhitu.isux.us/
+
+Ã‘Â§ÃÂ°ÃÃ¸Ã•Â¾   Â»Ã£Ã–Ã‡ÃÃ¸
+
+
+
+github   windowÂµÃ„Â²Ã™Ã—Ã·ÂºÃÂ¿ÃÂ»Â§Â¶Ã‹ÃÃ‚Ã”Ã˜     http://www.ihref.com/read-16514.html
 
 
 
 
-ÃæÏò¶ÔÏóµÄÒ»Ğ©°¸ÁĞ   http://blog.csdn.net/pkgray/article/details/38615551
+ÃƒÃ¦ÃÃ²Â¶Ã”ÃÃ³ÂµÃ„Ã’Â»ÃÂ©Â°Â¸ÃÃ   http://blog.csdn.net/pkgray/article/details/38615551
 
 
-http://www.gulpjs.com.cn/docs/getting-started/  gulpÒ»Ğ©ËµÃ÷
+http://www.gulpjs.com.cn/docs/getting-started/  gulpÃ’Â»ÃÂ©Ã‹ÂµÃƒÃ·
 
 
-fullpage.js¹öÆÁ  http://www.dowebok.com/77.html   API½éÉÜ  ¿ÉÒÔÔÚÊÖ»úÉÏÊ¹ÓÃ µ«ÊÇ»¹ÊÇ´æÔÚbug
+fullpage.jsÂ¹Ã¶Ã†Ã  http://www.dowebok.com/77.html   APIÂ½Ã©Ã‰Ãœ  Â¿Ã‰Ã’Ã”Ã”ÃšÃŠÃ–Â»ÃºÃ‰ÃÃŠÂ¹Ã“Ãƒ ÂµÂ«ÃŠÃ‡Â»Â¹ÃŠÃ‡Â´Ã¦Ã”Ãšbug
 
 
-Í¼Æ¬Ñ¹Ëõ      http://www.secaibi.com
+ÃÂ¼Ã†Â¬Ã‘Â¹Ã‹Ãµ      http://www.secaibi.com
 
 
-¶¯»­    http://daneden.github.io/animate.css/
+Â¶Â¯Â»Â­    http://daneden.github.io/animate.css/
 
 
-head±êÇ©   http://www.cnblogs.com/amaoegg/p/4238677.html
+headÂ±ÃªÃ‡Â©   http://www.cnblogs.com/amaoegg/p/4238677.html
 
 
-http://www.swiper.com.cn/   »¬¶¯ÍøÖ·
+http://www.swiper.com.cn/   Â»Â¬Â¶Â¯ÃÃ¸Ã–Â·
 
-zepto API½éÉÜ    10:02 2016/3/29
-
-
-JSÖĞ»ñÈ¡Ó¢ÎÄ×ÖÄ¸ÕÒÄÚÈİ  http://blog.csdn.net/testcs_dn/article/details/25116655
-
-angularµÄapi     http://www.runoob.com/angularjs/angularjs-model.html
+zepto APIÂ½Ã©Ã‰Ãœ    10:02 2016/3/29
 
 
+JSÃ–ÃÂ»Ã±ÃˆÂ¡Ã“Â¢ÃÃ„Ã—Ã–Ã„Â¸Ã•Ã’Ã„ÃšÃˆÃ  http://blog.csdn.net/testcs_dn/article/details/25116655
 
-sass -websromÅäÖÃ  http://frontenddev.org/article/4-sass-webstorm-primer-scss-less-to-monitor-compilation.html   
-
-
-	=>  $FileName$ $FileNameWithoutExtension$.css   Â·¾¶
-	=>$FileNameWithoutExtension$.css       ±àÒëÂ·¾¶
-
-µ÷ÓÃÍ¼Æ¬    http://hushicai.com/2014/03/29/html5-du-qu-ben-di-wen-jian.html   ·­Ç½
-
-Î¢ĞÅ½Ó¿Ú    http://www.cnblogs.com/txw1958/p/weixin-js.html          //jweixin-1.0.0.js //   JSÎÄ¼ş        
-
-  highchart.js  API ËµÃ÷²©¿Í   http://www.cnblogs.com/chiflyzheng/archive/2012/07/26/2610063.html
+angularÂµÃ„api     http://www.runoob.com/angularjs/angularjs-model.html
 
 
-css¶¯»­  https://daneden.github.io/animate.css/
 
-ÅĞ¶ÏÉè±¸	navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)&&(window.location.href="xxxxx")
+sass -websromÃ…Ã¤Ã–Ãƒ  http://frontenddev.org/article/4-sass-webstorm-primer-scss-less-to-monitor-compilation.html   
 
-ÅäÖÃ±ıÍ¼   http://www.ichartjs.com/designer/index.html
 
-node  ±¾µØ     npm sys -g
+	=>  $FileName$ $FileNameWithoutExtension$.css   Ã‚Â·Â¾Â¶
+	=>$FileNameWithoutExtension$.css       Â±Ã Ã’Ã«Ã‚Â·Â¾Â¶
 
-Â·ÓÉ²©¿Í  http://blog.gejiawen.com/2015/12/15/routes-solution-on-angular-ng-route/
+ÂµÃ·Ã“ÃƒÃÂ¼Ã†Â¬    http://hushicai.com/2014/03/29/html5-du-qu-ben-di-wen-jian.html   Â·Â­Ã‡Â½
+
+ÃÂ¢ÃÃ…Â½Ã“Â¿Ãš    http://www.cnblogs.com/txw1958/p/weixin-js.html          //jweixin-1.0.0.js //   JSÃÃ„Â¼Ã¾        
+
+  highchart.js  API Ã‹ÂµÃƒÃ·Â²Â©Â¿Ã   http://www.cnblogs.com/chiflyzheng/archive/2012/07/26/2610063.html
+
+
+cssÂ¶Â¯Â»Â­  https://daneden.github.io/animate.css/
+
+Ã…ÃÂ¶ÃÃ‰Ã¨Â±Â¸	navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)&&(window.location.href="xxxxx")
+
+Ã…Ã¤Ã–ÃƒÂ±Ã½ÃÂ¼   http://www.ichartjs.com/designer/index.html
+
+node  Â±Â¾ÂµÃ˜     npm sys -g
+
+Ã‚Â·Ã“Ã‰Â²Â©Â¿Ã  http://blog.gejiawen.com/2015/12/15/routes-solution-on-angular-ng-route/
 
 
 http://www.gowhich.com/blog/621  gulp
 
 http://www.cnblogs.com/vajoy/p/4650467.html   webpack
 
-http://blog.csdn.net/u012601195/article/details/51036624  fis3²©¿Í     ||http://imweb.io/topic/55d066859399a4ab7d796c93
+http://blog.csdn.net/u012601195/article/details/51036624  fis3Â²Â©Â¿Ã     ||http://imweb.io/topic/55d066859399a4ab7d796c93
 
-ÖÇÍ¼ÔÚÏßÑ¹Ëõ  http://zhitu.isux.us/
+Ã–Ã‡ÃÂ¼Ã”ÃšÃÃŸÃ‘Â¹Ã‹Ãµ  http://zhitu.isux.us/
 
-http://echarts.baidu.com/demo.html#pie-doughnut  »­»·
-
-
-http://ionichina.com/topic/56e9383dcd63e4247a7cfb8f   inoic ||   °²×°Â·¾¶ËµÃ÷  http://blog.csdn.net/github_30038285/article/details/47010479    studio °²Ñb
+http://echarts.baidu.com/demo.html#pie-doughnut  Â»Â­Â»Â·
 
 
-http://www.jayui.com/jedate/  ÈÕÆÚ²å¼ş             http://haomou.net/2014/10/06/2014_ionic_learn/   ||  ionicĞ¡°¸Àı
+http://ionichina.com/topic/56e9383dcd63e4247a7cfb8f   inoic ||   Â°Â²Ã—Â°Ã‚Â·Â¾Â¶Ã‹ÂµÃƒÃ·  http://blog.csdn.net/github_30038285/article/details/47010479    studio Â°Â²Ã‘b
 
-http://ju.outofmemory.cn/entry/216241  ÒÆ¶¯¶Ë    http://easings.net/zh-cn#easeInExpo  »º¶¯º¯Êı
+
+http://www.jayui.com/jedate/  ÃˆÃ•Ã†ÃšÂ²Ã¥Â¼Ã¾             http://haomou.net/2014/10/06/2014_ionic_learn/   ||  ionicÃÂ¡Â°Â¸Ã€Ã½
+
+http://ju.outofmemory.cn/entry/216241  Ã’Ã†Â¶Â¯Â¶Ã‹    http://easings.net/zh-cn#easeInExpo  Â»ÂºÂ¶Â¯ÂºÂ¯ÃŠÃ½
 
 http://webpack.github.io/docs/   webpack
 
@@ -156,3 +156,5 @@ http://zhaoda.net/webpack-handbook/
 vue   https://github.com/javaSwing/NeteaseCloudWebApp
 
 vue  https://github.com/bailicangdu/vue2-elm
+
+http://www.cnblogs.com/wj204/p/6031435.html  æ‰“åŒ…ç®€æ´
