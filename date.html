@@ -46,7 +46,11 @@
 	  border-bottom: 6px solid transparent;
 	  cursor: pointer;
 	}
-	 
+	/*//节气*/
+	 .calendar-jieqi{
+	 	font-size: 12px;
+	 	display: block;
+	 }
 	/**
 	 * 设置下个月的按钮图标
 	 */
@@ -182,17 +186,19 @@
 	      }
 	    };
 	  })();
-	  var isOnceFlg = true
+	  var isStartJq = false
 	  
 	 /*
 	  *  日期控件初始化
 	  *  @params { object } 对象
 	  *	 @params { object.change }  点击之后的回调
+	  *	 @params { object.startJq }  是否开启节气设置
+	  
 	 */
 	
 	  function iniCalendarData( object ) {
 	  	// 设置calendar div中的html部分
-
+	  	if( object.startJq ) isStartJq = object.startJq
 	  	renderHtml();
 	  	 // 表格中显示日期
 	  	showCalendarData();
@@ -276,13 +282,23 @@
 	      var _thisDay = new Date(_year, _month - 1, i + 1 - _firstDay.getDay());
 	      var _thisDayStr = getDateStr(_thisDay);
 	      _tds[i].innerText = _thisDay.getDate();
+	      
 	      //_tds[i].data = _thisDayStr;
 	      _tds[i].setAttribute('data', _thisDayStr);
 	      if(_thisDayStr == getDateStr(new Date())) {    // 当前天
 	        _tds[i].className = 'currentDay';
 	      }else if(_thisDayStr.substr(0, 6) == getDateStr(_firstDay).substr(0, 6)) {
 	        _tds[i].className = 'currentMonth';  // 当前月
-			
+			//当前节气是否开启
+			if( isStartJq ) { 
+				var JIEQI = getjq(_year , _month , i + 1 - _firstDay.getDay()  )
+		        if ( JIEQI ) {
+		        	var span = document.createElement('span')
+		        		span.className = 'calendar-jieqi'
+		        		span.innerText = JIEQI 
+		        		_tds[i].appendChild(span)
+		        }
+	        }
 	      }else {    // 其他月
 	        _tds[i].className = 'otherMonth';
 	      }
@@ -417,7 +433,24 @@
 	    return _year + _month + _d;
 	  }
 
-
+	  /**
+	   * 根据当前的时间来过去节气
+	   */
+	  function getjq(yyyy,mm,dd){
+		    mm = mm-1;
+		    var sTermInfo = new Array(0,21208,42467,63836,85337,107014,128867,150921,173149,195551,218072,240693,263343,285989,308563,331033,353350,375494,397447,419210,440795,462224,483532,504758);
+		    var solarTerm = new Array("小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至");
+		    var tmp1 = new Date((31556925974.7*(yyyy-1900)+sTermInfo[mm*2+1]*60000)+Date.UTC(1900,0,6,2,5));
+		    var tmp2 = tmp1.getUTCDate();
+		    var solarTerms = "";
+		    if (tmp2==dd)
+		        solarTerms = solarTerm[mm*2+1];
+		    tmp1 = new Date((31556925974.7*(yyyy-1900)+sTermInfo[mm*2]*60000)+Date.UTC(1900,0,6,2,5));
+		    tmp2= tmp1.getUTCDate();
+		    if (tmp2==dd) 
+		        solarTerms = solarTerm[mm*2];
+		    return solarTerms;
+	 }
 
 	  //
 	  return {
@@ -435,6 +468,7 @@
 			console.log(value)
 			var text = document.getElementById('text')
 				text.value = value
-		}
+		},
+		startJq : true
 	})
 </script>
