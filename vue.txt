@@ -1,0 +1,33 @@
+https://discountry.github.io/react/docs/hello-world.html  中文文档
+https://facebook.github.io/react/docs/hello-world.html    英文文档
+
+
+
+<head-top signin-up='home'>
+            <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
+ </head-top>
+当上面的加载下面的模板的时候 ，slot指定名字标签将要加载对应替换模板的所有元素,当元素里面不添加任何
+指定名字的话，默认替换自义定标签中全部的内容
+<header id='head_top'>
+ <slot name='logo'></slot>
+</div>
+
+
+ <ul class="citylistul clear">
+                <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
+                    {{item.name}}
+                </router-link>  
+            </ul>
+ 可以不用a来表示  用tag表示标签  路由的话会自动push进去
+
+
+this.$router.push({path:'/msite', query:{geohash}})
+   
+query是带参数查询，想当于  xxx.xxx.login?geohash=geohash
+
+
+// 命名的路由  参数
+router.push({ name: 'user', params: { userId: 123 }})
+
+// 对象
+this.$router.push({path: '/login?url=' + this.$route.path});
