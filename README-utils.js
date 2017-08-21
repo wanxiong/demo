@@ -622,3 +622,30 @@
 //         # bridge.callHandler 'testObjcCallback', { 'foo': 'bar' }, (response) ->
 //             # log 'JS got response', response
 //             # 
+
+
+function aaaa(time){
+	var a = time
+	var year = a.substr(0,4)
+	var month = a.substr(5,2)
+	var day = a.substr(8,2)
+	var str = ''
+	//减去操作
+	if( parseInt(day) == 1){
+		var date = new Date(year,parseInt(month) - 1 , -1 )
+		year = date.getFullYear()
+		month =	date.getMonth() + 1 ; 
+		day = date.getDate() ;
+		day < 10 ? '0' + day : day;
+		month  < 10 ? '0' + month : month; 
+		str = year + '/' + month + '/' + day
+	} else {
+		var Day = parseInt(day) - 1
+			Day = Day < 10 ? '0' + Day : Day
+		str = year + '/' + month + '/' + Day
+	}
+
+
+	return str
+
+}

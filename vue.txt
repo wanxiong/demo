@@ -1,6 +1,7 @@
 https://discountry.github.io/react/docs/hello-world.html  中文文档
 https://facebook.github.io/react/docs/hello-world.html    英文文档
-
+npm view jquery versions 查看所有版本
+npm install jquery@2.2.3 安装指定版本
 
 
 <head-top signin-up='home'>
