@@ -25,6 +25,7 @@ img { -ms-interpolation-mode: bicubic; }
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 */
+/*超出2行文字省略号  对应的数字改变即可变成对应的多行*/
 .omgTwo{
 	overflow:hidden; 
 	text-overflow:ellipsis;
