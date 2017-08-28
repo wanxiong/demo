@@ -25,3 +25,10 @@ img { -ms-interpolation-mode: bicubic; }
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 */
+.omgTwo{
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
