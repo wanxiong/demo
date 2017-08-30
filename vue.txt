@@ -3,7 +3,12 @@ https://facebook.github.io/react/docs/hello-world.html    英文文档
 npm view jquery versions 查看所有版本
 npm install jquery@2.2.3 安装指定版本
 
+=========================================================
+*****     @是v-on的缩写       ********
+用在普通元素上时，只能监听 原生 DOM 事件。用在自定义元素组件上时，也可以监听子组件触发的自定义事件。
 
+*************************************
+=========================================================
 <head-top signin-up='home'>
             <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
  </head-top>
@@ -13,7 +18,7 @@ npm install jquery@2.2.3 安装指定版本
  <slot name='logo'></slot>
 </div>
 
-
+==========================================================
  <ul class="citylistul clear">
                 <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
                     {{item.name}}
@@ -23,12 +28,94 @@ npm install jquery@2.2.3 安装指定版本
 
 
 this.$router.push({path:'/msite', query:{geohash}})
+==========================================================
    
 query是带参数查询，想当于  xxx.xxx.login?geohash=geohash
 
+=======================================================
+****   一般循环的时候都会增加单独的keyk来绑定  有相同父元素的子元素必须有独特的key。重复的key会造成渲染错误。
+****   一般都是结合v-for来渲染 
+<li v-for="item in items" :key="item.id">...</li> 
 
+
+=======================================================
+****   如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
+	<div class="recommend" ref="recommend"></div>
+	this.$refs.recommend.style.bottom = bottom
+		
+
+=======================================================
+****  父组件传递参数给子组件的一种默认写法
+ <song-list :title ="title" :name="name" @select="selectItem"></song-list> 
+
+****
+  props: {
+      title: {
+        type: String,
+        default: '正在载入...'
+      },
+      name{
+        type: Number,
+        default: 1
+      }
+    }
+
+=======================================================
 // 命名的路由  参数
 router.push({ name: 'user', params: { userId: 123 }})
 
 // 对象
 this.$router.push({path: '/login?url=' + this.$route.path});
+
+
+Vue.nextTick( fn() )  这个方法是在dom渲染完毕的时候的回调，可以对dom进行操作 然create是不可以的
+
+===================================================================
+**********    vuex数据驱动       ***************
+	import {mapState , mapActions} from 'vuex'
+computed : {
+			...mapState([
+				'recommendImageList',
+				'recommendList'
+			])
+			
+		} 数据中获取 （mapState）
+	
+methods : {
+	...mapActions([
+				'saveRecommendImageList',
+				'saveRecommendList'
+            ])
+
+}
+ 设置数据，数据驱动更新（mapActions）
+	      
+	
+===================================================================
+****       针对better-scroll的插件，博客 		****
+  
+http://blog.csdn.net/sinat_17775997/article/details/72841002 
+
+https://ustbhuangyi.github.io/better-scroll/doc/options.html#freescroll
+
+===================================================================
+******   动画    *******************
+
+<template>
+	<transition name="slide">
+		<div>
+			<div>singer子页面</div>
+		</div>
+	</transition>
+</template>
+
+*******************************************************
+.slide-enter-active, .slide-leave-active{
+	    transition: all 0.3s
+	}
+
+.slide-enter, .slide-leave-to{
+	    transform: translate3d(100%, 0, 0)
+	}
+
+===================================================================
