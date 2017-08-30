@@ -99,6 +99,52 @@ http://blog.csdn.net/sinat_17775997/article/details/72841002
 https://ustbhuangyi.github.io/better-scroll/doc/options.html#freescroll
 
 ===================================================================
+********    	computed     	********
+computed: {
+     vincentwan() {
+		console.log('wanxiong~~~~~~~~~~~~~wanxiong')
+		return 'wanxiong'
+	},
+     listData() {
+		
+		return [1 , 2 , 3 , 4]
+	}
+},
+-------------------------
+<p>{{vincentwan}}</p>
+<p v-for=" item in listData ">{{ item  }}</p>
+
+------------------------
+此时他是一个属性，不在是一个方法   她返回的也是data数据中的一部分
+
+==================================================================
+*************    watch监听方法     **********************
+var vm = new Vue({
+	     el: '#app',
+             data: {
+                 firstName: 'a',
+                 lastName: 'fei',
+                 fullName: 'a fei'
+             },
+             watch: {
+                 firstName: function (newVal, oldVal) {
+                     this.fullName = newVal + ' ' + this.lastName
+                 },
+                 lastName: function (val) {
+                     this.fullName = this.firstName + ' ' + val
+                 }
+             }
+}
+--------------
+ <div id="watch">
+         firstName:<input type="text" name="li"  v-model="firstName">
+         <br>
+         lastName:<input type="text" name="fei"  v-model="lastName">
+         <p>fullName: {{fullName}}</p>
+ </div>
+-----------------  主要是监听设定的值的变化
+
+==================================================================
 ******   动画    *******************
 
 <template>
