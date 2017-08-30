@@ -1,0 +1,189 @@
+﻿### 环境API配置路径
+	buildConfig.json
+taskkill /pid 2356
+netstat -aon|findstr "49157"
+逻辑说明 
+#1
+  页面初始化 
+  modules/session中页面登录的相关内容
+
+#2
+  长量配置(CodeList) 
+  common/constant/codelist
+
+#3
+
+  基本校验开发和验证提示文言 
+  common/constant/validata-rules
+
+#4
+
+  当前用户保存删除信息的操作
+  common/session-srv
+
+#5
+  上传文件
+  common/service/uploadSrv
+
+#6
+  请求API配置
+  common/service/api-src
+
+#7
+  growl消息提醒
+  common/service/message-srv
+
+#8
+  AppConfigs中一些全局变量的
+  common/constants/app-config
+
+
+
+##### description
+	angular.copy(urlWithoutPageParams, this.opts.searchCondition);
+	拷贝参数一覆盖给参数二，不是合并，也不是继承，是覆盖
+
+
+==================================================
+注册服务下面的tab-srv中定义了一个create的方法，直接返回一个实例，接受两个参数 ， 一个是对应url的参数，一个是自定义的取得数据的操作，切绑定当前的this
+
+==================================================
+_.omit 省略对应指定的自定义key  
+	_.omit($location.search(), ['page', 'count']);
+
+_.pick 匹配对应指定的自定义key
+_.pick(params.url(),['page', 'count']);
+
+
+==================================================
+
+
+return new NgTableParams(
+			angular.extend({
+				page: 1
+			}, $location.search()), {
+				getData: function(){
+					return [1,2,3,4]
+				}
+				// getData: getDataDefine(this)
+			}); 
+大致对应内部的应该只接受数据 默认执行的是一个方法 返回的是个数据
+==================================================
+
+.col-xs- 超小屏幕 手机 (<768px)
+
+.col-sm- 小屏幕 平板 (≥768px)
+
+.col-md- 中等屏幕 桌面显示器 (≥992px)
+
+.col-lg- 大屏幕 大桌面显示器 (≥1200px)
+
+
+==================================================
+
+/*** 重置检索条件  	***/
+	reset(searchCondition) {
+		this.opts.searchCondition = searchCondition;		
+        }
+所有重置方法都是默认把参数置空，通过传递一个空对象进去
+========================================================================
+*****   angualr-ui-bootstrap中自带summernote编辑器   ******
+
+    summernote的页面布局（资源引入、初始参数）
+    summernote从本地上传图片方法（前端onImageUpload方法、后端springMVC文件保存）
+    summernote所在form表单的数据提s交
+
+========================================================================
+**********   ng-style    *********************
+
+ ng-style="{'color':vm.COLOR}"
+
+========================================================================
+*********   抽象模板不能被激活 但是子模板可以被激活   ***************
+
+    $stateProvider.state('main', {
+        templateUrl: 'main/views/main.html',
+        abstract: true
+    })
+    .state('main.welcome', {
+    	url: '/',
+        templateUrl: 'main/views/welcome.html',
+    });
+
+可进行子模板跳转    $state.go('main.welcome');
+
+***********************************
+对应的'main/views/main.html',可以在里面嵌入对应要加载的模板
+
+<div class="container-flud body">
+    <div class="main-left col-md-3" ng-include="'main/views/main-sidebar.html'"></div>
+    <div class="main-right">
+	    <div ng-include="'main/views/main-header.html'"></div>
+	    <div class="main-contents" ui-view></div>
+	</div>
+</div>
+***********************************     main/views/main-sidebar.html
+
+<div class="top_nav" ng-controller="MainHeaderCtrl as vm"></div>
+***********************************     main/views/main-sidebar.html
+
+
+========================================================================
+
+****************   对应的字体图标  *****************
+	"font-awesome": "Font-Awesome#^4.6.3",
+
+	对应文档 (  http://fontawesome.dashgame.com/  )  
+
+	例子（demo） <i class="fa fa-users"></i>   
+
+
+****************************************************
+
+========================================================================
+
+ *********** 主画面中main，展示的权限，通过自定义指令 data-permissions来确认当前用户的权限和已默认写好的权限
+ *********** 来判定该用户的权限，不存在即删除，存在则保留
+
+ ******   自定义指令就这一个，主要对应的就是不同管理员权限的展示  *************
+
+========================================================================
+***************   上传文件   plupload   ***************
+
+
+*********  http://www.cnblogs.com/2050/p/3913184.html   (技术博客 主)
+*********  http://www.sojson.com/blog/214.html          (技术博客 闲杂)
+*********  http://www.plupload.com/examples/core        （文档）
+
+========================================================================
+#####
+折叠控件可以使用的属性有：
+
+(1)         uib-collapse. 默认为false.表示是否收起控件
+
+(2)         collapsed.组件收起之后调用的函数.
+
+(3)         collapsing.组件收起前调用的函数.如果返回一个拒绝的promise,收起动作将被取消
+
+(4)         expanded.组件展开之后调用的函数.
+
+(5)         expanding.组件展开前调用的函数.如果返回一个拒绝的promise,展开动作将被取消
+
+
+
+
+地址  https://angular-ui.github.io/bootstrap/ 
+
+
+
+
+
+
+
+
+
+
+链接：http://www.jq22.com/jquery-info10815 高仿IOS源生自带的日期选择
+
+
+链接：http://pan.baidu.com/s/1misUYGK 密码：6tma
