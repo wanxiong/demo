@@ -92,6 +92,37 @@ return new NgTableParams(
     summernote的页面布局（资源引入、初始参数）
     summernote从本地上传图片方法（前端onImageUpload方法、后端springMVC文件保存）
     summernote所在form表单的数据提s交
+    $('#summernote').summernote('code');
+    取得编辑器中的内容（包括标签====此标签的默认内容是API返回在传递进去的）
+    编辑器一般实例化的时候默认传递一些参数
+	类型	按钮id	方法
+	Insert	picture	Insert a picture
+	link	Insert a hyperlink
+	video	Insert a video
+	table	Insert a table
+	hr	Insert a horizontal rule
+	Style	style	Format selected block
+	fontname	Set font family
+	fontsize	Set font size
+	color	Set foreground and background color
+	bold	Toggle weight
+	italic	Toggle italic
+	underline	Toggle underline
+	strikethrough	Toggle strikethrough
+	clear	Clearing all styles
+	Layout	ul	Make an un-ordered list
+	ol	Make an ordered list
+	paragraph	Set text alignment
+	height	Set height of text
+	Misc	fullscreen	Toggle fullscreen editing mode
+	codeview	Toggle wysiwyg and html editing mode
+	undo	Undo
+	redo	Redo
+	help	Show help dialog
+
+
+
+
 
 ========================================================================
 **********   ng-style    *********************
@@ -153,7 +184,7 @@ return new NgTableParams(
 
 *********  http://www.cnblogs.com/2050/p/3913184.html   (技术博客 主)
 *********  http://www.sojson.com/blog/214.html          (技术博客 闲杂)
-*********  http://www.plupload.com/examples/core        （文档）
+*********  http://www.plupload.com/examples/core        (文档)
 
 ========================================================================
 #####
@@ -175,15 +206,93 @@ return new NgTableParams(
 地址  https://angular-ui.github.io/bootstrap/ 
 
 
-
-
-
-
-
-
+angular日期插件文档   https://eonasdan.github.io/bootstrap-datetimepicker/
 
 
 链接：http://www.jq22.com/jquery-info10815 高仿IOS源生自带的日期选择
 
 
 链接：http://pan.baidu.com/s/1misUYGK 密码：6tma
+
+
+http://blog.csdn.net/a5601564/article/details/52670585   anuglar 富文本编辑器   summernote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================================
+controller与controller 之间的继承补充
+// 参数的解释
+// constructor 可以是 function 也可以是 string 
+//           如果传入一个 function, 就会当成 controller 的构造函数
+//           如果传入一个 string，就会根据字符串去$controllerProvider 找 注册的 controller
+//locals  是一个对象，注入来自局部的 controller ,在这里我们认为 child controller
+
+===========================================================================================
+
+
+
+
+==========================================================================================
+**************                    日期一般选项 （此项目）      ****************************
+	$('.date').datetimepicker({
+		format: 'YYYY-MM-DD',
+		locale: moment.locale('zh-cn')
+	})
+	 $('.date').eq(0).datetimepicker({
+	 	format: 'YYYY-MM-DD',
+     	locale: moment.locale('zh-cn'),
+     	minDate:"2017-07-01",
+     	defaultDate:"2017-08-01",
+	 });
+	$('.date').eq(1).datetimepicker({
+     		format: 'YYYY-MM-DD',
+     		locale: moment.locale('zh-cn'),
+	        useCurrent: false //Important! See issue #1075
+	});
+	$('.date').eq(0).on("dp.change", function (e) {
+        	$('.date').eq(1).data("DateTimePicker").minDate(e.date);
+	});
+	$('.date').eq(1).on("dp.change", function (e) {
+        	$('.date').eq(0).data("DateTimePicker").maxDate(e.date);
+	});
+
+==========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================= 杂乱  =================
+
+先从canvas获取dataurl, 再将dataurl转换为Blob对象
+
+var dataurl = canvas.toDataURL('image/png');
+var blob = dataURLtoBlob(dataurl);
+//使用ajax发送
+var fd = new FormData();
+fd.append("image", blob, "image.png");
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '/server', true);
+xhr.send(fd);
