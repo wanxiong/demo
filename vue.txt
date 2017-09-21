@@ -4,6 +4,7 @@ http://www.8dou5che.com/2017/05/11/vue-lazyload/          v-lazyLoad中文文档
 npm view jquery versions 查看所有版本
 npm install jquery@2.2.3 安装指定版本
 https://doc.webpack-china.org/configuration  webpack
+http://www.cnblogs.com/liyunhua/p/4529086.html   JS一些性能问题
 =========================================================
 *****     @是v-on的缩写       ********
 用在普通元素上时，只能监听 原生 DOM 事件。用在自定义元素组件上时，也可以监听子组件触发的自定义事件。
@@ -181,4 +182,30 @@ var vm = new Vue({
 	}
 v-enter-to: 2.1.8版及以上 定义进入过渡的结束状态。在元素被插入一帧后生效（于此同时 v-enter 被删除），在 transition/animation 完成之后移除。
 v-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发一帧后生效（于此同时 v-leave 被删除），在 transition/animation 完成之后移除。
+
+
+<transition name="palyer"
+	@enter="enter"
+	@after-enter="afterEnter"
+	@leave="leave"
+	@after-leave="afterLeave"
+>
+动画自带的钩子函数
+methods:{
+	enter( el ,done){
+	}
+}
+在对应的methods添加对应的方法即可 
+
+
+
+===================================================================
+****      nextTick对应节点加载完毕  ***********
+currentSong() {
+			//等加音频加载完毕再来播放
+			/*this.$nextTick(() => {
+				this.$refs.audio.play()	
+			})*/
+},
+
 ===================================================================
