@@ -1,6 +1,9 @@
 https://discountry.github.io/react/docs/hello-world.html  中文文档
 https://facebook.github.io/react/docs/hello-world.html    英文文档
 http://www.8dou5che.com/2017/05/11/vue-lazyload/          v-lazyLoad中文文档
+http://fontawesome.io/icons/    //  icon  图标字体库
+https://github.com/nieweidong/fetool   //前端介绍  ~~~  【  值得一看  】
+WOW.JS和scrollreveal.js  前者一次   后次无限次，屏幕滚动动画更有趣
 npm view jquery versions 查看所有版本
 npm install jquery@2.2.3 安装指定版本
 https://doc.webpack-china.org/configuration  webpack
