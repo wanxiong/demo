@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<img src="http://upload.jianshu.io/users/upload_avatars/555630/fdd1b798e6b0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+<img src="http://imgcno1.nos.netease.com/img/R1N2VWIyZFFQMzBVUFVZSEthRTVGZ1NKdXE1L25vUDVXSU45VGtnUVhoMlFpUGcyWnpobzBRPT0.jpg?imageView&thumbnail=206x206&interlace=0">
+</br>
+</br>
+</br>
+</br>
+</br>
+<p>华丽的分割线</p>
+<div class="aaa"></div>
+<div class="bbb"></div>
+</body>
+</html>
+<script type="text/javascript">
+	let can  = document.createElement('canvas')
+	let dody = document.querySelector('.aaa')
+	let b = document.querySelector('.bbb')
+	let ctx  = can.getContext("2d");
+	dody.appendChild(can)
+	let n = 0
+	
+	data = ['http://upload.jianshu.io/users/upload_avatars/555630/fdd1b798e6b0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96','http://imgcno1.nos.netease.com/img/R1N2VWIyZFFQMzBVUFVZSEthRTVGZ1NKdXE1L25vUDVXSU45VGtnUVhoMlFpUGcyWnpobzBRPT0.jpg?imageView&thumbnail=106x106&interlace=0']
+	let len = 2
+	can.width=200
+	can.height=200
+   dragImg = function(n){
+   		if(n < len) {
+				let img = new Image()
+			img.crossOrigin = "Anonymous"
+			img.src = data[n]
+
+			img.onload = function() {
+				console.log(img)
+                ctx.drawImage(img, n*50, n*50, img.width, img.height);
+                dragImg(n+1)
+            }
+
+		} else {
+			//保存生成作品图片
+            convertCanvasToImage(can);
+		}
+	}
+	 dragImg(0)
+	function convertCanvasToImage(canvas) {
+		console.log(canvas)
+	    var hc_image = new Image();
+	    hc_image.src = canvas.toDataURL();
+	    console.log( dataURItoBlob(canvas.toDataURL()) )
+	    b.innerHTML = hc_image
+	}
+	/**  
+* base64 转 blob 对象，文件上传  
+ * 转载自：http://blog.csdn.net/hsany330/article/details/52575459  
+ * @param dataURI  
+ * @returns {Blob}  
+ */  
+function dataURItoBlob(dataURI) {  
+    var byteString = atob(dataURI.split(',')[1]);  
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];  
+    var ab = new ArrayBuffer(byteString.length);  
+    var ia = new Uint8Array(ab);  
+    for (var i = 0; i < byteString.length; i++) {  
+        ia[i] = byteString.charCodeAt(i);  
+    }  
+    return new Blob([ab], {type: mimeString});  
+}  
+</script>
