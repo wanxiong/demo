@@ -6,6 +6,8 @@ https://github.com/nieweidong/fetool   //前端介绍  ~~~  【  值得一看  】
 https://github.com/kraaas/webpack-tutorial-collection   webpack 
 WOW.JS和scrollreveal.js  前者一次   后次无限次，屏幕滚动动画更有趣
 npm view jquery versions 查看所有版本
+https://www.npmjs.com/package/anywhere 本地服务器   anywhere -p 9000
+
 npm install jquery@2.2.3 安装指定版本
 http://caibaojian.com/mobile-meta.html  html一些meta标签说明
 =======================================================================
