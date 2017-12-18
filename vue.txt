@@ -6,8 +6,21 @@ https://github.com/nieweidong/fetool   //前端介绍  ~~~  【  值得一看  】
 https://github.com/kraaas/webpack-tutorial-collection   webpack 
 WOW.JS和scrollreveal.js  前者一次   后次无限次，屏幕滚动动画更有趣
 npm view jquery versions 查看所有版本
+http://www.jianshu.com/p/011d308d7dd7   vue一些插件
 https://www.npmjs.com/package/anywhere 本地服务器   anywhere -p 9000
-
+https://github.com/superman66/vue-axios-github   vue拦截登录功能
+https://www.cnblogs.com/icyhoo/p/6282574.html   小程序Demo
+====================================================================
+http://blog.csdn.net/carson_ho/article/details/64904691
+http://blog.csdn.net/qq_24530405/article/details/52067474
+http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/53290382
+webview android 博客介绍 webview和JS交互
+====================================================================
+ cnpm install -g create-react-app
+$ create-react-app my-app
+$ cd my-app/
+$ npm start
+====================================================================
 npm install jquery@2.2.3 安装指定版本
 http://caibaojian.com/mobile-meta.html  html一些meta标签说明
 =======================================================================
