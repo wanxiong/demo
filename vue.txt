@@ -12,10 +12,12 @@ https://github.com/superman66/vue-axios-github   vue拦截登录功能
 https://www.cnblogs.com/icyhoo/p/6282574.html   小程序Demo
 http://www.bslxx.com/a/vue/2017/1124/1454.html   vuex数据页面刷新解决方案
 https://github.com/championswimmer/vuex-persist  vuex数据页面刷新解决方案
+https://www.npmjs.com/package/js-cookie    cookie
 ====================================================================
 http://blog.csdn.net/carson_ho/article/details/64904691
 http://blog.csdn.net/qq_24530405/article/details/52067474
 http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/53290382
+IOS https://github.com/marcuswestin/WebViewJavascriptBridge
 webview android 博客介绍 webview和JS交互
 ====================================================================
  cnpm install -g create-react-app
