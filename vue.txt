@@ -10,6 +10,8 @@ http://www.jianshu.com/p/011d308d7dd7   vue一些插件
 https://www.npmjs.com/package/anywhere 本地服务器   anywhere -p 9000
 https://github.com/superman66/vue-axios-github   vue拦截登录功能
 https://www.cnblogs.com/icyhoo/p/6282574.html   小程序Demo
+https://github.com/we-plugin/we-cropper         小程序裁剪
+http://blog.csdn.net/u012421719/article/details/70889542   小程序特效收集
 http://www.bslxx.com/a/vue/2017/1124/1454.html   vuex数据页面刷新解决方案
 https://github.com/championswimmer/vuex-persist  vuex数据页面刷新解决方案
 https://www.npmjs.com/package/js-cookie    cookie
