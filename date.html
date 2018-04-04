@@ -278,9 +278,12 @@
 	    var _table = document.getElementById("calendarTable");
 	    var _tds = _table.getElementsByTagName("td");
 	    var _firstDay = new Date(_year, _month - 1, 1);  // 当前月第一天
-	    for(var i = 0; i < _tds.length; i++) {
+	 	console.log( _month - 1)
+	    for(var i = 0; i < _tds.length; i++) { 
+
 	      var _thisDay = new Date(_year, _month - 1, i + 1 - _firstDay.getDay());
 	      var _thisDayStr = getDateStr(_thisDay);
+	      console.log(_thisDayStr)
 	      _tds[i].innerText = _thisDay.getDate();
 	      
 	      //_tds[i].data = _thisDayStr;
