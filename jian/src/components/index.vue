@@ -4,8 +4,8 @@
             <div class="swiper-container2">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="banner in bannerList">
-                        <!-- <div :style="{background:  'url(' +imgUrl+banner.bannerUrl+') no-repeat center top/cover',paddingTop: '45%' }"></div> -->
-                        <!-- <img :src="imgUrl+banner.bannerUrl" style="width:100%;height:5rem;" @click="toBanner(banner)"/> -->
+                        <!-- <div :style="{background:  'url(' +imgUrl+banner.url+') no-repeat center top/cover',paddingTop: '45%' }"></div> -->
+                        <img :src="imgUrl+banner.url" style="width:100%;height:5rem;" @click="toBanner(banner)"/>
                         <div class="mobile_banner"></div>
                     </div>
                 </div>
@@ -21,10 +21,11 @@
         </div>
         <div class="product">
             <div class="item" v-for="item in list" @click="toLink(item)">
-                <img :src="imgUrl+item.productUrl"/>
+
+                <img :src="imgUrl+item.url"/>
                 <div class="info">
-                    <p>{{item.productName}}</p>
-                    <p>{{item.productDescription || 0}}</p>
+                    <p>{{item.name}}</p>
+                    <p>{{item.description || 0}}</p>
                     <p><span>{{item.accessNumber}}</span>人申请</p>
                 </div>
             </div>
@@ -78,39 +79,46 @@
         mounted() {
             this.getInfo();
             this.getBanner();
+            this.getNotice();
         },
         methods: {
             getBanner() {
                 let _this = this;
                 _this.$http.get('/api/banner/list').then(function(res) {
                     let r = res.data;
-                    if(r.code == 0) {
-                        _this.bannerList = r.data;
-                        setTimeout(() => {
-                            var mySwiper = new Swiper('.swiper-container2', {
-                                autoplay: true,//可选选项，自动滑动
-                                loop: true,
-                            })
-                        },200)
-                        _this.getNotice();
+                    if(r.code == 200) {
+                        _this.bannerList = r.data.items;
+                           setTimeout(() => {
+                                var mySwiper = new Swiper('.swiper-container2', {
+                                    autoplay: true,//可选选项，自动滑动
+                                    loop: true,
+                                })
+                            },200)
                     }
-                })
+                }).catch( res => {})
             },
             getNotice() {
                 let _this = this;
                 _this.$http.get('/api/notice/list').then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
-                        _this.noticelist = r.data;
-                        console.log(r, 'r')
-                        setTimeout(() => {
+                    if(r.code == 200) {
+                        _this.noticelist = r.data.items;
+                        this.$nextTick(() => {
                             var mySwiper = new Swiper('.swiper-container', {
                                 autoplay: true,//可选选项，自动滑动
                                 loop: true,
                                 direction : 'vertical',
                                 speed: 1000,
                             })
-                        },200)
+                        })
+                        // setTimeout(() => {
+                        //     var mySwiper = new Swiper('.swiper-container', {
+                        //         autoplay: true,//可选选项，自动滑动
+                        //         loop: true,
+                        //         direction : 'vertical',
+                        //         speed: 1000,
+                        //     })
+                        // },200)
                     }
                 })
             },
@@ -118,12 +126,14 @@
                 let _this = this;
                 _this.$http.get('/api/product/list').then(function(res) {
                     let r = res.data;
-                    if(r.code == 0) {
+                    if(r.code == 200) {
                         _this.list = r.data.items;
                     }
                 })
             },
             toLink(item) {
+                this.$router.push({name: "detail"})
+                return 
                 let _this = this;
                 _this.$http.get('/api/user/getUserInfo').then((res) => {
                     if(res.data.code == 0) {

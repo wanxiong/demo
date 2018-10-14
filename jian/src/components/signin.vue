@@ -1,19 +1,52 @@
 <template>
     <div class="outer">
-        <h4>用户注册</h4>
-        <div class="user-phone">
-            <input type="text" placeholder="请输入姓名" v-model="name"/>
+        <div>
+            <p class="model_content_header">注册<i class="iconfont " @click="back">&#xe64a;</i></p>
         </div>
-        <div class="user-phone">
-            <input type="number" name="tel" placeholder="请输入手机号" v-model="phone"/>
+        <div>
+            <div class="login_banner"></div>
         </div>
-        <div class="user-phone">
-            <input type="text" placeholder="请输入密码" v-model="password"/>
+        <div style="margin:20px 10px; margin-bottom:15px;" class="hui-form" id="form1">
+            <div class="hui-form-items">
+                <div class="hui-form-items-title">姓名</div>
+                <input type="text" name="name" id="name" class="hui-input hui-input-clear" placeholder="请输入姓名" autofocus="autofocus" v-model="name">
+                
+            </div>
+            <div class="hui-form-items">
+                <div class="hui-form-items-title">手机号</div>
+                <input type="text" name="m" id="account" class="hui-input hui-input-clear" placeholder="请输入手机号码" autofocus="autofocus" v-model="phone">
+                
+            </div>
+          <!--  <div class="hui-form-items">
+                <div class="hui-form-items-title">验证码</div>
+                <input type="text" class="hui-input" id="valert" name="v">
+                    <img src="/register/verify" id="verifyImg" alt="刷新验证码" onclick="fleshVerify()">
+            </div> -->
+            <div class="hui-form-items">
+                <div class="hui-form-items-title">手机验证</div>
+                <input type="text" name="code" id="code" class="hui-input hui-input-clear" placeholder="请输入手机验证码" autofocus="autofocus" v-model="verifyCode">
+                <input type="button" id="count" :class="verifyFlag ? 'verifyBtn' : 'verifyBtn un_verifyBtn'" style="" :value=verifyTxt
+                @click="getVerifyCode">
+            </div>
+            <div class="hui-form-items">
+                <div class="hui-form-items-title">密码</div>
+                <input type="password" name="p" v-model="password" class="hui-input hui-pwd-eye" placeholder="请入登录密码">
+            </div>
+            <div class="hui-form-items">
+                <div class="hui-form-items-title">确认密码</div>
+                <input type="password" name="cp" v-model="confirmPassword" class="hui-input hui-pwd-eye" placeholder="请再次输入登录密码">
+            </div>
+            
         </div>
-        <button :class="[password == '' ? 'read-only button' : 'submit button']" @click="submit()">注册</button>
-        <div class="type">
-            <span @click="$router.replace('/passlogin')">账号密码登陆>></span>
+    
+        <div style="padding:10px; padding-top:10px;">
+            <input type="button" style="bakground:#EE9C4D!important;" @click="submit()" class="hui-button hui-button-large hui-primary" value="立即注册">
         </div>
+         <div class="forget">
+            <span @click="goLogin">已有账号？</span>
+            <!-- <span @click="forgetPassword">忘记密码</span> -->
+        </div>
+
     </div>
 </template>
 
@@ -25,6 +58,11 @@
                 name: '',
                 phone: '',
                 password: '',
+                confirmPassword:'',
+                verifyCode:'',
+                verifyTxt:'获取验证码',
+                verifyFlag: true,
+                waitTime: 60,
             }
         },
         beforeRouteLeave (to, from, next) {
@@ -43,28 +81,99 @@
                     _this.$toast('请填写姓名');
                     return;
                 }
+                if(!_this.phone) {
+                    _this.$toast('请填写手机号');
+                    return;
+                }
                 if(!(/^1[34578]\d{9}$/.test(_this.phone))) {
                     _this.$toast('手机号格式不正确');
                     _this.phone = '';
                     return;
                 }
-                if(_this.password.replace(/^\s*$/g, "") == '') {
-                    _this.$$toast('请填写密码');
+                if(!_this.verifyCode) {
+                    _this.$toast('请填入短信验证码');
                     return;
                 }
-
-                let param = new URLSearchParams();
-                param.append("name", _this.name);
-                param.append("phone",  _this.phone);
-                param.append("password", _this.password);
-                param.append("shareCode",  sessionStorage.getItem('share') || '');
-                _this.$http.post('/api/user/registLogin', param).then((res) => {
+                if(_this.password.replace(/^\s*$/g, "") == '') {
+                    _this.$toast('请填写密码');
+                    return;
+                }
+                if(_this.confirmPassword.replace(/^\s*$/g, "") == '') {
+                    _this.$toast('请填写确认密码');
+                    return;
+                }
+                if(_this.confirmPassword.replace(/^\s*$/g, "") == '') {
+                    _this.$toast('请填写确认密码');
+                    return;
+                }
+                
+                let param = {
+                    phone: this.phone,
+                    password: this.password,
+                    name: this.name,
+                    verifyCode: this.verifyCode,
+                    shareCode:"",
+                }
+                //param.append("shareCode",  sessionStorage.getItem('share') || '');
+                this.$http.post('/api/auth/regist', param).then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
-                        _this.$toast('注册成功啦');
-                        _this.$router.replace('/index');
+                    this.$toast(r.message);
+                    if(r.code == 200) {
+                        localStorage.setItem('token',r.data);
+                        this.$router.replace('/index');
                     }
+                }).catch( res => {
+
                 })
+            },
+            back() {
+                window.history.back();
+            },
+            getVerifyCode() {
+                if(!this.verifyFlag) {
+                    this.$toast('请不要重复发生验证码');
+                    return;
+                }
+                if(!this.phone) {
+                    this.$toast('请填写手机号');
+                    return;
+                }
+                if(!(/^1[34578]\d{9}$/.test(this.phone))) {
+                    this.$toast('手机号格式不正确');
+                    return;
+                }
+                let params = {
+                    phone: this.phone,
+                }
+                this.$http.post('/api/sms/sendVerifyCode', params).then((res) => {
+                    let r = res.data;
+                    this.$toast(r.message);
+                    if(r.code == 200) {
+                        this.verifyFlag = false;
+                        this.times()
+                    } else {
+
+                    }
+                }).catch( res => {})
+            },
+            goLogin() {
+                this.$router.push({name: 'login'});
+            },
+            //短信倒计时
+            times() {
+                let _this = this
+                if(_this.waitTime == 0) {
+                    this.verifyFlag = true;
+                    //document.getElementById('sendCode').style.color = '#00B996';
+                    _this.verifyTxt = '获取验证码'
+                } else {
+                    //document.getElementById('sendCode').style.color = '#8E8E8E';
+                    _this.verifyTxt =  _this.waitTime + "s后重新获取";
+                    _this.waitTime--;
+                    setTimeout(function() {
+                        _this.times()
+                    },1000)
+                }
             },
         }
     }
@@ -78,111 +187,114 @@
         background: #fff;
         position: relative;
     }
-    h4 {
-        font-size: 0.54rem;
-        font-family:PingFangSC-Regular;
-        color:rgba(60,60,60,1);
-        line-height: 0.6rem;
-        margin: 2.3rem 0 0 0.5rem;
-    }
-    .user-phone {
-        width: 6rem;
-        height: 0.9rem;
-        margin: 0.5rem auto 0;
-        border-bottom: 1px solid #ddd;
-        overflow: hidden;
-    }
-    .user-phone input {
+    .model_content_header{
+        height: 43px;
         width: 100%;
-        border: 0;
-        height: 0.9rem;
-        line-height: normal;
-        font-size: 0.3rem;
-        color: #3c3c3c;
-        float: left;
-        outline: none;
-    }
-
-    .code {
-        width: 6rem;
-        height: 0.9rem;
-        margin: 0.5rem auto 0;
-        overflow: hidden;
-        border-bottom: 1px solid #ddd;
-    }
-    .code input {
-        float: left;
-        width: 4rem;
-        height: 0.9rem;
-        line-height: normal;
-        color: #3c3c3c;
-        font-size: 0.3rem;
-        border: 0;
-        outline: none;
-    }
-    .code span {
-        float: left;
-        width: 2rem;
-        line-height: 0.9rem;
-        font-size: 0.3rem;
-        color: #59cac2;
-        text-align: center;
-    }
-
-    .button {
-        width: 6rem;
-        height: 0.88rem;
-        border-radius: 1rem;
-        outline: none;
-        font-size: 0.32rem;
+        z-index: 999;
+        background: #dea167;
+        font-size: 16px;
         color: #fff;
-        line-height: normal;
-        text-align: center;
-        margin: 0.5rem auto 0;
-        display: block;
-        border: 0;
-    }
-    .read-only {
-        background: #f6f6f6;
-    }
-    .submit {
-        background: #59cac2;
-    }
-    .type {
-        position: absolute;
-        bottom: 0.3rem;
+        line-height: 43px;
+        margin: 0 auto;
         width: 100%;
-        overflow: hidden;
-    }
-    .type span {
-        float: right;
-        margin-right: 0.36rem;
-        font-size: 0.28rem;
-        color: #59cac2;
-        line-height: 0.4rem;
-    }
-
-    .warning {
         text-align: center;
-        margin-top: 0.4rem;
-        font-size: 0.3rem;
+        position: relative;
     }
-    .warning span {
-        color: #59cac2;
+    .model_content_header i{
+        position: absolute;
+        left: 0;
+        transform: rotate(180deg);
+        font-size: 22px;
+        padding:0 10px; 
     }
-    .dialog {
-        width: 6rem;
-        height: 8rem;
-        border-radius: 0.1rem;
+    .login_banner{
+        background: url('../assets/img/login.png') no-repeat center center/cover;
+        padding-top: 40%;
     }
-    .dialog .content {
-        width: 5.48rem;
-        height: 7.2rem;
-        margin: 0.4rem auto 0;
-        overflow-y: scroll;
+    .hui-form{
+        background: #FFFFFF;
+        font-size: 15px;
     }
-    .dialog .content p {
-        font-size: 0.28rem;
-        line-height: 0.4rem;
+    .hui-form-items{
+        padding: 15px 10px;
+        border-bottom: 1px solid #F3F4F5;
+        position: relative;
+        display: -webkit-flex;
+        display: flex;
+    }
+    .hui-form-items-title{
+        width: 25%;
+        line-height: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+    .hui-form-items .hui-input{
+        width: 100% !important;
+    }
+    .hui-input{
+        height: 22px;
+        line-height: 22px;
+        color: #999;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        border: 0;
+        background: #FFF;
+        width: 100%;
+        display: block;
+        padding: 0px;
+    }
+    .hui-form-items:last-child {
+        border: none;
+    }
+    .hui-primary{
+        background: #EE9C4D;
+        color: #FFFFFF;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 3px;
+        border: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        display: block;
+        font-size: 15px;
+        height: 42px;
+        line-height: 42px;
+        outline: 0;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        box-shadow: 0 0 1px #B8BBBF;
+        padding: 0px 16px;
+    }
+    .forget{
+        padding: 0 10px; 
+        color: #999;
+        font-size: 15px;
+    }
+    .forget > span{
+        display: inline-block;
+        padding: 5px 0;
+    }
+    .forget > span:nth-of-type(1){
+        display: inline-block;
+        margin-right: 15px;
+    }
+    .verifyBtn{
+        width: 160px;
+        height:25px;
+        border:none;
+        color:#FFF;
+        background: #EE9C4D;
+        padding: 7px 10px;
+        border-radius: 3px;
+    }
+    .un_verifyBtn{
+        background: #8E8E8E;
     }
 </style>

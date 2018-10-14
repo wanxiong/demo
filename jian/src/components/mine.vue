@@ -34,6 +34,21 @@
               <p>3.活动期间，从头赔到尾</p>
           </div>
         </mt-popup>
+        <mt-popup
+            class="popupVisible_logout_logo"
+          v-model="popupVisible_logout"
+          >
+          <div class="popupVisible_logout">
+          <p>提示</p>
+          <p>此操作将退出登录, 是否继续?</p>
+          <p>
+              <button @click="cancel">取消</button>
+            <button type="primary" @click="logout">确认</button>
+          </p>
+          
+          </div>
+        </mt-popup>
+
         <bottom></bottom>
     </div>
 </template>
@@ -46,10 +61,13 @@
             return {
                 popupVisible: false,
                 popupVisible_: false,
+                popupVisible_logout: false,
                 list: [
                     {icon: '&#xe605;', name: '拒就陪服务', code: '1', path: '/applyfor'},
                     {icon: '&#xe60d;', name: '联系我们', code: '2', path: ''},
-                    {icon: '&#xe624;', name: '设置', code: '3', path: '/mineinfo'},
+                    {icon: '&#xe626;', name: '分享', code: '3', path: ''},
+                    {icon: '&#xe792;', name: '退出', code: '4', path: '/login'},
+                    {icon: '&#xe624;', name: '设置', code: '5', path: '/mineinfo'},
                 ],
                 name: '',
                 phone: '',
@@ -64,23 +82,18 @@
         methods: {
             getInfo() {
                 let _this = this;
-                _this.$http.get('/api/website/get').then((res) => {
-                    let r = res.data;
-                    if(r.code == 0) {
-                        _this.name = r.data.webName;
-                        _this.phone = r.data.serviceTel;
-                    }
-                    if(r.code == 403) {
-                       // _this.$router.push('/passlogin')
-                    }
-                })
+                
             },
             toLink(item) {
                 if(item.code == '2') {
                     this.popupVisible = true;
                 } else if(item.code == '1') {
                     this.popupVisible_ = true;
-                } 
+                } else if(item.code == '4') {
+                    this.popupVisible_logout = true;
+                } else if(item.code == '3') {
+                    this.$router.push({name: 'promotion'});
+                }
                 return 
                 let _this = this;
                 if(item.path == '' && item.code == '5') {
@@ -95,7 +108,26 @@
             closeModel() {
                 this.popupVisible = false;
                 this.popupVisible_ = false;
-            }   
+            },
+            cancel() {
+                this.popupVisible_logout = false;
+            },
+            logout() {
+                this.$http.post('/api/auth/logout', {}).then((res) => {
+                    let r = res.data;
+                    if(r.code == 200) {
+                        this.$toast(r.message)
+                       localStorage.removeItem('token');
+                       this.$router.push({name: 'login'});
+                    } else {
+                        this.$toast(r.message);
+                        
+                    }
+                    this.popupVisible_logout = false;
+                }).catch( res => {
+
+                })
+            }
         }
     }
 </script>
@@ -217,4 +249,70 @@
          color: #666;
          line-height: 20px;
     }
+    .popupVisible_logout_logo{
+        width: 80%;
+        padding: 10px 20px; 
+        border-radius: 5px;
+    }
+    .popupVisible_logout > p:nth-of-type(1){
+        font-size: 16px;
+        color: #303133;
+        padding: 10px 0;
+    }
+    .popupVisible_logout > p:nth-of-type(1){
+        font-size: 14px;
+        color: #606266;
+        padding: 10px 0;
+    }
+    .popupVisible_logout > p > button:nth-of-type(1){
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid #dcdfe6;
+        border-color: #dcdfe6;
+        color: #606266;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        transition: .1s;
+        font-weight: 500;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    .popupVisible_logout > p:nth-of-type(3) {
+        text-align: right;
+    }
+    .popupVisible_logout > p >button:nth-of-type(2){
+        margin-left: 10px;
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+        color: #fff;
+        background-color: #409eff;
+        border-color: #409eff;
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        border: 1px solid #dcdfe6;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        transition: .1s;
+        font-weight: 500;
+    }
+
 </style>

@@ -6,7 +6,7 @@ Vue.use(Router)
 
 import login from '@/components/login'
 import passlogin from '@/components/passlogin'
-import signin from '@/components/signin'
+import register from '@/components/signin'
 
 import index from '@/components/index'
 import mine from '@/components/mine'
@@ -14,6 +14,7 @@ import mineinfo from '@/components/mineinfo'
 import applyfor from '@/components/applyfor'
 import wodexiaxian from '@/components/wodexiaxian'
 import promotion from '@/components/promotion'
+import detail from '@/components/detail'
 
 const router = new Router({
     mode: 'history',
@@ -21,26 +22,40 @@ const router = new Router({
         {path: '/index', name: 'index', component: index, meta: {title: '易得贷'}},
         {path: '/login', name: 'login', component: login, meta: {title: '登陆'}},
         {path: '/passlogin', name: 'passlogin', component: passlogin, meta: {title: '密码登陆'}},
-        {path: '/signin', name: 'signin', component: signin, meta: {title: '注册'}},
+        {path: '/register', name: 'register', component: register, meta: {title: '注册'}},
         {path: '/mine', name: 'mine', component: mine, meta: {title: '我的'}},
         {path: '/mineinfo', name: 'mineinfo', component: mineinfo, meta: {title: '个人信息'}},
         {path: '/applyfor', name: 'applyfor', component: applyfor, meta: {title: '邀请记录'}},
         {path: '/wodexiaxian', name: 'wodexiaxian', component: wodexiaxian, meta: {title: '我的下线'}},
         {path: '/promotion', name: 'promotion', component: promotion, meta: {title: '邀请函'}},
+        {path: '/detail', name: 'detail', component: detail, meta: {title: '甲方详情'}},
     ]
-})
+});
 
 router.beforeEach((to, from, next) => {
     
-    if(to.name == 'index') {
-        axios.get('/api/website/get').then((res) => {
-            let r = res.data;
-            if(r.code == 0) {
-                document.title = r.data.webName;
-            }
-            next()
-        })
+    // if(to.name == 'index') {
+    //     axios.get('/api/website/get').then((res) => {
+    //         let r = res.data;
+    //         if(r.code == 0) {
+    //             document.title = r.data.webName;
+    //         }
+    //         next()
+    //     })
+    // }
+    // 
+    let token = localStorage.getItem('token');
+    if(!token) {
+        
+        if(to.path=='/login' || to.path=='/register' ){ //如果是登录页面路径，就直接next()
+            next();
+        } else { //不然就跳转到登录；
+            next('/login');
+        }
+
+    } else {
+        next();
     }
-    next();
+    
 })
 export default router;

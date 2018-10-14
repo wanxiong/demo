@@ -1,10 +1,14 @@
 <template>
     <div class="outer">
+        <div>
+            <p class="model_content_header">登录<i class="iconfont " @click="back">&#xe64a;</i></p>
+        </div>
         <div class="headers">
             <img src="https://img.hzanchu.com/acimg/579b53077119b5498edb6ead47fb2d6b.png?x-oss-process=image/resize,l_800" width="100%"/>
         </div>
         <p class="text">{{copytext}}</p>
         <button class="share-btn" :data-clipboard-text="copytext" @click="copy()">复制邀请</button>
+
     </div>
 </template>
 
@@ -15,7 +19,7 @@
         name: 'promotion',
         data() {
             return {
-                copytext: ''
+                copytext: 'www'
             }
         },
         beforeMount() {
@@ -31,9 +35,6 @@
                     let r = res.data;
                     if(r.code == 0) {
                         _this.copytext = shareUrl + r.data;
-                    }
-                    if(r.code == 403) {
-                        _this.$router.push('/passlogin')
                     }
                 })
             },
@@ -51,6 +52,9 @@
 					clipboard.destroy()
 				})
 			},
+            back() {
+                window.history.back();
+            }
         }
     }
 </script>
@@ -81,5 +85,25 @@
         line-height: normal;
         display: block;
         margin: 0.3rem auto 0;
+    }
+    .model_content_header{
+        height: 43px;
+        width: 100%;
+        z-index: 999;
+        background: #00b996;
+        font-size: 16px;
+        color: #fff;
+        line-height: 43px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+    .model_content_header i{
+        position: absolute;
+        left: 0;
+        transform: rotate(180deg);
+        font-size: 22px;
+        padding:0 10px; 
     }
 </style>
