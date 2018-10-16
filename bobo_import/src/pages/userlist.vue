@@ -20,7 +20,7 @@
  
         </div>
         
-        <el-table :data="list" border style="width:100%;margin-top:30px;">
+        <el-table :data="list" border style="width:100%;">
             
             <el-table-column prop="phone" align="center" label="手机号码"></el-table-column>
             <el-table-column prop="createTime" align="center" label="导入时间" ></el-table-column>

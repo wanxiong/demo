@@ -46,19 +46,23 @@
           <el-upload
           class="upload-demo"
           ref="upload"
-          list-type="text"
           :action=downloadUrl
           :on-remove="handleRemove"
           :file-list="fileList"
           :multiple="false"
+          list-type="text"
           :on-success="uploadSuccess"
           :on-error="uploadErr"
+          :before-upload="uploadBefore"
+          accept="text/plain"
           :on-progress="uploadProgress"
+          :on-change="uploadChange"
           :auto-upload="false">
           <el-button slot="trigger" size="small" type="primary">导入数据</el-button>
-          <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
-        </el-upload>
+          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
           <span class="totalSize">共{{totalSize}}条</span>
+        </el-upload>
+          
        </div>
     </div>
 </template>
@@ -70,13 +74,16 @@
         data() {
             return {
                 list: [],
+                limit:1,
                 dialogFormVisible: false,
                 starTime: '',
                 endTime: '',
                 totalSize:'--',
+                fileList:[],
                 currentPage: 1,
                 pageSize: 10,
                 totalPage: 1,
+                maxSize: 2, //最大长度10M
             }
         },
         computed: {
@@ -141,6 +148,8 @@
                 console.log(row)
             },
             submitUpload() {
+                console.log(this.fileList)
+                return
                 this.$refs.upload.submit();
             },
             handleRemove(file, fileList) {
@@ -150,10 +159,26 @@
 
             },
             uploadErr() {
-
+                this.$message.error({ message: '文件上传失败'});
             },
-            uploadProgress() {
-
+            uploadProgress(event, file, fileList) {
+                console.log(event.percent);
+            },
+            uploadBefore(file) {
+                console.log(file)
+                let txt = file.type === 'image/jpeg';
+                let size = (file.size / 1024 / 1024);
+                if(size > this.maxSize) {
+                    this.$message({ message: '文字最大不能超过5M',type: 'warning'})
+                    return false;
+                }
+            },
+            uploadChange(file, fileList) {
+                console.log(fileList)
+                if(fileList.length>1){
+                    fileList.shift();
+                    //this.$refs.upload.clearFiles();
+                }
             }
         }
     }

@@ -24,6 +24,8 @@ const router = new Router({
             // {path: '/home/noticelist', name: 'noticelist', component: noticelist, meta: {title: '公告'}},
         ]},
         {path: '/login', name: 'login', component: login, meta: {title: '登陆'}},
+        {path: '*', name: '404',redirect: {name: 'home'}},
+     
     ]
 })
 
