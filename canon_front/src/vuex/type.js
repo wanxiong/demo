@@ -1,0 +1,16 @@
+
+export let INITLINKDOWNLOAD = 'INITLINKDOWNLOAD';
+
+export let LOGINDATA = 'LOGINDATA';
+
+export let SSOTICKET = 'SSOTICKET';
+
+export let CLEARSTATE = 'CLEARSTATE';
+
+export let COUNTRYLIST = 'COUNTRYLIST';
+
+export let AREALIST = 'AREALIST';
+
+export let UUID	= 'UUID';
+
+export let CLEARLOGINDATA = 'CLEARLOGINDATA';
