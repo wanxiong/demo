@@ -11,10 +11,10 @@ Vue.use(elementUi);
 Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
-axios.defaults.baseURL='http://shan.bangyiwl.com:8088';
+axios.defaults.baseURL='http://www.dxcqp.com:8082';
 //在请求发出之前进行一些操作
 axios.interceptors.request.use(config => {
-  //console.log(config.)
+  console.log(config)
 	return config
 })
 axios.interceptors.response.use(response =>{

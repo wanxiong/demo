@@ -22,7 +22,7 @@
         
         <el-table :data="list" border style="width:100%;">
             
-            <el-table-column prop="phone" align="center" label="手机号码"></el-table-column>
+            <el-table-column prop="id" align="center" label="手机号码"></el-table-column>
             <el-table-column prop="createTime" align="center" label="导入时间" ></el-table-column>
                
         </el-table>
@@ -36,7 +36,7 @@
         </div>
 
        <div>
-          <el-button type="primary" @click="exportExcl()" style="float:left;margin-left:30px;">导出</el-button>
+          <!-- <el-button type="primary" @click="exportExcl()" style="float:left;margin-left:30px;">导出</el-button> -->
           <span class="totalSize">共{{totalSize}}条</span>
        </div>
     </div>
@@ -72,21 +72,20 @@
                     this.$message({message: '开始时间不能大于结束时间',type: 'warning'});
                     return false
                 }
-                //this.getInfo();
+                this.getInfo();
             },
             getInfo() {
                 let _this = this;
-                _this.$http.get('/api/user/list', {
+                _this.$http.get('/api/tel/list', {
                     params: {
                         page: _this.currentPage,
                         size: _this.pageSize,
-                        name: _this.searchName,
-                        phone: _this.searchPhone,
-                        referrer: _this.searchRefer,
+                        starTime: _this.starTime,
+                        endTime: _this.endTime,
                     }
                 }).then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
+                    if(r.code == 200) {
                         _this.totalPage = r.data.total;
                         this.totalSize = r.data.total
                         _this.list = r.data.items;

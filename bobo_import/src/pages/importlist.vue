@@ -21,14 +21,14 @@
         </div>
         
         <el-table :data="list" border style="width:100%;margin-top:30px;">
-            <el-table-column fixed prop="name" label="序号" type="index" width="80"></el-table-column>
-            <el-table-column prop="phone" align="center" label="导入数量"></el-table-column>
-            <el-table-column prop="inviteCount" align="center" label="重复数量" ></el-table-column>
-            <el-table-column prop="inviteCount" align="center" label="有效数量" ></el-table-column>
-            <el-table-column prop="createTime" align="center" label="导入时间" ></el-table-column>
+            <el-table-column fixed prop="id" label="序号" width="80"></el-table-column>
+            <el-table-column prop="totolNum" align="center" label="导入数量"></el-table-column>
+            <el-table-column prop="repeatNum" align="center" label="重复数量" ></el-table-column>
+            <el-table-column prop="validNum" align="center" label="有效数量" ></el-table-column>
+            <el-table-column prop="createTimeStr" align="center" label="导入时间" ></el-table-column>
             <el-table-column prop="" align="center" label="操作" >
                 <template slot-scope="scope">
-                    <el-button type="primary" size="small" @click="downloadItem(scope.$index, scope.row)">下载</el-button>
+                    <el-button type="primary" size="small" @click="exportExcl(scope.$index, scope.row)">下载</el-button>
                 </template>
             </el-table-column>
                
@@ -46,7 +46,7 @@
           <el-upload
           class="upload-demo"
           ref="upload"
-          :action=downloadUrl
+          :action=uploadUrl
           :on-remove="handleRemove"
           :file-list="fileList"
           :multiple="false"
@@ -57,9 +57,9 @@
           accept="text/plain"
           :on-progress="uploadProgress"
           :on-change="uploadChange"
-          :auto-upload="false">
+          :auto-upload="true">
           <el-button slot="trigger" size="small" type="primary">导入数据</el-button>
-          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+          <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
           <span class="totalSize">共{{totalSize}}条</span>
         </el-upload>
           
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    import {downloadUrl} from '@/api/config'
+    import {uploadUrl, downloadUrl} from '@/api/config'
     export default {
         name: 'importlist',
         data() {
@@ -82,13 +82,14 @@
                 fileList:[],
                 currentPage: 1,
                 pageSize: 10,
+                flag:false,
                 totalPage: 1,
-                maxSize: 2, //最大长度10M
+                maxSize: 5, //最大长度10M
             }
         },
         computed: {
-            downloadUrl: () => {
-                return downloadUrl;
+            uploadUrl: () => {
+                return uploadUrl + 'api/file/import';
             }
         },
         mounted() {
@@ -96,8 +97,6 @@
         },
         methods: {
             searchInfo() {
-                console.log(this.starTime)
-                console.log(this.endTime)
                 if( this.endTime && 
                     this.starTime && 
                     this.starTime.replace(/\//g,'') > this.endTime.replace(/\//g,'')
@@ -105,21 +104,20 @@
                     this.$message({message: '开始时间不能大于结束时间',type: 'warning'});
                     return false
                 }
-                //this.getInfo();
+                this.getInfo();
             },
             getInfo() {
                 let _this = this;
-                _this.$http.get('/api/user/list', {
+                _this.$http.get('/api/log/list', {
                     params: {
                         page: _this.currentPage,
                         size: _this.pageSize,
-                        name: _this.searchName,
-                        phone: _this.searchPhone,
-                        referrer: _this.searchRefer,
+                        endTime:this.endTime,
+                        starTime:this.starTime
                     }
                 }).then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
+                    if(r.code == 200) {
                         _this.totalPage = r.data.total;
                         this.totalSize = r.data.total
                         _this.list = r.data.items;
@@ -134,18 +132,15 @@
                 this.getInfo();
             },
             // 导出文件
-            exportExcl() {
+            exportExcl(index, row) {
                 let _this = this;
                 let link = document.createElement('a')
                 link.style.display = 'none'
-                link.href = downloadUrl + 'bgm/userlist'
-                link.setAttribute('download', 'aaa.xlsx')
+                link.href = downloadUrl + `api/file/export/${row.id}`
+                link.setAttribute('download', `${row.id}.xlsx`)
                 document.body.appendChild(link)
                 link.click()
 
-            },
-            downloadItem(index, row) {//导出部分文件
-                console.log(row)
             },
             submitUpload() {
                 console.log(this.fileList)
@@ -156,16 +151,26 @@
                 console.log(file, fileList);
             },
             uploadSuccess() {
-
+                _this.$message({
+                    message:'导入成功',
+                    type: 'success'
+                });
+                this.flag = true;
+                this.$refs.upload.clearFiles();
             },
-            uploadErr() {
+            uploadErr(err) {
+                this.flag = true;
+                console.log('err --- ')
+                console.log(err);
                 this.$message.error({ message: '文件上传失败'});
             },
             uploadProgress(event, file, fileList) {
-                console.log(event.percent);
+                
             },
             uploadBefore(file) {
-                console.log(file)
+                if(this.flag) {
+                    this.$message({ message: '已有文件在上传中',type: 'warning'})
+                }
                 let txt = file.type === 'image/jpeg';
                 let size = (file.size / 1024 / 1024);
                 if(size > this.maxSize) {

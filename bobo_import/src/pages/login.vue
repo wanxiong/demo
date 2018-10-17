@@ -35,7 +35,7 @@
                 param.append("password", _this.password);
                 _this.$http.post('/api/user/adminLogin', param).then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
+                    if(r.code == 200) {
                     	_this.$message({
                     		message:r.message,
                     		type: 'success'
