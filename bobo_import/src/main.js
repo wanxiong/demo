@@ -14,13 +14,16 @@ Vue.config.productionTip = false
 axios.defaults.baseURL='http://www.dxcqp.com:8082';
 //在请求发出之前进行一些操作
 axios.interceptors.request.use(config => {
-  console.log(config)
+  let token = localStorage.getItem('token');
+  if(token) config.headers['Authorization'] = token;
 	return config
 })
 axios.interceptors.response.use(response =>{
   let r = response.data;
   console.log(r.code, 'code')
   if(r.code == 403) {
+    localStorage.removeItem('token');
+    Vue.$message.error({ message: r.message});
     router.push({name: 'login'});
   }
 	return response;

@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // '/api': {
-      //   target: 'http://www.dxcqp.com:8082',
-      //   pathRewrite: {
-      //     '^/api': '/api'
-      //   }
-      // }
+      '/api': {
+        target: 'http://www.dxcqp.com:8082',
+        pathRewrite: {
+          '^/api': '/api'
+        }
+      }
     },
 
     // Various Dev Server settings

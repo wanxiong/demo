@@ -30,12 +30,14 @@
 		methods: {
 			login() {
                 let _this = this;
-                let param = new URLSearchParams();
-                param.append("username", _this.username);
-                param.append("password", _this.password);
-                _this.$http.post('/api/user/adminLogin', param).then((res) => {
+                let param = {
+                	username: _this.username,
+                	password: _this.password,
+                }
+                _this.$http.post('/api/auth/login', param).then((res) => {
                     let r = res.data;
                     if(r.code == 200) {
+                    	localStorage.setItem('token',r.data);
                     	_this.$message({
                     		message:r.message,
                     		type: 'success'

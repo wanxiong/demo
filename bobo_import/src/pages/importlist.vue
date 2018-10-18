@@ -21,7 +21,15 @@
         </div>
         
         <el-table :data="list" border style="width:100%;margin-top:30px;">
-            <el-table-column fixed prop="id" label="序号" width="80"></el-table-column>
+       <!--  <el-button size="mini" v-if="scope.$index !=list.length-1 " type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+            
+            <el-table-column fixed label="序号" width="80">
+                <template slot-scope="scope">
+                    <span v-if="scope.$index !=list.length-1 ">{{scope.row.id}}</span>
+                    <span v-else>总计</span>
+                </template>
+            </el-table-column>
+           <!--  <el-table-column fixed v-if="" prop="index" label="序号" width="80"></el-table-column> -->
             <el-table-column prop="totolNum" align="center" label="导入数量"></el-table-column>
             <el-table-column prop="repeatNum" align="center" label="重复数量" ></el-table-column>
             <el-table-column prop="validNum" align="center" label="有效数量" ></el-table-column>
@@ -29,7 +37,9 @@
             <el-table-column prop="fileName" align="center" label="文件名" ></el-table-column>
             <el-table-column prop="" align="center" label="操作" >
                 <template slot-scope="scope">
-                    <el-button type="primary" size="small" @click="exportExcl(scope.$index, scope.row)">下载</el-button>
+                    <el-button v-if="scope.$index !=list.length-1 " type="primary" size="small" @click="exportExcl(scope.$index, scope.row)">下载</el-button>
+                    <el-button v-if="scope.$index !=list.length-1 " type="danger" size="small" @click="deleteLog(scope.$index, scope.row)">删除</el-button>
+                    <span v-else></span>
                 </template>
             </el-table-column>
                
@@ -57,6 +67,7 @@
           :before-upload="uploadBefore"
           accept="text/plain"
           :on-progress="uploadProgress"
+          :headers="header"
           :on-change="uploadChange"
           :auto-upload="true">
           <el-button slot="trigger" size="small" type="primary">导入数据</el-button>
@@ -104,6 +115,9 @@
         computed: {
             uploadUrl: () => {
                 return uploadUrl + 'api/file/import';
+            },
+            header: () => {
+                return {Authorization: localStorage.getItem('token')};
             }
         },
         mounted() {
@@ -119,6 +133,39 @@
                     return false
                 }
                 this.getInfo();
+            },
+            initId(index) {
+                console.log(index)
+            },
+            deleteLog(index,row) {
+                 this.$alert(`你将删除文件 ${row.fileName}`, '文件删除', {
+                  confirmButtonText: '确定',
+                  callback: action => {
+                    console.log(action)
+                    if( action== 'confirm') {
+                        this.$http.post(`/api/log/delete/${row.id}`, {
+                            params: {}
+                        }).then((res) => {
+                            let r = res.data;
+                            if(r.code == 200) {
+                                this.$message({
+                                    message:`${r.message}`,
+                                    type: 'success'
+                                });
+                                this.getInfo();
+                            } else {
+                                this.$message.error({ message: `${r.message}`});
+                            }
+                        })
+                    } else {
+                        this.$message({
+                          type: 'info',
+                          message: `已取消`
+                        });
+                    }
+                  }
+                })
+                
             },
             getInfo() {
                 let _this = this;
@@ -180,11 +227,13 @@
                 this.getInfo();
             },
             uploadErr(err) {
+                alert(err)
                 this.flag = false;
                 this.percent = 0;
+                clearInterval(timer);
                 this.percentInsert = 0;
                 this.$refs.upload.clearFiles();
-                this.$message.error({ message: '文件上传失败'});
+                this.$message.error({ message: `${err.data.message}`});
 
             },
             uploadProgress(event, file, fileList) {

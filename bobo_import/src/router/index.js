@@ -30,7 +30,17 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-   
-    next();
+    let token = localStorage.getItem('token');
+    if(!token) {
+        
+        if(to.path=='/login'){ //如果是登录页面路径，就直接next()
+            next();
+        } else { //不然就跳转到登录；
+            next('/login');
+        }
+
+    } else {
+        next();
+    }
 })
 export default router;
