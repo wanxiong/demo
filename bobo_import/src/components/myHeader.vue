@@ -1,9 +1,9 @@
 <template>
     <div class="myHeader">
         <div class="myHeader-header">
-            <div class="express">优米贷C后台管理</div>    		
+            <div class="express">后台管理</div>    		
             <div @click="close" class="close">退出</div>
-            <div @click="bpassTip = true" class="changepass">修改密码</div>
+            <!-- <div @click="bpassTip = true" class="changepass">修改密码</div> -->
         </div>
         <el-dialog title="修改密码" :visible.sync="bpassTip" size="tiny">
             <p style="text-align: center;font-size:16px;">新密码：<el-input v-model="newPass" placeholder="请输入新密码" style="width:200px;margin-left:40px" :maxlength="16"></el-input></p>

@@ -64,10 +64,20 @@
         </el-upload>
           
        </div>
+       <!--  -->
+       <div class="uploadState"  v-if="percentInsert != 0">
+            <div  class="uploadState_con">
+                <el-progress type="circle" :percentage=percent>
+                </el-progress>
+                <div class="insertDb" >数据正在入库，请耐心等待,当前进度{{percentData}}%</div>
+           </div>
+
+       </div>
     </div>
 </template>
 
 <script>
+    let timer = null;
     import {uploadUrl, downloadUrl} from '@/api/config'
     export default {
         name: 'importlist',
@@ -84,7 +94,10 @@
                 pageSize: 10,
                 flag:false,
                 totalPage: 1,
-                maxSize: 5, //最大长度10M
+                percent:0,
+                percentInsert:0,
+                percentData:0,
+                maxSize: 20, //最大长度10M
             }
         },
         computed: {
@@ -143,47 +156,81 @@
 
             },
             submitUpload() {
-                console.log(this.fileList)
                 return
                 this.$refs.upload.submit();
             },
             handleRemove(file, fileList) {
-                console.log(file, fileList);
             },
-            uploadSuccess() {
-                _this.$message({
+            uploadSuccess(res) {
+                clearInterval(timer);
+                this.flag = false;
+                this.percent = 0;
+                this.percentInsert = 0;
+                this.percentData = 100;
+                this.$refs.upload.clearFiles();
+                if (res.code != '200') {
+                    this.$message({ message: `${res.message}`,type: 'warning'});
+                    return false;
+                } 
+                this.$message({
                     message:'导入成功',
                     type: 'success'
                 });
-                this.flag = true;
-                this.$refs.upload.clearFiles();
+                this.getInfo();
             },
             uploadErr(err) {
-                this.flag = true;
-                console.log('err --- ')
-                console.log(err);
+                this.flag = false;
+                this.percent = 0;
+                this.percentInsert = 0;
+                this.$refs.upload.clearFiles();
                 this.$message.error({ message: '文件上传失败'});
+
             },
             uploadProgress(event, file, fileList) {
-                
+                this.percent = parseInt(event.percent);
+                if(this.percent == '100') {
+                    this.percentInsert = 1;
+                    if (this.percentData < 100) {
+                        timer = setInterval(this.upprogress, 1000)
+                    }
+                }
             },
             uploadBefore(file) {
                 if(this.flag) {
-                    this.$message({ message: '已有文件在上传中',type: 'warning'})
+                    this.$message({ message: '已有文件在上传中',type: 'warning'});
+                    return false;
                 }
                 let txt = file.type === 'image/jpeg';
                 let size = (file.size / 1024 / 1024);
                 if(size > this.maxSize) {
-                    this.$message({ message: '文字最大不能超过5M',type: 'warning'})
+                    this.$message({ message: '文字最大不能超过20M',type: 'warning'})
                     return false;
                 }
+                this.percentData = 0;
+                this.flag = true;
             },
             uploadChange(file, fileList) {
-                console.log(fileList)
                 if(fileList.length>1){
                     fileList.shift();
                     //this.$refs.upload.clearFiles();
                 }
+            },
+            upprogress() {
+                if(this.percentData == '100'){ return false};
+                this.$http.get('http://www.dxcqp.com:8082/api/file/progress', {
+                }).then((res) => {
+                    let r = res.data;
+                    if(r.code == 200) {
+                        if(this.percentData == '100') {
+
+                        } else {
+                            if (r.data > 0) {
+                                this.percentData = r.data
+                            }
+                         
+                        }
+                    } 
+                })
             }
         }
     }
@@ -196,5 +243,34 @@
         margin-left: 20px;
         color: #333;
         letter-spacing: 1px;
+    }
+    .uploadState{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: rgba(0,0,0,.5);
+        z-index: 999;
+        height: 100%;
+    }
+    .uploadState_con{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .insertDb{
+        font-size:16px;color:#fff;margin-top: 20px;
+        position: absolute;
+        display: inline-block;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 150%);
+        width: 300px;
+    }
+</style>
+<style>
+    .el-progress__text{
+        color: #fff !important;
     }
 </style>

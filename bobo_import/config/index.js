@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       // '/api': {
-      //   target: 'http://www.bangyiwl.com/api',
+      //   target: 'http://www.dxcqp.com:8082',
       //   pathRewrite: {
       //     '^/api': '/api'
       //   }
