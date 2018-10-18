@@ -26,6 +26,7 @@
             <el-table-column prop="repeatNum" align="center" label="重复数量" ></el-table-column>
             <el-table-column prop="validNum" align="center" label="有效数量" ></el-table-column>
             <el-table-column prop="createTimeStr" align="center" label="导入时间" ></el-table-column>
+            <el-table-column prop="fileName" align="center" label="文件名" ></el-table-column>
             <el-table-column prop="" align="center" label="操作" >
                 <template slot-scope="scope">
                     <el-button type="primary" size="small" @click="exportExcl(scope.$index, scope.row)">下载</el-button>
