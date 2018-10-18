@@ -19,7 +19,7 @@
         name: 'promotion',
         data() {
             return {
-                copytext: 'www'
+                copytext: ''
             }
         },
         beforeMount() {
@@ -33,7 +33,7 @@
                 let _this = this;
                 _this.$http.get('/api/user/share').then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
+                    if(r.code == 200) {
                         _this.copytext = shareUrl + r.data;
                     }
                 })

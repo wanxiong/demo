@@ -4,9 +4,9 @@
             <div class="swiper-container2">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="banner in bannerList">
-                        <!-- <div :style="{background:  'url(' +imgUrl+banner.url+') no-repeat center top/cover',paddingTop: '45%' }"></div> -->
-                        <img :src="imgUrl+banner.url" style="width:100%;height:5rem;" @click="toBanner(banner)"/>
-                        <div class="mobile_banner"></div>
+                        <div :style="{background:  'url(' +imgUrl+banner.url+') no-repeat center center/cover',paddingTop: '45%' }"></div>
+                        <!-- <img :src="imgUrl+banner.url" style="width:100%;height:5rem;" @click="toBanner(banner)"/>
+                        <div class="mobile_banner"></div> -->
                     </div>
                 </div>
             </div>
