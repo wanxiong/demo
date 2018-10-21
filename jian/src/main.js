@@ -16,7 +16,6 @@ Vue.config.productionTip = false
 
 //在请求发出之前进行一些操作
 axios.interceptors.request.use(config => {
-
   let token = localStorage.getItem('token');
   if(token) config.headers['Authorization'] = token;
   
@@ -24,11 +23,31 @@ axios.interceptors.request.use(config => {
 })
 axios.interceptors.response.use(response =>{
    let r = response.data;
-   if(r.code == 403) {
+   if(r.code == 401) {
+    Mint.Toast({
+      message: `没有权限`,
+      iconClass: 'icon icon-success'
+    });
      localStorage.removeItem('token');
      router.push({name: 'login'});
    }
 	return response;
+}, err => {
+  if (err.response.data.code == 401) {
+    Mint.Toast({
+      message: `没有权限`,
+      iconClass: 'icon icon-success'
+    });
+    localStorage.removeItem('token');
+    router.push({name: 'login'});
+  } else {
+    Mint.Toast({
+      message: `服务器异常`,
+      iconClass: 'icon icon-success'
+    });
+    localStorage.removeItem('token');
+    router.push({name: 'login'});
+  }
 })
 /* eslint-disable no-new */
 new Vue({

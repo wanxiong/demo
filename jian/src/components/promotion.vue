@@ -36,7 +36,7 @@
                     if(r.code == 200) {
                         _this.copytext = shareUrl + r.data;
                     }
-                })
+                }).catch( err => {})
             },
             copy() {
 				var clipboard = new Clipboard('.share-btn')

@@ -74,7 +74,6 @@
                         this.$router.replace('/index')
                     } else {
                         _this.$toast(r.message);
-                        _this.$router.replace('/index');
                     }
                 }).catch( res => {
 

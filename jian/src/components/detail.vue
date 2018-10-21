@@ -1,13 +1,13 @@
 <template>
 	<transition  name="slide">
 		<div class="detail">
-			<p class="model_content_header">随便详情<i class="iconfont " @click="closeModel">&#xe64a;</i></p>
+			<p class="model_content_header" >{{proName}}详情<i class="iconfont " @click="closeModel">&#xe64a;</i></p>
 			<div class="product_title">
-					<div class="product_icon"></div>
+					<div class="product_icon" :style="{background: 'url('+bgUrl+') no-repeat center/cover'}"></div>
 				  <div class="product_text">
-				  	<span style="margin: 0px; font-size:20px;">随心花</span>
-				  	<p style="color: #3399FF;margin-top:5px;">588<span style="color:#ccc;">人已放款</span></p>
-				  	<p style="color: #ccc;font-size:12px;margin-top:5px;"><span style="color:#ccc;">浏览量</span>&nbsp;145</p>
+				  	<span style="margin: 0px; font-size:20px;padding-top: 10px;display: block;" v-text="proName"></span>
+				  	<p style="color: #3399FF;margin-top:10px;">{{num}}<span style="color:#ccc;">人已申请</span></p>
+				  	<p style="color: #ccc;font-size:12px;margin-top:510x;"><span style="color:#ccc;">浏览量</span>&nbsp;0</p>
 				  </div>
 			</div>
 		  <div class="product_base">
@@ -75,6 +75,17 @@
 				phone:'',
 			}
 		},
+        computed: {
+            bgUrl() {
+                return this.$route.params.url;
+            },
+            proName() {
+                return this.$route.params.name;
+            },
+            num() {
+                return this.$route.params.num;
+            }
+        },
 		methods: {
 			closeModel() {
 				window.history.back();
@@ -84,8 +95,11 @@
 			}
 		},
 		created() {
+            console.log(this.$route)
+		},
+        mounted() {
 
-		}
+        },
 	}
 </script>
 <style scoped>

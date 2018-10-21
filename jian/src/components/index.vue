@@ -132,7 +132,14 @@
                 })
             },
             toLink(item) {
-                this.$router.push({name: "detail"})
+                console.log(item);
+                this.$router.push({name: "detail", params:{
+                        id: item.id,
+                        url: imgUrl + item.url,
+                        name: item.name,
+                        num: item.accessNumber,
+                    }
+                })
                 return 
                 let _this = this;
                 _this.$http.get('/api/user/getUserInfo').then((res) => {

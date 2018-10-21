@@ -19,7 +19,7 @@ import detail from '@/components/detail'
 const router = new Router({
     mode: 'history',
     routes: [
-        {path: '/index', name: 'index', component: index, meta: {title: '易得贷'}},
+        {path: '/index', name: 'index', component: index, meta: {title: '越甲数据'}},
         {path: '/login', name: 'login', component: login, meta: {title: '登陆'}},
         {path: '/passlogin', name: 'passlogin', component: passlogin, meta: {title: '密码登陆'}},
         {path: '/register', name: 'register', component: register, meta: {title: '注册'}},
@@ -34,28 +34,19 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     
-    // if(to.name == 'index') {
-    //     axios.get('/api/website/get').then((res) => {
-    //         let r = res.data;
-    //         if(r.code == 0) {
-    //             document.title = r.data.webName;
-    //         }
-    //         next()
-    //     })
-    // }
-    // 
-    let token = localStorage.getItem('token');
-    if(!token) {
+    // let token = localStorage.getItem('token');
+    // if(!token) {
         
-        if(to.path=='/login' || to.path=='/register' ){ //如果是登录页面路径，就直接next()
-            next();
-        } else { //不然就跳转到登录；
-            next('/login');
-        }
+    //     if(to.path=='/login' || to.path=='/register' ){ //如果是登录页面路径，就直接next()
+    //         next();
+    //     } else { //不然就跳转到登录；
+    //         next('/login');
+    //     }
 
-    } else {
-        next();
-    }
+    // } else {
+    //     next();
+    // }
+     next();
     
 })
 export default router;
