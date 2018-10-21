@@ -57,7 +57,7 @@
                     return;
                 }
                 if(_this.password == '') {
-                    _this.$$toast('请输入密码');
+                    _this.$toast('请输入密码');
                     return;
                 }
 
@@ -106,7 +106,7 @@
         height: 43px;
         width: 100%;
         z-index: 999;
-        background: #dea167;
+        background: #00a2ff;
         font-size: 16px;
         color: #fff;
         line-height: 43px;
@@ -165,7 +165,7 @@
         border: none;
     }
     .hui-primary{
-        background: #EE9C4D;
+        background: #00a2ff;
         color: #FFFFFF;
         width: 100%;
         -webkit-appearance: none;

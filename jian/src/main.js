@@ -34,20 +34,25 @@ axios.interceptors.response.use(response =>{
 	return response;
 }, err => {
   if (err.response.data.code == 401) {
-    Mint.Toast({
-      message: `没有权限`,
-      iconClass: 'icon icon-success'
-    });
-    localStorage.removeItem('token');
-    router.push({name: 'login'});
+   
+    if(err.response.config.url.indexOf('api/product/incr') != -1) {
+    } else{
+       Mint.Toast({
+        message: `请登录`,
+        iconClass: 'icon icon-success'
+      });
+      localStorage.removeItem('token');
+      router.replace('/login');
+    }
   } else {
     Mint.Toast({
       message: `服务器异常`,
       iconClass: 'icon icon-success'
     });
     localStorage.removeItem('token');
-    router.push({name: 'login'});
+    //router.replace('/login');
   }
+  return Promise.resolve(err.response)
 })
 /* eslint-disable no-new */
 new Vue({

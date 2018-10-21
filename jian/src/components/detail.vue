@@ -1,46 +1,65 @@
 <template>
 	<transition  name="slide">
 		<div class="detail">
-			<p class="model_content_header" >{{proName}}详情<i class="iconfont " @click="closeModel">&#xe64a;</i></p>
+			<p class="model_content_header" >贷款详情<i class="iconfont " @click="closeModel">&#xe64a;</i></p>
 			<div class="product_title">
 					<div class="product_icon" :style="{background: 'url('+bgUrl+') no-repeat center/cover'}"></div>
 				  <div class="product_text">
 				  	<span style="margin: 0px; font-size:20px;padding-top: 10px;display: block;" v-text="proName"></span>
-				  	<p style="color: #3399FF;margin-top:10px;">{{num}}<span style="color:#ccc;">人已申请</span></p>
-				  	<p style="color: #ccc;font-size:12px;margin-top:510x;"><span style="color:#ccc;">浏览量</span>&nbsp;0</p>
+				  	<p style="margin-top:8px;">{{intro}}</p>
+				  	<p style="margin-top:8px;color:#ccc;font-size:12px;"><span style="color:#ccc;">通过率</span>&nbsp;<span style="color: #3399FF;">{{passRate}}%</span></p>
 				  </div>
 			</div>
-		  <div class="product_base">
-				  <p> 基本信息</p>
-				  <ul>
-				  	<li>
-				  		<div>
-				  			<span style="color:#666;">额度范围</span>
-				  			<p style="color:#111;margin-top:5px;">1000-5000元</p>
-				  		</div>
-				  		<div>
-				  			<span style="color:#666;">期限范围</span><br>
-                <p style="color:#111;margin-top:5px;">7天-14天</p>
-				  		</div>
-				  	</li>
-				  	<li>
-				  		<div>
-				  			<span style="color:#666;">利息范围</span>
-				  			<p 0.03%</p>
-				  			<p style="color:#111;margin-top:10px;">0.03%</p>
-				  		</div>
-				  		<div>
-				  			<span style="color:#666;">审核时间</span><br>
-                <p style="color:#111;margin-top:10px;">1小时</p>
-				  		</div>
-				  	</li>
-				  </ul>
-		  </div>
-		  <p style="height:15px;"></p>
-		  <div class="product_detail">
-		  	<h1>机构介绍</h1>
-		  	<p>1.中国大陆公民；2.18-39岁；3.有固定收入来源；4.手机号码实名制6个月；5.芝麻分≥550；6.首次注册下款</p>
-		  </div>
+            <div class="applyDetail">
+                <div>
+                    <span>额度(元)</span>
+                    <span>{{description}}</span>
+                </div>
+                <div>
+                    <span>借款期限</span>
+                    <span>{{timeLimit}}</span>
+                </div>
+                <div>
+                    <span>日费率</span>
+                    <span style="color: #00a2ff;">{{dailyRate}}%</span>
+                </div>
+            </div>
+            <section class="borderbt8"></section>
+            <section>
+                <section class="ji_detailsTiL">
+                    <span>下款攻略</span>
+                </section>
+                <ul class="ul_daklist">
+                </ul>
+            </section>
+            <section class="borderbt8"></section> 
+            <section>
+                <section class="ji_detailsTiL">
+                    <span>申请条件</span>
+                </section>
+                <section class="shen_a clearfix">
+                    <span><a href="javascript:void(0);">快借1000</a></span>
+                    <span><a href="javascript:void(0);">超低利率</a></span>
+                    <span><a href="javascript:void(0);">高通过率</a></span>
+                    <span><a href="javascript:void(0);">最新平台</a></span>
+                    <span><a href="javascript:void(0);">秒放款</a></span>
+                </section>
+            </section>
+            <section>
+                <section class="ji_detailsTiL">
+                    <span>所需材料</span>
+                </section>
+                <section class="shen_a clearfix">
+                    <span style="width:32%;"><a href="javascript:void(0);" >身份证认证</a></span>
+                    <span><a href="javascript:void(0);">手机认证</a></span>
+                </section>
+            </section>
+          <section style="text-align:right;margin-top:-35px;">
+              <img src="../assets/img/shen_img.png" style="width: 75px;">
+          </section>
+          <p class="num">
+            申请人数<label style="color:#00a2ff;">{{num}}</label><label>人</label>
+            </p>
 		  <!--  -->
 		  <div>
 			  	<div @click="join" class="join" >立即申请</div>
@@ -58,8 +77,14 @@
        					</div>
        					<div class="layui-form-item">
        						<input type="text" name="phone" v-model="phone"  lay-verify="required" placeholder="手机号" class="layui-input">
-     						</div>
-     						<div class="layui-layer-btn layui-layer-btn-c"><a class="layui-layer-btn0">马上申请</a></div>
+ 						</div>
+                        <div class="layui-form-item">
+                            <input type="password" name="phone" v-model="password"  lay-verify="required" placeholder="登录密码" class="layui-input">
+                        </div>
+                        <div class="layui-form-item">
+                            <input type="text" name="phone" v-model="share"  lay-verify="required" placeholder="分享人邀请码" class="layui-input">
+                        </div>
+ 						<div class="layui-layer-btn layui-layer-btn-c" @click="startApply"><a class="layui-layer-btn0">马上申请</a></div>
      				</div>
        		</div>
       </mt-popup>
@@ -73,17 +98,40 @@
 				popupVisible: false,
 				name:'',
 				phone:'',
+                password: '',
+                share: '',
 			}
 		},
         computed: {
             bgUrl() {
-                return this.$route.params.url;
+                return this.$route.query.url;
             },
             proName() {
-                return this.$route.params.name;
+                return this.$route.query.name;
             },
             num() {
-                return this.$route.params.num;
+                return this.$route.query.num;
+            },
+            link() {
+                return this.$route.query.link;
+            },
+            description() {
+                return this.$route.query.description;
+            },
+            id() {
+                return this.$route.query.id;
+            },
+            timeLimit() {
+                return this.$route.query.timeLimit;
+            },
+            passRate() {
+                return this.$route.query.passRate;
+            },
+            intro() {
+                return this.$route.query.intro;
+            },
+            dailyRate() {
+                return this.$route.query.dailyRate;
             }
         },
 		methods: {
@@ -91,14 +139,61 @@
 				window.history.back();
 			},
 			join() {
-				this.popupVisible = true;
-			}
+                let uApi = '/api/product/incr/' + this.id;
+                this.$http.post(uApi).then((res) => {
+                    if(res.data.code == 200) {
+                        window.location.href= this.link;
+                    } else {
+                        this.popupVisible = true;
+                    }
+                }).catch( err => {
+                    console.log(err)
+                })
+				
+			},
+            startApply() {
+                var _this =this;
+                if(_this.name == '') {
+                    _this.$toast('请输入姓名');
+                    return;
+                }
+                if(!(/^1[34578]\d{9}$/.test(_this.phone))) {
+                    _this.$toast('手机号格式不正确');
+                    _this.phone = '';
+                    return;
+                }
+                if(_this.password == '') {
+                    _this.$toast('请输入密码');
+                    return;
+                }
+                 let param = {
+                    phone: _this.phone,
+                    password: _this.password,
+                    name: _this.name,
+                    shareCode: _this.share
+                }
+                //param.append("shareCode",  sessionStorage.getItem('share'));
+                _this.$http.post('/api/auth/registLogin', param).then((res) => {
+                    let r = res.data;
+                    if(r.code == 200) {
+                        this.popupVisible = false;
+                        _this.$toast(r.message)
+                        localStorage.setItem('token',r.data);
+                        window.location.href= this.link;
+                    } else {
+                        _this.$toast(r.message);
+                    }
+                }).catch( res => {
+
+                })
+
+            }
 		},
 		created() {
             console.log(this.$route)
 		},
         mounted() {
-
+            this.share = sessionStorage.getItem('share') || '';
         },
 	}
 </script>
@@ -111,27 +206,96 @@
 	}
 	.detail{
 	  position: fixed;
-	    left: 0;
-	    top: 0;
-	    bottom: 48px;
-	    z-index: 30;
-	    width: 100%;
-	    background-color: #fff;
-	    transition: all .3s linear;
+    left: 0;
+    top: 0;
+   height: 100%;
+    z-index: 30;
+    width: 100%;
+    background-color: #fff;
+    transition: all .3s linear;
+    overflow-y: scroll;
 	}
+    .applyDetail{
+        display: flex;
+        padding: 15px 0;
+    }
+    .applyDetail >div{
+        width: 33.3%;
+    }
+    .applyDetail >div > span{
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        color: #999999;
+    }
+    .applyDetail >div > span:nth-of-type(2){
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        color: #2e2e2e;
+        margin-top: 8px;
+        font-weight: 600;
+    }
+    .ji_detailsTiL {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .ji_detailsTiL span {
+        background: url() left center no-repeat;
+        padding-left: 10px;
+        background-size: 3px auto;
+        font-size: 16px;
+        color: #2e2e2e;
+        position: relative;
+        line-height: 22px;
+    }
+    .ji_detailsTiL span::after{
+        position: absolute;
+        display: block;
+        width: 3px;
+        height: 86%;
+        background-color: #ffc600;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        content: "";
+    }
+    .shen_a {
+        padding: 20px 10px;
+        display: flex;
+         flex-wrap: wrap;
+    }
+    .shen_a span {
+        padding: 10px 5px;
+        display: block;
+        width: 30%;
+        background: transparent;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+
+    }
+    .shen_a a {
+        padding: 2px 5px;
+        border: 1px solid #e1e1e1;
+        color: #666;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    .ul_daklist {
+        padding: 10px;
+    }
 	.model_content_header{
         height: 43px;
         width: 100%;
         z-index: 999;
-        background: #f8f8f8;;
+        background: #00a2ff;
         font-size: 16px;
-        color: #fff;
         line-height: 43px;
         margin: 0 auto;
         width: 100%;
         text-align: center;
         position: relative;
-        color: #666;
+        color: #fff;
     }
     .model_content_header i{
         position: absolute;
@@ -139,7 +303,7 @@
         transform: rotate(180deg);
         font-size: 22px;
         padding:0 10px; 
-        color: #666;
+        color: #fff;
     }
     .product_icon{
     	width: 80px;
@@ -154,48 +318,22 @@
     .product_text{
     	margin-left: 15px;
     }
-    .product_base{
-
-    }
-    .product_base > P{
-    	font-size: 14px;
-    	color: #666;
-    	padding: 10px 25px;
-    	border-bottom: 1px solid #ccc;
-    }
-    .product_base > ul > li {
-    	padding: 30px 25px 15px;
-    	display: flex;
-    	font-size: 14px;
-
-    }
-    .product_base li > div{
-    	width: 50%;
-    }
-    .product_detail{
-    	padding: 10px 25px;
-    	border-top: 1px solid #ccc;
-    }
-    .product_detail h1{
-    	margin-bottom: 10px;
-    }
-    .product_detail p{
-    	font-size: 14px;
-    	line-height: 22px;
+    .num{
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
     }
     .join{
     	width:90%;
     	height:40px;
-    	background:#EE9C4D;
-    	left:5%;
     	color:#ffffff;
     	line-height:40px;
     	text-align: center;
-    	border-radius:5px;
-    	position:fixed;
-    	bottom:10px;
-    	z-index:999999;
     	font-size: 16px;
+        background: #039ef7;
+        margin: 0 auto;
+        border-radius: 20px;
     }
     .model_contain{
 	    width: 100%;
@@ -206,6 +344,10 @@
     }
     .model_Contactus{
     	width: 80%;
+    }
+    .borderbt8{
+        height: 8px;
+        background: #f7f7f7;
     }
     .layui-input, .layui-select{
 	    height: 38px;

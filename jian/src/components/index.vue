@@ -4,7 +4,7 @@
             <div class="swiper-container2">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="banner in bannerList">
-                        <div :style="{background:  'url(' +imgUrl+banner.url+') no-repeat center center/cover',paddingTop: '45%' }"></div>
+                        <div :style="{background:  'url(' +imgUrl+banner.url+') no-repeat center center/cover',paddingTop: '45%' }" @click="openLink(banner)"></div>
                         <!-- <img :src="imgUrl+banner.url" style="width:100%;height:5rem;" @click="toBanner(banner)"/>
                         <div class="mobile_banner"></div> -->
                     </div>
@@ -122,6 +122,20 @@
                     }
                 })
             },
+            openLink(item) {
+                console.log(item)
+                if(item.link) {
+                     let uApi = '/api/banner/incr/' + item.id;
+                     this.$http.post(uApi).then((res) => {
+                        if(res.data.code == 200) {
+                            window.location.href= item.link;
+                        } else if(res.data.code == 401) {
+                            this.$router.push({name: 'login'})
+                        }
+                    })
+                    //window.location.href = item.link;
+                }
+            },
             getInfo() {
                 let _this = this;
                 _this.$http.get('/api/product/list').then(function(res) {
@@ -133,11 +147,17 @@
             },
             toLink(item) {
                 console.log(item);
-                this.$router.push({name: "detail", params:{
+                this.$router.push({name: "detail", query:{
                         id: item.id,
                         url: imgUrl + item.url,
                         name: item.name,
                         num: item.accessNumber,
+                        description: item.description,
+                        link: item.link,
+                        intro: item.intro,
+                        passRate: item.passRate,
+                        timeLimit: item.timeLimit,
+                        dailyRate: item.dailyRate,
                     }
                 })
                 return 

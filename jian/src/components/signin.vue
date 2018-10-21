@@ -112,7 +112,7 @@
                     password: this.password,
                     name: this.name,
                     verifyCode: this.verifyCode,
-                    shareCode:"",
+                    shareCode: sessionStorage.getItem('share') || "",
                 }
                 //param.append("shareCode",  sessionStorage.getItem('share') || '');
                 this.$http.post('/api/auth/regist', param).then((res) => {
@@ -191,7 +191,7 @@
         height: 43px;
         width: 100%;
         z-index: 999;
-        background: #dea167;
+        background: #00a2ff;
         font-size: 16px;
         color: #fff;
         line-height: 43px;
@@ -250,7 +250,7 @@
         border: none;
     }
     .hui-primary{
-        background: #EE9C4D;
+        background: #00a2ff;
         color: #FFFFFF;
         width: 100%;
         -webkit-appearance: none;
@@ -290,7 +290,7 @@
         height:25px;
         border:none;
         color:#FFF;
-        background: #EE9C4D;
+        background: #00a2ff;
         padding: 7px 10px;
         border-radius: 3px;
     }
