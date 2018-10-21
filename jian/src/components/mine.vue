@@ -67,7 +67,7 @@
                     {icon: '&#xe60d;', name: '联系我们', code: '2', path: ''},
                     {icon: '&#xe626;', name: '分享', code: '3', path: ''},
                     {icon: '&#xe792;', name: '退出', code: '4', path: '/login'},
-                    {icon: '&#xe624;', name: '设置', code: '5', path: '/mineinfo'},
+                    // {icon: '&#xe624;', name: '设置', code: '5', path: '/mineinfo'},
                 ],
                 name: '',
                 phone: '',

@@ -53,7 +53,7 @@
             </el-table-column>
         </el-table>
 
-        <el-dialog title="轮播编辑" :visible.sync="dialogFormVisible">
+        <el-dialog title="产品编辑" :visible.sync="dialogFormVisible">
             <el-upload
                 class="upload-demo"
                 :action=uploadUrl
@@ -68,31 +68,49 @@
                 <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
             <div class="banner-url">
-                <el-input v-model="bannerName" placeholder="请输入产品名称"></el-input>
+                <el-input v-model="bannerName" placeholder="请输入产品名称">
+                    <template slot="prepend">产品名称</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="bannerLink" placeholder="请输入产品链接"></el-input>
+                <el-input v-model="bannerLink" placeholder="请输入产品链接">
+                    <template slot="prepend">产品链接</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="intro" placeholder="请输入产品描述"></el-input>
+                <el-input v-model="intro" placeholder="请输入产品描述">
+                    <template slot="prepend">产品描述</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="timeLimit" placeholder="请输入产品借款期限"></el-input>
+                <el-input v-model="timeLimit" placeholder="请输入产品借款期限">
+                    <template slot="prepend">借款期限</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="passRate" placeholder="请输入产品通过率"></el-input>
+                <el-input v-model="passRate" placeholder="请输入产品通过率">
+                    <template slot="prepend">产品通过率</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="dailyRate" placeholder="请输入产品日费率"></el-input>
+                <el-input v-model="dailyRate" placeholder="请输入产品日费率">
+                    <template slot="prepend">产品日费率</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="bannerDes" placeholder="请输入额度"></el-input>
+                <el-input v-model="bannerDes" placeholder="请输入额度">
+                    <template slot="prepend">产品额度</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="accessNumber" placeholder="请输入点击量"></el-input>
+                <el-input v-model="accessNumber" placeholder="请输入点击量">
+                    <template slot="prepend">产品点击量</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="sort" placeholder="请输入排序值(值越大越置上)"></el-input>
+                <el-input v-model="sort" placeholder="请输入排序值(值越大越置上)">
+                    <template slot="prepend">产品排序值</template>
+                </el-input>
             </div>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -439,6 +457,11 @@
     }
     .banner-url input {
         float: left;
-        width: 400px;
+        width: 400px; 
+    }
+</style>
+<style>
+    .el-input-group__prepend{
+        width: 70px !important;
     }
 </style>
