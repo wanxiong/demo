@@ -1,7 +1,12 @@
 <template>
     <div class="outer">
-        <p class="top">我的下线</p>
-        <div class="content" v-if="isEmpty == false">
+        <div>
+            <p class="model_content_header">我的下线<i class="iconfont " @click="back">&#xe64a;</i></p>
+        </div>
+        <div class="content" v-if="isEmpty == false"
+          v-infinite-scroll="loadMore"
+          infinite-scroll-distance="10"
+        >
             <div class="item" v-for="item in list">
                 <p>
                     <span>{{item.name}}</span>
@@ -10,7 +15,12 @@
                 <p>{{item.createTime}}</p>
             </div>
         </div>
-        
+        <!-- <ul
+          v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="10">
+          <li v-for="item in list">{{ item }}</li>
+        </ul> -->
         <div class="is-empty" v-if="isEmpty == true">您还没有邀请记录哦~</div>
     </div>
 </template>
@@ -22,27 +32,52 @@
             return {
                 list: [],
                 isEmpty: false,
+                page: 1,
+                size: 15,
+                flag:false
             }
         },
         beforeMount() {
             document.title = this.$route.meta.title;
         },
         mounted() {
-            this.getInfo();
+            
         },
         methods: {
             getInfo() {
                 let _this = this;
-                _this.$http.get('/api/user/referrals').then((res) => {
+                let params = {
+                    size: this.size,
+                    page: this.page
+                }
+                let url =`/api/user/referrer?page=${this.page}&size=${this.size}`
+                _this.$http.get(url).then((res) => {
                     let r = res.data;
-                    if(r.code == 0) {
-                        _this.list = r.data.items;
+                    if(r.code == 200) {
+                        let arr = r.data.items
+                        _this.list =  _this.list.concat(arr);
+                        if(r.data.total > (this.size*this.page)) {
+                            this.page +=1;
+                            this.flag = false;
+                        } else {
+
+                        }
                         _this.list.length == 0 ? _this.isEmpty = true : _this.isEmpty = false;
                     }
-                    if(r.code == 403) {
-                        _this.$router.push('/passlogin')
+                    if(r.code == 401) {
+                        _this.$router.replace('/login')
                     }
                 })
+            },
+            back() {
+                window.history.back();
+            },
+            loadMore() {
+                if(this.flag) {
+                    return
+                }
+                this.flag = true;
+                this.getInfo();
             }
         }
     }
@@ -102,5 +137,25 @@
         line-height: 0.42rem;
         text-align: center;
         margin-top: 4rem;
+    }
+    .model_content_header{
+        height: 43px;
+        width: 100%;
+        z-index: 999;
+        background: #00a2ff;
+        font-size: 16px;
+        color: #fff;
+        line-height: 43px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+    .model_content_header i{
+        position: absolute;
+        left: 0;
+        transform: rotate(180deg);
+        font-size: 22px;
+        padding:0 10px; 
     }
 </style>
