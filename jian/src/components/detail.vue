@@ -81,9 +81,9 @@
                         <div class="layui-form-item">
                             <input type="password" name="phone" v-model="password"  lay-verify="required" placeholder="登录密码" class="layui-input">
                         </div>
-                        <div class="layui-form-item">
+                        <!-- <div class="layui-form-item">
                             <input type="text" name="phone" v-model="share"  lay-verify="required" placeholder="分享人邀请码" class="layui-input">
-                        </div>
+                        </div> -->
  						<div class="layui-layer-btn layui-layer-btn-c" @click="startApply"><a class="layui-layer-btn0">马上申请</a></div>
      				</div>
        		</div>

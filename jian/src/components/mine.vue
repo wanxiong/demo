@@ -66,6 +66,7 @@
                     {icon: '&#xe605;', name: '拒就陪服务', code: '1', path: '/applyfor'},
                     {icon: '&#xe60d;', name: '联系我们', code: '2', path: ''},
                     {icon: '&#xe626;', name: '分享', code: '3', path: ''},
+                    {icon: '&#xeab6;', name: '我的下线', code: '5', path: '/wodexiaxian'},
                     {icon: '&#xe792;', name: '退出', code: '4', path: '/login'},
                     // {icon: '&#xe624;', name: '设置', code: '5', path: '/mineinfo'},
                 ],
@@ -93,6 +94,8 @@
                     this.popupVisible_logout = true;
                 } else if(item.code == '3') {
                     this.$router.push({name: 'promotion'});
+                } else if(item.code == '5') {
+                    this.$router.push({name: 'wodexiaxian'});
                 }
                 return 
                 let _this = this;
