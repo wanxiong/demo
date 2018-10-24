@@ -16,7 +16,15 @@
               :editable=false
               value-format="yyyy-MM-dd"
               placeholder="请选择开始日期"
-              style="margin-left:30px;float:left;width:200px;display:none;">
+              style="margin-left:30px;float:left;width:200px;">
+            </el-date-picker >
+            <el-date-picker
+              v-model="endtime"
+              type="date"
+              :editable=false
+              value-format="yyyy-MM-dd"
+              placeholder="请选择结束日期"
+              style="margin-left:30px;float:left;width:200px;">
             </el-date-picker >
             <el-button type="primary" @click="searchInfo()" style="float:left;margin-left:30px;">搜索</el-button>
         </div>
@@ -27,7 +35,7 @@
             <el-table-column prop="productDescription" label="额度" width="180"></el-table-column>
             <el-table-column prop="accessNumber" label="点击量" width="120"></el-table-column>
             <el-table-column prop="realAccessNumber" label="实际访问量" width="120"></el-table-column>
-            <el-table-column prop="todayAccessNumber" label="今日访问量" width="120"></el-table-column>
+            <el-table-column prop="todayAccessNumber" label="当前区间访问量" width="120"></el-table-column>
             <el-table-column prop="sort" label="排序值" width="120"></el-table-column>
             <el-table-column label="状态" width="200">
                 <template slot-scope="scope">
@@ -45,7 +53,7 @@
             </el-table-column>
         </el-table>
 
-        <el-dialog title="轮播编辑" :visible.sync="dialogFormVisible">
+        <el-dialog title="产品编辑" :visible.sync="dialogFormVisible">
             <el-upload
                 class="upload-demo"
                 :action=uploadUrl
@@ -60,19 +68,49 @@
                 <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
             <div class="banner-url">
-                <el-input v-model="bannerName" placeholder="请输入轮播名称"></el-input>
+                <el-input v-model="bannerName" placeholder="请输入产品名称">
+                    <template slot="prepend">产品名称</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="bannerLink" placeholder="请输入轮播链接"></el-input>
+                <el-input v-model="bannerLink" placeholder="请输入产品链接">
+                    <template slot="prepend">产品链接</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="bannerDes" placeholder="请输入额度"></el-input>
+                <el-input v-model="intro" placeholder="请输入产品描述">
+                    <template slot="prepend">产品描述</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="accessNumber" placeholder="请输入点击量"></el-input>
+                <el-input v-model="timeLimit" placeholder="请输入产品借款期限">
+                    <template slot="prepend">借款期限</template>
+                </el-input>
             </div>
             <div class="banner-url">
-                <el-input v-model="sort" placeholder="请输入排序值(值越大越置上)"></el-input>
+                <el-input v-model="passRate" placeholder="请输入产品通过率">
+                    <template slot="prepend">产品通过率</template>
+                </el-input>
+            </div>
+            <div class="banner-url">
+                <el-input v-model="dailyRate" placeholder="请输入产品日费率">
+                    <template slot="prepend">产品日费率</template>
+                </el-input>
+            </div>
+            <div class="banner-url">
+                <el-input v-model="bannerDes" placeholder="请输入额度">
+                    <template slot="prepend">产品额度</template>
+                </el-input>
+            </div>
+            <div class="banner-url">
+                <el-input v-model="accessNumber" placeholder="请输入点击量">
+                    <template slot="prepend">产品点击量</template>
+                </el-input>
+            </div>
+            <div class="banner-url">
+                <el-input v-model="sort" placeholder="请输入排序值(值越大越置上)">
+                    <template slot="prepend">产品排序值</template>
+                </el-input>
             </div>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -113,13 +151,18 @@
                 bannerName: '',
                 bannerLink: '',
                 bannerDes: '',
-                time:new Date(),
+                time: '',
+                endtime: '',
                 accessNumber: '',
                 sort: '',
                 isEdit: '',
                 selectid: '',
                 searchName: '',
                 searchStatus: '',
+                intro: '',
+                passRate: '',
+                timeLimit: '',
+                dailyRate: '',
                 sort: '',
                 options: [{value: '选项1', label: '已调用'}, {value: '选项2', label: '下架'}],
                 value: '',
@@ -131,6 +174,15 @@
             }
         },
         mounted() {
+            var oDate = new Date();
+            var oYear = oDate.getFullYear();
+            var oMonth = oDate.getMonth()+1;
+            oMonth = oMonth>=10? oMonth:'0'+oMonth;
+            var oDay = oDate.getDate();
+            oDay = oDay>=10? oDay:'0'+oDay;
+            var theDate = oYear+"-"+oMonth+"-"+oDay;
+            this.time = theDate;
+            this.endtime = theDate;
             this.getInfo();
         },
         computed:{
@@ -145,21 +197,47 @@
         methods: {
             searchInfo() {
                 console.log(this.value, 'value')
-                if(this.value == '选项1') {
+                if(this.value == '选项1' ) {
                     this.searchStatus = 1;
+                } else if(this.value == '') {
+                    this.searchStatus = '';
                 } else {
                     this.searchStatus = 2;
                 }
+
                 this.getInfo(this.searchStatus);
             },
             getInfo(status) {
                 let _this = this;
+                if(!this.time) {
+                    this.$message({
+                      message: '请输入开始时间',
+                      type: 'warning'
+                    });
+                    return
+                }
+                if(!this.endtime) {
+                    this.$message({
+                      message: '请输入结束时间',
+                      type: 'warning'
+                    });
+                    return
+                }
+                if(this.time.replace(/-/g,'') > this.endtime.replace(/-/g,'') ) {
+                    this.$message({
+                      message: '结束时间不能小于开始时间',
+                      type: 'warning'
+                    });
+                    return
+                }
                 _this.$http.get('/api/product/adminList', {
                     params: {
                         page: _this.currentPage,
                         size: _this.pageSize,
                         name: _this.searchName,
                         status: status,
+                        startDate: _this.time,
+                        endDate: _this.endtime
                     }
                 }).then((res) => {
                     let r = res.data;
@@ -171,12 +249,45 @@
             },
             submit() {
                 let _this = this;
+                if(!_this.intro) {
+                     this.$message({
+                      message: '请输入产品描述',
+                      type: 'warning'
+                    });
+                    return
+                }
+                if(!_this.timeLimit) {
+                     this.$message({
+                      message: '请输入产品借款期限',
+                      type: 'warning'
+                    });
+                    return
+                }
+                if(!_this.passRate) {
+                     this.$message({
+                      message: '请输入产品通过率',
+                      type: 'warning'
+                    });
+                    return
+                }
+                
+                if(!_this.dailyRate) {
+                     this.$message({
+                      message: '请输入产品日费率',
+                      type: 'warning'
+                    });
+                    return
+                }
                 let param = new URLSearchParams();
                 param.append("productName", _this.bannerName);
                 param.append("productUrl", _this.fileList2[0].response.data);
                 param.append("productLink", _this.bannerLink);
                 param.append("productDescription", _this.bannerDes);
                 param.append("accessNumber", _this.accessNumber);
+                param.append("intro", _this.intro);
+                param.append("passRate", _this.passRate);
+                param.append("timeLimit", _this.timeLimit);
+                param.append("dailyRate", _this.dailyRate);
                 param.append("sort", _this.sort);
                 _this.$http.post(_this.isEdit==false ? '/api/product/create' : '/api/product/update/'+_this.selectid, param).then((res) => {
                     let r = res.data;
@@ -196,6 +307,10 @@
                 this.bannerDes = '';
                 this.accessNumber = '';
                 this.sort = '';
+                this.intro = '';
+                this.passRate = '';
+                this.timeLimit = '';
+                this.dailyRate = '';
                 this.dialogFormVisible = true;
             },
             // 编辑
@@ -207,6 +322,10 @@
                 _this.bannerLink = '';
                 _this.bannerDes = '';
                 _this.accessNumber = '';
+                this.intro = '';
+                this.passRate = '';
+                this.timeLimit = '';
+                this.dailyRate = '';
                 _this.sort = '';
                 _this.selectid = row.id;
                 _this.dialogFormVisible = true;
@@ -226,6 +345,10 @@
                         _this.bannerLink = r.data.productLink;
                         _this.bannerDes = r.data.productDescription;
                         _this.accessNumber = r.data.accessNumber;
+                        _this.intro = r.data.intro;;
+                        _this.passRate = r.data.passRate;;
+                        _this.timeLimit = r.data.timeLimit;;
+                        _this.dailyRate = r.data.dailyRate;;
                     }
                 })
             },
@@ -269,20 +392,20 @@
             updateBefore(file) {
                 console.log(this.fileList2.length, '// 图片列表')
                 if(this.fileList2.length >= 1){
-		  			this.$message("更新成功")
-		  		}
+                    this.$message("更新成功")
+                }
             },
             //图片上传成功
-		  	addSuccess(response, file, fileList) {
-				if(response.code == 0) {
+            addSuccess(response, file, fileList) {
+                if(response.code == 0) {
                     this.fileList2 = [];
-					this.fileList2.push(file);
+                    this.fileList2.push(file);
                     console.log(this.fileList2, 'file')
-				} else {
+                } else {
                     this.$message.error(response.error_msg)
                     this.fileList2 = [];
                 }
-			},
+            },
             handleRemove(file, fileList) {
                 this.fileList2 = [];
             },
@@ -334,6 +457,11 @@
     }
     .banner-url input {
         float: left;
-        width: 400px;
+        width: 400px; 
+    }
+</style>
+<style>
+    .el-input-group__prepend{
+        width: 70px !important;
     }
 </style>
