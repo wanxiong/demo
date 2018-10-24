@@ -79,8 +79,6 @@
                 param.append("verifyCode",  _this.code);
                 param.append("shareCode",  sessionStorage.getItem('share'));
                 _this.$http.post('/api/user/login', param).then((res) => {
-                    alert(res.data.code)
-                    alert(res.data.message)
                     let r = res.data;
                     if(r.code == 0) {
                         _this.$toast(r.message);
@@ -89,7 +87,6 @@
                         _this.$toast(r.message)
                     }
                 }).catch( res => {
-                    alert('err')
                     alert(res.data.message)
                 })
             },

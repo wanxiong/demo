@@ -19,11 +19,11 @@ axios.interceptors.request.use(config => {
 	return config
 })
 axios.interceptors.response.use(response =>{
-  // let r = response.data;
+   let r = response.data;
   // console.log(r.code, 'code')
-  // if(r.code == 403) {
-  //   router.push('/passlogin');
-  // }
+  if(r.code == 403) {
+    router.push('/passlogin');
+  }
 	return response;
 })
 /* eslint-disable no-new */
