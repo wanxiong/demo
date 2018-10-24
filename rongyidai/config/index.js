@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // '/api': {
-      //   target: 'http://yi.bangyiwl.com:8000',
-      //   pathRewrite: {
-      //     '^/api': '/api'
-      //   }
-      // }
+      '/api': {
+        target: 'http://yi.bangyiwl.com:8000',
+        pathRewrite: {
+          '^/api': '/api'
+        }
+      }
     },
 
     // Various Dev Server settings
