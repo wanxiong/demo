@@ -20,9 +20,9 @@
             <el-select v-model="groupSearchValue" placeholder="请选择分组" style="margin-left:30px;">
                 <el-option
                   v-for="item in groupList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
                   >
                 </el-option>
             </el-select>
@@ -31,17 +31,18 @@
         </div>
         <el-button  type="primary" style="width:100px;margin-top:20px;" @click="add">新增</el-button>
         <el-table :data="list" border style="width:100%;margin-top:30px;">
-            <el-table-column fixed prop="phone" label="手机号" ></el-table-column>
+            <el-table-column fixed prop="phone" label="手机号" width="130"></el-table-column>
             <el-table-column fixed prop="name" label="姓名" ></el-table-column>
+            <el-table-column fixed prop="groupName" label="所属组" width="100"></el-table-column>
             <el-table-column prop="inviteCount" label="总邀请量"></el-table-column>
             <el-table-column prop="todayInviteCount" width="160" label="当前时间区间邀请量" ></el-table-column>
-            <el-table-column prop="clickCount" width="160" label="总点击量(已去重)" ></el-table-column>
-            <el-table-column prop="todayClickCount" width="240" label="当前时间区间点击量(已去重)" ></el-table-column>
-            <el-table-column prop="todayClickCountTwo" width="240" label="当前邀请区间点击量(已去重)" ></el-table-column>
+            <el-table-column prop="clickCount" align="center"  width="90" label="总点击量已去重" ></el-table-column>
+            <el-table-column prop="todayClickCount" align="center" width="160" label="当前时间区间点击量已去重" ></el-table-column>
+            <el-table-column prop="todayClickCountTwo" width="160" label="当前邀请区间点击量已去重" align="center" ></el-table-column>
             <el-table-column fixed="right" label="操作" width="150">
                 <template slot-scope="scope">
                     <el-button size="mini" v-if="scope.$index !=list.length-1 " type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                    <el-button size="mini" v-if="scope.$index !=list.length-1 " type="primary" @click="initGroup(scope.$index, scope.row)">分组</el-button>
+                    <el-button size="mini" v-if="scope.$index !=list.length-1 " type="primary" @click="initGroup(scope.$index, scope.row)">编辑</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -65,9 +66,9 @@
                 <el-select v-model="groupAddValue" placeholder="请选择所在分组" >
                     <el-option
                       v-for="item in groupList"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
                       >
                     </el-option>
                 </el-select>
@@ -96,25 +97,21 @@
                 // 分页
                 currentPage: 1,
                 oldCurrentPage:1,
-                pageSize: 30,
+                pageSize: 100,
                 totalPage: 1,
                 groupSearchValue: '',
                 groupAddValue: '',
                 phoneDisabled: false,
                 phoneName: false,
-                groupList: [{
-                  value: '选项1',
-                  label: 'A组'
-                }, {
-                  value: '选项2',
-                  label: 'B组'
-                }],
+                groupList: null,
+                groupId: null,
                 title:"新增统计"
 
             }
         },
         mounted() {
             this.getInfo();
+            this.groupInfo();
         },
         watch: {
             
@@ -157,6 +154,7 @@
                         size: _this.pageSize,
                         startDate: _this.time,
                         endDate: _this.endtime,
+                        groupId: _this.groupSearchValue,
                     }
                 }).then((res) => {
                     let r = res.data;
@@ -170,6 +168,19 @@
             },
              handleSizeChange(val) {
                 
+            },
+            groupInfo() {
+                let _this = this;
+                _this.$http.get('/api/group/list').then((res) => {
+                    let r = res.data;
+                    if(r.code == 0) {
+                        r.data.unshift({
+                            id: '',
+                            name: ''
+                        })
+                        _this.groupList = r.data;
+                    }
+                })
             },
             handleCurrentChange(val,flg) {
                 if(flg) return ;
@@ -223,8 +234,10 @@
                 this.phone = '';
                 this.name = '';
                 this.title = '';
-                this.phoneDisabled = false,
-                this.phoneName = false,
+                this.phoneDisabled = false;
+                this.phoneName = false;
+                this.groupAddValue = '';
+                this.title = "新增统计";
                 this.dialogFormVisible = true;
             },
             submit() {
@@ -237,34 +250,39 @@
                     });
                     return false;
                 }
-                let param = new URLSearchParams();
-                param.append("name", _this.name);
-                param.append("phone", _this.phone);
-                let url = '/api/sale/create';
-                this.$http.post(url,param).then((res) => {
-                    let r = res.data;
-                    if(r.code == 0) {
-                        this.$message({message: '新增成功',type: 'success'});
-                        this.dialogFormVisible = false;
-                        _this.getInfo();
-                    } else {
-                        this.$message.error(r.message);
-                    }
-                }).catch( err => {
+                if( this.title = '新增统计') {
+                    let param = new URLSearchParams();
+                    param.append("name", _this.name);
+                    param.append("phone", _this.phone);
+                    param.append("groupId", _this.groupAddValue);
+                    let url = '/api/sale/update';
+                    this.$http.post(url,param).then((res) => {
+                        let r = res.data;
+                        if(r.code == 0) {
+                            this.$message({message: '编辑成功',type: 'success'});
+                            this.dialogFormVisible = false;
+                            _this.getInfo();
+                        } else {
+                            this.$message.error(r.message);
+                        }
+                    }).catch( err => {
 
-                })
+                    })
+                 } else {
+                    
+                }
 
             },
             initGroup(index, row) {
                 this.phone = '';
                 this.name = '';
-                this.title = '修改分组'
+                this.title = '修改统计'
                 this.phone = row.phone;
                 this.name = row.name;
                 this.phoneDisabled = true,
-                this.phoneName = true,
+                this.phoneName = false,
                 this.dialogFormVisible = true;
-
+                this.groupAddValue = row.groupName;
 
             }
            

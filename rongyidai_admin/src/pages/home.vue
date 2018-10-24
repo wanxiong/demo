@@ -25,7 +25,7 @@
                         <span slot="title">销售统计</span>
                     </el-menu-item>
                     <el-menu-item index="7" @click="$router.push('/bgm/group')">
-                        <span slot="title">群组管理</span>
+                        <span slot="title">分组管理</span>
                     </el-menu-item> <!--
                     <el-menu-item index="7" @click="$router.push('/bgm/record')" disabled>
                         <span slot="title">记录</span>

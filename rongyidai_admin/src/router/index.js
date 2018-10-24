@@ -23,7 +23,7 @@ const router = new Router({
             {path: '/bgm/userlist', name: 'userlist', component: userlist, meta: {title: '用户列表'}},
             {path: '/bgm/count', name: 'count', component: count, meta: {title: '销售统计'}},
             {path: '/bgm/noticelist', name: 'noticelist', component: noticelist, meta: {title: '公告'}},
-            {path: '/bgm/group', name: 'group', component: group, meta: {title: '群组管理'}},
+            {path: '/bgm/group', name: 'group', component: group, meta: {title: '分组管理'}},
         ]},
         {path: '/bgm/login', name: 'login', component: login, meta: {title: '登陆'}},
     ]
