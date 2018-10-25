@@ -14,12 +14,13 @@
             <el-table-column prop="phone" label="手机号" width="120"></el-table-column>
             <el-table-column prop="password" label="登录密码" width="160"></el-table-column>
             <el-table-column prop="referrer" label="推荐人" width="120"></el-table-column>
+            <el-table-column prop="referrerName" label="推荐人姓名" width="120"></el-table-column>
             <el-table-column prop="inviteCount" label="邀请人数" width="80"></el-table-column>
-             <el-table-column prop="todayInviteCount" label="今日邀请数" width="80"></el-table-column>
+             <el-table-column prop="todayInviteCount" label="今日邀请数" width="100"></el-table-column>
             <el-table-column prop="createTime" label="创建时间" width="180"></el-table-column>
             <el-table-column prop="loginCount" label="登录次数" width="60"></el-table-column>
-            <el-table-column prop="wechatAccount" label="微信号" width="140"></el-table-column>
-            <el-table-column prop="alipayAccount" label="支付宝号" width="140"></el-table-column>
+<!--             <el-table-column prop="wechatAccount" label="微信号" width="140"></el-table-column>
+            <el-table-column prop="alipayAccount" label="支付宝号" width="140"></el-table-column> -->
             <el-table-column fixed="right" label="操作" width="120">
                 <template slot-scope="scope">
                     <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">修改登陆密码</el-button>

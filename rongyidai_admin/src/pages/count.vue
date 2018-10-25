@@ -32,14 +32,14 @@
         <el-button  type="primary" style="width:100px;margin-top:20px;" @click="add">新增</el-button>
         <el-table :data="list" border style="width:100%;margin-top:30px;">
             <el-table-column fixed prop="phone" label="手机号" width="130"></el-table-column>
-            <el-table-column fixed prop="name" label="姓名" ></el-table-column>
-            <el-table-column fixed prop="groupName" label="所属组" width="100"></el-table-column>
+            <el-table-column fixed prop="name" label="姓名" width="150" ></el-table-column>
+            <el-table-column fixed prop="groupName" label="所属组" width="150"></el-table-column>
             <el-table-column prop="inviteCount" label="总邀请量"></el-table-column>
-            <el-table-column prop="todayInviteCount" width="160" label="当前时间区间邀请量" ></el-table-column>
-            <el-table-column prop="clickCount" align="center"  width="90" label="总点击量已去重" ></el-table-column>
-            <el-table-column prop="todayClickCount" align="center" width="160" label="当前时间区间点击量已去重" ></el-table-column>
-            <el-table-column prop="todayClickCountTwo" width="160" label="当前邀请区间点击量已去重" align="center" ></el-table-column>
-            <el-table-column fixed="right" label="操作" width="150">
+            <el-table-column prop="todayInviteCount" width="100" label="下线" ></el-table-column>
+            <el-table-column prop="clickCount" align="center"  width="150" label="总点击" ></el-table-column>
+            <el-table-column prop="todayClickCount" align="center" width="160" label="老+新点击" ></el-table-column>
+            <el-table-column prop="todayClickCountTwo" width="160" label="新客户点击" align="center" ></el-table-column>
+            <el-table-column fixed="right" label="操作" width="180">
                 <template slot-scope="scope">
                     <el-button size="mini" v-if="scope.$index !=list.length-1 " type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     <el-button size="mini" v-if="scope.$index !=list.length-1 " type="primary" @click="initGroup(scope.$index, scope.row)">编辑</el-button>
