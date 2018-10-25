@@ -10,7 +10,7 @@ Vue.use(Mint);
 import 'mint-ui/lib/style.css';
  
 Vue.prototype.$http = axios;
-axios.defaults.baseURL = 'http://yi.bangyiwl.com:8000/';
+//axios.defaults.baseURL = 'http://yi.bangyiwl.com:8000/';
 
 Vue.config.productionTip = false
 
@@ -21,9 +21,9 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response =>{
    let r = response.data;
   // console.log(r.code, 'code')
-  if(r.code == 403) {
-    router.push('/passlogin');
-  }
+  // if(r.code == 403) {
+  //   router.push('/passlogin');
+  // }
 	return response;
 })
 /* eslint-disable no-new */

@@ -220,14 +220,34 @@
             // 删除
             handleDelete(index, row) {
                 let _this = this;
-                let url = '/api/sale/delete/' + row.phone;
-                _this.$http.post(url).then((res) => {
-                    let r = res.data;
-                    if(r.code == 0) {
-                        this.$message({message: '删除成功',type: 'success'});
-                        _this.getInfo();
-                    }
+                this.$confirm('此操作将删除该统计, 是否继续?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+                }).then((res) => {
+                    console.log(res)
+                    let url = '/api/sale/delete/' + row.phone;
+                    _this.$http.post(url).then((res) => {
+                        let r = res.data;
+                        if(r.code == 0) {
+                            this.$message({
+                             type: 'success',
+                             message: '删除成功!'
+                            });
+                            _this.dialogFormVisible = false;
+                            _this.getInfo();
+                        } else{
+                            this.$message.error(r.message);
+                        }
+                    })
+                }, () => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
                 })
+
+                
             },
             // 新增
             add() {
@@ -250,7 +270,26 @@
                     });
                     return false;
                 }
-                if( this.title = '新增统计') {
+                if( this.title == '新增统计') {
+
+                    let param = new URLSearchParams();
+                    param.append("name", _this.name);
+                    param.append("phone", _this.phone);
+                    param.append("groupId", _this.groupAddValue);
+                    let url = '/api/sale/create';
+                    this.$http.post(url,param).then((res) => {
+                        let r = res.data;
+                        if(r.code == 0) {
+                            this.$message({message: '新增成功',type: 'success'});
+                            this.dialogFormVisible = false;
+                            _this.getInfo();
+                        } else {
+                            this.$message.error(r.message);
+                        }
+                    }).catch( err => {
+
+                    })
+                 } else {
                     let param = new URLSearchParams();
                     param.append("name", _this.name);
                     param.append("phone", _this.phone);
@@ -268,8 +307,6 @@
                     }).catch( err => {
 
                     })
-                 } else {
-                    
                 }
 
             },
@@ -282,7 +319,7 @@
                 this.phoneDisabled = true,
                 this.phoneName = false,
                 this.dialogFormVisible = true;
-                this.groupAddValue = row.groupName;
+                this.groupAddValue = row.groupId;
 
             }
            
