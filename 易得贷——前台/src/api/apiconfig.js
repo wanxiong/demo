@@ -1,4 +1,4 @@
-export var imgUrl = 'http://m.yidaipingtai.com/'
-export var uploadUrl = 'http://m.yidaipingtai.com/'
-export var shareUrl = 'http://m.yidaipingtai.com/index?share='
+export var imgUrl = 'http://www.lhsgy.com/'
+export var uploadUrl = 'http://www.lhsgy.com/'
+export var shareUrl = 'http://www.lhsgy.com/index?share='
 
