@@ -11,7 +11,7 @@ Vue.use(elementUi);
 Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
-axios.defaults.baseURL='http://www.yifandai.com:8889';
+axios.defaults.baseURL='http://rong.lhsgy.com:8889';
 //在请求发出之前进行一些操作
 axios.interceptors.request.use(config => {
   //console.log(config.)

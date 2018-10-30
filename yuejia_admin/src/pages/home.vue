@@ -23,10 +23,10 @@
                     </el-menu-item>
                    <el-menu-item index="6" @click="$router.push('/bgm/count')">
                         <span slot="title">销售统计</span>
-                    </el-menu-item> <!--
-                    <el-menu-item index="7" @click="$router.push('/bgm/record')" disabled>
-                        <span slot="title">记录</span>
-                    </el-menu-item>-->
+                    </el-menu-item> 
+                    <el-menu-item index="7" @click="$router.push('/bgm/productCount')" >
+                        <span slot="title">产品统计</span>
+                    </el-menu-item>
                 </el-menu>
 			</el-col>
 			<el-col :span="21" class="view">

@@ -11,6 +11,7 @@ import userlist from '@/pages/userlist'
 import count from '@/pages/count'
 import noticelist from '@/pages/noticelist'
 import login from '@/pages/login'
+import productCount from '@/pages/productCount'
 
 const router = new Router({
     mode: 'history',
@@ -22,6 +23,7 @@ const router = new Router({
             {path: '/bgm/userlist', name: 'userlist', component: userlist, meta: {title: '用户列表'}},
             {path: '/bgm/count', name: 'count', component: count, meta: {title: '销售统计'}},
             {path: '/bgm/noticelist', name: 'noticelist', component: noticelist, meta: {title: '公告'}},
+            {path: '/bgm/productCount', name: 'productCount', component: productCount, meta: {title: '产品统计'}},
         ]},
         {path: '/bgm/login', name: 'login', component: login, meta: {title: '登陆'}},
     ]
