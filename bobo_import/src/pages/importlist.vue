@@ -15,7 +15,7 @@
               value-format='yyyy-MM-dd'
               placeholder="导入结束时间">
             </el-date-picker>
-            <el-select v-model="uploadData.groupId" placeholder="分组" style="margin-left:30px;">
+            <el-select v-model="uploadData.groupId" @change="selectChange" placeholder="分组" style="margin-left:30px;">
                 <el-option
                   v-for="item in groupList"
                   :key="item.id"
@@ -154,6 +154,9 @@
                     return false
                 }
                 this.getInfo();
+            },
+            selectChange(val) {
+                this.searchInfo();
             },
             initId(index) {
                 console.log(index)

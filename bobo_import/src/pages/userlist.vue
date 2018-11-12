@@ -15,7 +15,7 @@
               value-format='yyyy-MM-dd'
               placeholder="导入结束时间">
             </el-date-picker>
-            <el-select v-model="groupValue" placeholder="分组" style="margin-left:30px;">
+            <el-select v-model="groupValue" placeholder="分组" @change="selectChange" style="margin-left:30px;">
                 <el-option
                   v-for="item in groupList"
                   :key="item.id"
@@ -80,8 +80,6 @@
         },
         methods: {
             searchInfo() {
-                console.log(this.starTime)
-                console.log(this.endTime)
                 if( this.endTime && 
                     this.starTime && 
                     this.starTime.replace(/\//g,'') > this.endTime.replace(/\//g,'')
@@ -109,6 +107,9 @@
                         _this.list = r.data.items;
                     }
                 })
+            },
+            selectChange(val) {
+                this.searchInfo();
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
