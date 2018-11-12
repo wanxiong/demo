@@ -15,7 +15,15 @@
               value-format='yyyy-MM-dd'
               placeholder="导入结束时间">
             </el-date-picker>
-
+            <el-select v-model="uploadData.groupId" placeholder="分组" style="margin-left:30px;">
+                <el-option
+                  v-for="item in groupList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                  >
+                </el-option>
+            </el-select>
             <el-button type="primary" @click="searchInfo()" style="margin-left:30px;">搜索</el-button>
  
         </div>
@@ -69,6 +77,7 @@
           :on-progress="uploadProgress"
           :headers="header"
           :on-change="uploadChange"
+          :data="uploadData"
           :auto-upload="true">
           <el-button slot="trigger" size="small" type="primary">导入数据</el-button>
           <!-- <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button> -->
@@ -105,6 +114,18 @@
                 currentPage: 1,
                 pageSize: 10,
                 flag:false,
+                groupValue:1,
+                uploadData:{
+                    groupId: 1
+                },
+                groupList:[{
+                    id: 1,
+                    name: 'A组'},{
+                    id: 2,
+                    name: 'B组'},{
+                    id: 3,
+                    name: 'C组'}
+                ],
                 totalPage: 1,
                 percent:0,
                 percentInsert:0,
@@ -174,7 +195,8 @@
                         page: _this.currentPage,
                         size: _this.pageSize,
                         endTime:this.endTime,
-                        starTime:this.starTime
+                        starTime:this.starTime,
+                        groupId: this.uploadData.groupId
                     }
                 }).then((res) => {
                     let r = res.data;

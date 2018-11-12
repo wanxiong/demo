@@ -15,7 +15,15 @@
               value-format='yyyy-MM-dd'
               placeholder="导入结束时间">
             </el-date-picker>
-
+            <el-select v-model="groupValue" placeholder="分组" style="margin-left:30px;">
+                <el-option
+                  v-for="item in groupList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                  >
+                </el-option>
+            </el-select>
             <el-button type="primary" @click="searchInfo()" style="margin-left:30px;">搜索</el-button>
  
         </div>
@@ -55,6 +63,15 @@
                 totalSize:'--',
                 currentPage: 1,
                 pageSize: 10,
+                groupValue: 1,
+                groupList:[{
+                    id: 1,
+                    name: 'A组'},{
+                    id: 2,
+                    name: 'B组'},{
+                    id: 3,
+                    name: 'C组'}
+                ],
                 totalPage: 1,
             }
         },
@@ -82,6 +99,7 @@
                         size: _this.pageSize,
                         starTime: _this.starTime,
                         endTime: _this.endTime,
+                        groupId: _this.groupValue
                     }
                 }).then((res) => {
                     let r = res.data;
