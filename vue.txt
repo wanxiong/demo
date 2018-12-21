@@ -1,0 +1,330 @@
+
+netstat -aon|findstr "8080"
+taskkill /pid 11544 -f
+=====================================
+http://huziketang.mangojuice.top react.js 文档
+https://ts.xcatliu.com/basics/type-of-object-interfaces.html  ts文档
+https://discountry.github.io/react/docs/hello-world.html  中文文档
+https://facebook.github.io/react/docs/hello-world.html    英文文档
+http://www.8dou5che.com/2017/05/11/vue-lazyload/          v-lazyLoad中文文档
+http://fontawesome.io/icons/    //  icon  图标字体库
+https://github.com/nieweidong/fetool   //前端介绍  ~~~  【  值得一看  】
+https://github.com/kraaas/webpack-tutorial-collection   webpack 
+WOW.JS和scrollreveal.js  前者一次   后次无限次，屏幕滚动动画更有趣
+npm view jquery versions 查看所有版本
+http://www.jianshu.com/p/011d308d7dd7   vue一些插件
+https://www.npmjs.com/package/anywhere 本地服务器   anywhere -p 9000
+https://github.com/superman66/vue-axios-github   vue拦截登录功能
+https://www.cnblogs.com/icyhoo/p/6282574.html   小程序Demo
+https://github.com/we-plugin/we-cropper         小程序裁剪
+https://meili.github.io/min/docs/minui/index.html#flex  小程序 UI框架组件
+http://blog.csdn.net/u012421719/article/details/70889542   小程序特效收集
+http://www.bslxx.com/a/vue/2017/1124/1454.html   vuex数据页面刷新解决方案
+https://github.com/championswimmer/vuex-persist  vuex数据页面刷新解决方案
+https://www.npmjs.com/package/js-cookie    cookie
+https://blog.csdn.net/codectq/article/details/50778071  --git 命令行 基本删除新增操作
+====================================================================
+http://blog.csdn.net/carson_ho/article/details/64904691
+http://blog.csdn.net/qq_24530405/article/details/52067474
+http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/53290382
+IOS https://github.com/marcuswestin/WebViewJavascriptBridge
+webview android 博客介绍 webview和JS交互
+====================================================================
+http://mpvue.com/mpvue/quickstart/#1-mpvue 小程序mpvue版本
+====================================================================
+ cnpm install -g create-react-app
+$ create-react-app my-app
+$ cd my-app/
+$ npm start
+====================================================================
+npm install jquery@2.2.3 安装指定版本
+http://caibaojian.com/mobile-meta.html  html一些meta标签说明
+=======================================================================
+http://blog.csdn.net/tyro_java/article/details/51232458   NVM安装教程
+ nvm install 6.10.0 安装指定的版本  nvm use 5.9.0 切换指定的版本
+=======================================================================
+https://devopen.club/?aspxerrorpath=/course.aspx   视频连接
+https://doc.webpack-china.org/configuration  webpack
+http://www.cnblogs.com/liyunhua/p/4529086.html   JS一些性能问题
+=========================================================
+*****     @是v-on的缩写       ********
+用在普通元素上时，只能监听 原生 DOM 事件。用在自定义元素组件上时，也可以监听子组件触发的自定义事件。
+
+*************************************
+=========================================================
+<head-top signin-up='home'>
+            <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
+ </head-top>
+当上面的加载下面的模板的时候 ，slot指定名字标签将要加载对应替换模板的所有元素,当元素里面不添加任何
+指定名字的话，默认替换自义定标签中全部的内容
+<header id='head_top'>
+ <slot name='logo'></slot>
+</div>
+
+==========================================================
+ <ul class="citylistul clear">
+                <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
+                    {{item.name}}
+                </router-link>  
+            </ul>
+ 可以不用a来表示  用tag表示标签  路由的话会自动push进去
+
+
+this.$router.push({path:'/msite', query:{geohash}})
+==========================================================
+   
+query是带参数查询，想当于  xxx.xxx.login?geohash=geohash
+
+=======================================================
+****   一般循环的时候都会增加单独的keyk来绑定  有相同父元素的子元素必须有独特的key。重复的key会造成渲染错误。
+****   一般都是结合v-for来渲染 
+<li v-for="item in items" :key="item.id">...</li> 
+
+
+=======================================================
+****   如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
+	<div class="recommend" ref="recommend"></div>
+	this.$refs.recommend.style.bottom = bottom
+		
+
+=======================================================
+****  父组件传递参数给子组件的一种默认写法
+ <song-list :title ="title" :name="name" @select="selectItem"></song-list> 
+
+****
+  props: {
+      title: {
+        type: String,
+        default: '正在载入...'
+      },
+      name{
+        type: Number,
+        default: 1
+      }
+    }
+
+=======================================================
+// 命名的路由  参数
+router.push({ name: 'user', params: { userId: 123 }})
+
+// 对象
+this.$router.push({path: '/login?url=' + this.$route.path});
+
+
+Vue.nextTick( fn() )  这个方法是在dom渲染完毕的时候的回调，可以对dom进行操作 然create是不可以的
+
+===================================================================
+**********    vuex数据驱动       ***************
+	import {mapState , mapActions} from 'vuex'
+computed : {
+			...mapState([
+				'recommendImageList',
+				'recommendList'
+			])
+			
+		} 数据中获取 （mapState）
+	
+methods : {
+	...mapActions([
+				'saveRecommendImageList',
+				'saveRecommendList'
+            ])
+
+}
+ 设置数据，数据驱动更新（mapActions）
+	      
+	
+===================================================================
+****       针对better-scroll的插件，博客 		****
+  
+http://blog.csdn.net/sinat_17775997/article/details/72841002 
+http://www.jb51.net/article/123946.htm   
+https://ustbhuangyi.github.io/better-scroll/doc/options.html#freescroll
+
+图片如果没加载肯定没发获取高度，这个插件实例化肯定有问题，所以如果想解决这个问题，
+< img src="" @load="imgLoad"> 在其中添加一个load事件，在加载一个flg，防止后面图片太多，
+浪费资源一直实例化的问题
+
+===================================================================
+********    	computed     	********
+computed: {
+     vincentwan() {
+		console.log('wanxiong~~~~~~~~~~~~~wanxiong')
+		return 'wanxiong'
+	},
+     listData() {
+		
+		return [1 , 2 , 3 , 4]
+	}
+},
+-------------------------
+<p>{{vincentwan}}</p>
+<p v-for=" item in listData ">{{ item  }}</p>
+
+------------------------
+此时他是一个属性，不在是一个方法   她返回的也是data数据中的一部分
+
+==================================================================
+*************    watch监听方法     **********************
+var vm = new Vue({
+	     el: '#app',
+             data: {
+                 firstName: 'a',
+                 lastName: 'fei',
+                 fullName: 'a fei'
+             },
+             watch: {
+                 firstName: function (newVal, oldVal) {
+                     this.fullName = newVal + ' ' + this.lastName
+                 },
+                 lastName: function (val) {
+                     this.fullName = this.firstName + ' ' + val
+                 }
+             }
+}
+--------------
+ <div id="watch">
+         firstName:<input type="text" name="li"  v-model="firstName">
+         <br>
+         lastName:<input type="text" name="fei"  v-model="lastName">
+         <p>fullName: {{fullName}}</p>
+ </div>
+-----------------  主要是监听设定的值的变化
+
+==================================================================
+******   动画    *******************
+
+<template>
+	<transition name="slide">
+		<div>
+			<div>singer子页面</div>
+		</div>
+	</transition>
+</template>
+
+*******************************************************
+1 ***** v-enter: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+2 ***** v-enter-active: 定义进入过渡的结束状态。在元素被插入时生效，在 transition/animation 完成之后移除。
+3 ***** v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+4 ***** v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition/animation 完成之后移除。
+.search-item
+      height: 40px
+      &.list-enter-active, &.list-leave-active
+        transition: all 0.1s
+      &.list-enter, &.list-leave-to
+        height: 0
+-------------------------------------
+.slide-enter-active, .slide-leave-active{
+	    transition: all 0.3s
+	}
+
+.slide-enter, .slide-leave-to{
+	    transform: translate3d(100%, 0, 0)
+	}
+v-enter-to: 2.1.8版及以上 定义进入过渡的结束状态。在元素被插入一帧后生效（于此同时 v-enter 被删除），在 transition/animation 完成之后移除。
+v-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发一帧后生效（于此同时 v-leave 被删除），在 transition/animation 完成之后移除。
+
+
+<transition name="palyer"
+	@enter="enter"
+	@after-enter="afterEnter"
+	@leave="leave"
+	@after-leave="afterLeave"
+>
+动画自带的钩子函数
+methods:{
+	enter( el ,done){
+	}
+}
+在对应的methods添加对应的方法即可 
+
+
+
+===================================================================
+****      nextTick对应节点加载完毕  ***********
+currentSong() {
+			//等加音频加载完毕再来播放
+			/*this.$nextTick(() => {
+				this.$refs.audio.play()	
+			})*/
+},
+
+===================================================================
+
+
+
+=============================================================================
+	***************     (ES6)async理解             ******************
+1.=》 函数名前面async代表此函数内部有异步操作。
+2.=》 async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。
+  =》 当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再接着执行函数体内后面的语句。
+3.=》 await 命令后面的 Promise 对象，运行结果可能是 rejected，所以最好把 await 命令放在 try...catch 代码块中
+4.=》 demo\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	async function myFunction() {
+		try {
+    	    	 await a()
+	   	 await b()
+  		} catch (err) {
+	    	console.log(err);
+  		}
+	}
+	// 另一种写法
+	async function myFunction() {
+  		await a().catch(function (err){
+    			console.log(err);
+  		});
+	}
+
+5.=> await 命令只能用在 async 函数之中，如果用在普通函数，就会报错。
+5.=> await 命令只能用在 async 函数之中，如果用在普通函数，就会报错。
+5.=> await 命令只能用在 async 函数之中，如果用在普通函数，就会报错。
+6.=> 但是，如果将 forEach 方法的参数改成 async 函数，也有问题。
+     demo\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	async function dbFuc(db) {
+  	  let docs = [{}, {}, {}];
+
+  	  // 可能得到错误结果
+  	  docs.forEach(async function (doc) {
+    	     await db.post(doc);
+  	  });
+	}
+     上面代码可能不会正常工作，原因是这时三个 db.post 操作将是并发执行，也就是同时执行，而不是继发执行。正确的写法是采用 for 循环。
+     demo\\\\\\\\\\\\\\\\\\\\\\\\\
+	async function dbFuc(db) {
+  	  let docs = [{}, {}, {}];
+  
+  	  for (let doc of docs) {
+    	     await db.post(doc);
+  	  }
+	}
+7.=> 如果确实希望多个请求并发执行，可以使用 Promise.all 方法。
+     demo\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	async function dbFuc(db) {
+  	  let docs = [{}, {}, {}];
+  	  let promises = docs.map((doc) => db.post(doc));
+
+  	  let results = await Promise.all(promises);
+  	  console.log(results);
+	}
+	// 或者使用下面的写法
+
+	async function dbFuc(db) {
+  	  let docs = [{}, {}, {}];
+  	  let promises = docs.map((doc) => db.post(doc));
+
+  	  let results = [];
+  	  for (let promise of promises) {
+    	    results.push(await promise);
+  	  }
+  	  console.log(results);
+	}
+	// 或者使用下面的写法 两个方法都是异步操作，不存在依赖关系，所以我们可以同时触发，改写成下面的
+	//第一种写法
+  	let [a,b]=Promise.all([getFoo(),getBar()])
+  	//第二种写法
+  	let aPromise=getFoo();
+  	let bPromise=getBar();
+  	let a=await aPromise;
+  	let b=await bPromise;
+***********************    end          ***************************************
+=============================================================================
