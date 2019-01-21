@@ -1,6 +1,8 @@
 
 netstat -aon|findstr "8080"
 taskkill /pid 11544 -f
+
+winpty vue.cmd create admin vue-3.0 新建选择操作
 =====================================
 http://huziketang.mangojuice.top react.js 文档
 https://ts.xcatliu.com/basics/type-of-object-interfaces.html  ts文档
@@ -46,6 +48,7 @@ http://blog.csdn.net/tyro_java/article/details/51232458   NVM安装教程
 https://devopen.club/?aspxerrorpath=/course.aspx   视频连接
 https://doc.webpack-china.org/configuration  webpack
 http://www.cnblogs.com/liyunhua/p/4529086.html   JS一些性能问题
+https://blog.csdn.net/deep_sleeper/article/details/79139076  sublime插件react
 =========================================================
 *****     @是v-on的缩写       ********
 用在普通元素上时，只能监听 原生 DOM 事件。用在自定义元素组件上时，也可以监听子组件触发的自定义事件。
