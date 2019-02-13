@@ -10,7 +10,7 @@ Vue.use(Mint);
 import 'mint-ui/lib/style.css';
  
 Vue.prototype.$http = axios;
-axios.defaults.baseURL = 'http://www.jiu.dxcqp.com/';
+axios.defaults.baseURL = 'http://jiu.dxcqp.com/';
 
 Vue.config.productionTip = false
 
