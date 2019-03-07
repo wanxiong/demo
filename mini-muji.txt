@@ -1,0 +1,60 @@
+appid ： wx4099604b04bf38d1
+第一步  code
+	wx.login  => code
+
+第二部 获取相关信息
+https://wechat.muji.com.cn/wechat-java/mini/getUserInfo?code=0111YFjx0RciLc1qeelx0pR5kx01YFjr  获取session_key openid unionid
+
+ {
+    openid: "owS4V0cHEwd1eYxiFgOYY0p9Q6FY"
+    session_key: "l6h8OI5Yzu2uiT1uqW1xNQ=="
+    unionid : "onmVat9hP8b1Km-RZBSAEMSb1XLY"
+ } 
+
+
+
+第三步==================解密======================
+
+woqu() {
+    console.log(6666)
+    var newWXBiz = new WXBizDataCrypt('wx4099604b04bf38d1', 'wzBT3RvFGPx3VhvNBhfI/w==')
+    console.log(newWXBiz)
+    var data = newWXBiz.decryptData('8sGXjvBxNIVH3/qunh84Nt8cBEWDaAHVahX47VUKMpqfs5UmZls7uWV3bYWy7qKb7QJjnyWLzsnT3j0EO5iFHITqZEBiAotUlKPeH8vE7d0muU2cIwOY9LT3iNWs3rpUTbcOimXa/3CpkZ5kAAOmq+YITUflzgwg4I5BVdU+IaYz6H7LGaP8Zq4U9FenzaZMVroTxkybqwZkJREvH3FmS/7EHiScMaLmC/ycKpOamoe5kYuDJe2vn5zJu2XWYuREG8gCThK6TEzqyP4ImCTK7K00JYVUX33cyA5clAk/alDeaXDGj0ZeZvi/IGgeyv2my5E0jhslmH1K0nvCY3TprUjMw5PdxZBnHSfNhoYtWwrhufYsiu7Sxv79rZQ6NT0RWe23Up/b5DljZJr1Y6aoBS06D+X5nfWr2kONKQHqVTurHDzDnLQLe1DMtKRbd8XDO45oGG6Qly4LuH3FgRmQbLhEd6aRBaiSGIp/4Af0ZUHo0jzylyVyaCP9EAB4AeeLwyFT68HNIzuN6LaSvrC1wQ==', 'HV/s7C+gqIXNHXohqQJJbg==')
+    console.log(data)
+    app.unionid = data.unionId
+    obj.unionid = data.unionId
+    console.log(data)
+  }
+=============  原型 =================
+ var newWXBiz = new WXBizDataCrypt(app.configApi.appId, session_key)
+var data = newWXBiz.decryptData(app.userInfo.encryptedData, app.userInfo.iv)
+
+{
+  encryptedData: "4gSqhZO3kVmYhk1Mnr+xPTcN6e9OSpABqq8IstbOMVdsUrkTUiP8+6vX/EYwq0xmClPe4Xevcy/lAcaI/xaVsLIMdbOByhOCQ3MFhcStycreR91hMt+OVP1HayWpfbC7h19oHLDFoXpgiKPjSwxZAruHAh37Vg0mh4rrAlcdbb1FQIrIg09euLMbn59OjJ4kbSCPKrvOWDBEFO8Opgs01t7HmS+jbUxYrd932NcaYJOWFBFqQh4Ts0R4E1sGcR4888RnzabYfUeBvkZUzhzVS2q7eCEPmu/tajmwkUT7H8kjS3oUEOwgLKFILrJwYfyv8bIjVB+yqlQkE9MeMg0dCYmMa0ZAPbTKkS+lwa/1b4UIvJ9G5b4mZbHwS9xMpYsnr5TQaGNNSH+IZW9c3hzGMG6136ixmn2Uy+RYvvIea5Mv44JkQWZQtcG5ykqP5UMAtKNCS8U5N14awbOS5wkvIk4LYGhpxDGsopV46jywoD8PsYqSuGYutp87iau/JPSTEqBb/3GP5pGfdiY7LEGpuw==",
+
+  errMsg: "getUserInfo:ok",
+
+  iv: "G/kyLIRlUORXA8ti3C1jDQ==",
+
+  rawData: "{
+    "nickName":"乘风",
+    "gender":1,
+    "language":"zh_CN",
+    "city":"Nanchang",
+    "province":"Jiangxi",
+    "country":"China",
+    "avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoFsajesORgRREukQDcQEVCULQ6jCJwEoZXBYGictw1uXBibGkna3k7fEfxibsW83zwqzxM2sLtcAlEw/132"
+  }",
+
+  signature:"33d85a2ff22758e42741d0ffd94dfce54b3ce14e",
+  
+  userInfo: {
+    avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoFsajesORgRREukQDcQEVCULQ6jCJwEoZXBYGictw1uXBibGkna3k7fEfxibsW83zwqzxM2sLtcAlEw/132",
+    city:"Nanchang",
+    country:"China",
+    gender:1,
+    language:"zh_CN",
+    nickName:"乘风",
+    province:"Jiangxi",
+  }
+}
