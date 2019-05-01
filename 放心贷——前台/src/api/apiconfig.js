@@ -1,4 +1,4 @@
-export var imgUrl = 'http://jiu.dxcqp.com/'
-export var uploadUrl = 'http://jiu.dxcqp.com/'
-export var shareUrl = 'http://jiu.dxcqp.com/index?share='
+export var imgUrl = 'http://www.huokuantianxia.com:8080/'
+export var uploadUrl = 'http://www.huokuantianxia.com:8080/'
+export var shareUrl = 'http://www.huokuantianxia.com:8080/index?share='
 
